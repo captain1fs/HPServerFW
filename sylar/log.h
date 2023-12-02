@@ -14,6 +14,7 @@
 #include<cstring>
 #include<stdarg.h>
 #include "singleton.h"
+#include"util.h"
 
 #define SYLAR_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -36,6 +37,7 @@
 #define SYLAR_LOG_FMT_ERROR(logger, fmt, ...) SYLAR_LOG_FMT_LEVEL(logger, sylar::LogLevel::ERROR, fmt, __VA_ARGS__)
 #define SYLAR_LOG_FMT_FATAL(logger, fmt, ...) SYLAR_LOG_FMT_LEVEL(logger, sylar::LogLevel::FATAL, fmt, __VA_ARGS__)
 
+#define SYLAR_LOG_ROOT() sylar::LoggerMgr::GetInstance()->getRoot()
 
 namespace sylar{
 
@@ -202,6 +204,7 @@ public:
     Logger::ptr getLogger(const std::string& name);
 
     void init();
+    Logger::ptr getRoot() const { return m_root; }
 private:
     Logger::ptr m_root;
     std::map<std::string, Logger::ptr> m_loggers;

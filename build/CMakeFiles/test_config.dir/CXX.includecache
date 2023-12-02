@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/sylar/sylar/config.cc
-config.h
-/home/fangshao/CPP/Project/sylar/sylar/config.h
-
 /home/fangshao/CPP/Project/sylar/sylar/config.h
 memory
 -
@@ -72,5 +68,15 @@ sys/syscall.h
 stdio.h
 -
 stdint.h
+-
+
+/home/fangshao/CPP/Project/sylar/tests/test_config.cc
+../sylar/config.h
+/home/fangshao/CPP/Project/sylar/sylar/config.h
+../sylar/log.h
+/home/fangshao/CPP/Project/sylar/sylar/log.h
+iostream
+-
+yaml-cpp/yaml.h
 -
 
