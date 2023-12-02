@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fangshao/CPP/Project/sylar/sylar/log.cc
+log.h
+/home/fangshao/CPP/Project/sylar/sylar/log.h
+map
+-
+functional
+-
+
+/home/fangshao/CPP/Project/sylar/sylar/log.h
+iostream
+-
+string
+-
+list
+-
+vector
+-
+map
+-
+stdint.h
+-
+sstream
+-
+fstream
+-
+memory
+-
+ctime
+-
+cstring
+-
+stdarg.h
+-
+singleton.h
+/home/fangshao/CPP/Project/sylar/sylar/singleton.h
+
+/home/fangshao/CPP/Project/sylar/sylar/singleton.h
+

@@ -1,0 +1,4 @@
+/home/fangshao/CPP/Project/sylar/build/CMakeFiles/rebuild_cache.dir
+/home/fangshao/CPP/Project/sylar/build/CMakeFiles/edit_cache.dir
+/home/fangshao/CPP/Project/sylar/build/CMakeFiles/test.dir
+/home/fangshao/CPP/Project/sylar/build/CMakeFiles/sylar.dir

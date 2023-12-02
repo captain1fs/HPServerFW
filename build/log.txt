@@ -1,0 +1,2 @@
+2023-12-02 01:18:04	ERROR	test define error
+2023-12-02 01:18:04	ERROR	test fmt error aa
