@@ -15,7 +15,15 @@ memory
 -
 string
 -
+vector
+-
 map
+-
+set
+-
+unordered_map
+-
+unordered_set
 -
 list
 -
