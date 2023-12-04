@@ -10,6 +10,7 @@
 #include<unordered_set>
 #include<list>
 #include<ctype.h>
+#include<functional>
 #include<boost/lexical_cast.hpp>
 #include<yaml-cpp/yaml.h>
 
@@ -231,6 +232,8 @@ template<typename T, typename FromStr = LexicalCast<std::string, T>
 class ConfigVar : public ConfigVarBase {
 public:
     typedef std::shared_ptr<ConfigVar> ptr;
+    typedef std::function<void (const T& old_val, const T& new_val)> on_change_cb;
+
     ConfigVar(const std::string& name , const T& val, const std::string& description = "")
         :ConfigVarBase(name, description)
         ,m_val(val){
@@ -257,10 +260,36 @@ public:
     }
 
     const T getVal() const { return m_val; }
-    void setVal(const T& val) { m_val = val; }
+    void setVal(const T& val) { 
+        if(val == m_val){
+            return;
+        }
+        for(auto& i : m_cbs){
+            i.second(m_val, val);
+        }
+        m_val = val;
+    }
     std::string getTypeName() const override { return typeid(T).name(); }
+
+    void addListener(uint64_t key, on_change_cb cb){
+        m_cbs[key] = cb;
+    }
+
+    void delListener(uint64_t key){
+        m_cbs.erase(key);
+    }
+
+    on_change_cb getListener(uint64_t key) const {
+        auto it = m_cbs.find(key);
+        return it != m_cbs.end() ? it->second : nullptr;
+    }
+
+    void clearListener() {
+        m_cbs.clear();
+    }
 private:
     T m_val;
+    std::map<uint64_t, on_change_cb> m_cbs;
 };
 
 class ConfigMgr {

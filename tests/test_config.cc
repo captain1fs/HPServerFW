@@ -97,6 +97,10 @@ public:
         ss << "[Person name= " << m_name << " age= " << m_age << " sex= " << m_sex << "]";
         return ss.str();
     }
+
+    bool operator==(const Person& oth) const {
+        return m_name == oth.m_name && m_age == oth.m_age && m_sex == oth.m_sex;
+    }
 };
 
 namespace sylar {
@@ -136,6 +140,10 @@ sylar::ConfigVar<std::map<std::string, std::vector<Person> > >::ptr g_person_vec
 
 void test_class() {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "before: " << g_person->getVal().toString() << " - " << g_person->toString();
+
+    g_person->addListener(10, [](const Person& old_val, const Person& new_val){
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "old_val= " << old_val.toString() << ", new_val= " << new_val.toString();
+    });
 
 #define XX_PM(g_var, prefix) { \
         auto& m = g_var->getVal(); \
