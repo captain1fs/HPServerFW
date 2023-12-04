@@ -3,7 +3,7 @@
 
 ## 日志系统
 
-'''cpp
+```cpp
 //日志事件器：描述了所有的日志信息，比如消息体、时间、线程id、协程id、文件名、行号
 class LogEvent;
 
@@ -17,7 +17,7 @@ class Logger;
 
 class LoggerMgr;
 
-'''
+```
 
 ## 配置系统
 
