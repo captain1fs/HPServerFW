@@ -29,7 +29,7 @@ void ConfigMgr::LoadFromYaml(const YAML::Node& root){
     for(auto& node : all_nodes){
         std::string key = node.first;
         if(key.empty()){
-            continue;-+
+            continue;
         }
         std::transform(key.begin(), key.end(), key.begin(), ::tolower);
         ConfigVarBase::ptr var = LookupBase(key);
