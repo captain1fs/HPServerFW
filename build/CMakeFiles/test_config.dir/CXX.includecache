@@ -6,7 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/sylar/sylar/config.h
+/home/fangshao/CPP/Project/windgent/tests/test_config.cc
+../windgent/config.h
+/home/fangshao/CPP/Project/windgent/windgent/config.h
+../windgent/log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
+iostream
+-
+yaml-cpp/yaml.h
+-
+
+/home/fangshao/CPP/Project/windgent/windgent/config.h
 memory
 -
 string
@@ -32,9 +42,9 @@ boost/lexical_cast.hpp
 yaml-cpp/yaml.h
 -
 log.h
-/home/fangshao/CPP/Project/sylar/sylar/log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
 
-/home/fangshao/CPP/Project/sylar/sylar/log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
 iostream
 -
 string
@@ -60,13 +70,13 @@ cstring
 stdarg.h
 -
 singleton.h
-/home/fangshao/CPP/Project/sylar/sylar/singleton.h
+/home/fangshao/CPP/Project/windgent/windgent/singleton.h
 util.h
-/home/fangshao/CPP/Project/sylar/sylar/util.h
+/home/fangshao/CPP/Project/windgent/windgent/util.h
 
-/home/fangshao/CPP/Project/sylar/sylar/singleton.h
+/home/fangshao/CPP/Project/windgent/windgent/singleton.h
 
-/home/fangshao/CPP/Project/sylar/sylar/util.h
+/home/fangshao/CPP/Project/windgent/windgent/util.h
 pthread.h
 -
 unistd.h
@@ -78,15 +88,5 @@ sys/syscall.h
 stdio.h
 -
 stdint.h
--
-
-/home/fangshao/CPP/Project/sylar/tests/test_config.cc
-../sylar/config.h
-/home/fangshao/CPP/Project/sylar/sylar/config.h
-../sylar/log.h
-/home/fangshao/CPP/Project/sylar/sylar/log.h
-iostream
--
-yaml-cpp/yaml.h
 -
 

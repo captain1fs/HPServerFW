@@ -38,6 +38,14 @@ yaml-cpp/yaml.h
 log.h
 /home/fangshao/CPP/Project/sylar/sylar/log.h
 
+/home/fangshao/CPP/Project/sylar/sylar/log.cc
+log.h
+/home/fangshao/CPP/Project/sylar/sylar/log.h
+map
+-
+functional
+-
+
 /home/fangshao/CPP/Project/sylar/sylar/log.h
 iostream
 -
@@ -69,6 +77,10 @@ util.h
 /home/fangshao/CPP/Project/sylar/sylar/util.h
 
 /home/fangshao/CPP/Project/sylar/sylar/singleton.h
+
+/home/fangshao/CPP/Project/sylar/sylar/util.cc
+util.h
+/home/fangshao/CPP/Project/sylar/sylar/util.h
 
 /home/fangshao/CPP/Project/sylar/sylar/util.h
 pthread.h

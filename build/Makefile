@@ -51,10 +51,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fangshao/CPP/Project/sylar
+CMAKE_SOURCE_DIR = /home/fangshao/CPP/Project/windgent
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fangshao/CPP/Project/sylar/build
+CMAKE_BINARY_DIR = /home/fangshao/CPP/Project/windgent/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -83,9 +83,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/sylar/build/CMakeFiles /home/fangshao/CPP/Project/sylar/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles /home/fangshao/CPP/Project/windgent/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/sylar/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -140,98 +140,17 @@ test_log/fast:
 .PHONY : test_log/fast
 
 #=============================================================================
-# Target rules for targets named sylar
+# Target rules for targets named windgent
 
 # Build rule for target.
-sylar: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sylar
-.PHONY : sylar
+windgent: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 windgent
+.PHONY : windgent
 
 # fast build rule for target.
-sylar/fast:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/build
-.PHONY : sylar/fast
-
-sylar/config.o: sylar/config.cc.o
-
-.PHONY : sylar/config.o
-
-# target to build an object file
-sylar/config.cc.o:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.o
-.PHONY : sylar/config.cc.o
-
-sylar/config.i: sylar/config.cc.i
-
-.PHONY : sylar/config.i
-
-# target to preprocess a source file
-sylar/config.cc.i:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.i
-.PHONY : sylar/config.cc.i
-
-sylar/config.s: sylar/config.cc.s
-
-.PHONY : sylar/config.s
-
-# target to generate assembly for a file
-sylar/config.cc.s:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.s
-.PHONY : sylar/config.cc.s
-
-sylar/log.o: sylar/log.cc.o
-
-.PHONY : sylar/log.o
-
-# target to build an object file
-sylar/log.cc.o:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.o
-.PHONY : sylar/log.cc.o
-
-sylar/log.i: sylar/log.cc.i
-
-.PHONY : sylar/log.i
-
-# target to preprocess a source file
-sylar/log.cc.i:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.i
-.PHONY : sylar/log.cc.i
-
-sylar/log.s: sylar/log.cc.s
-
-.PHONY : sylar/log.s
-
-# target to generate assembly for a file
-sylar/log.cc.s:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.s
-.PHONY : sylar/log.cc.s
-
-sylar/util.o: sylar/util.cc.o
-
-.PHONY : sylar/util.o
-
-# target to build an object file
-sylar/util.cc.o:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.o
-.PHONY : sylar/util.cc.o
-
-sylar/util.i: sylar/util.cc.i
-
-.PHONY : sylar/util.i
-
-# target to preprocess a source file
-sylar/util.cc.i:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.i
-.PHONY : sylar/util.cc.i
-
-sylar/util.s: sylar/util.cc.s
-
-.PHONY : sylar/util.s
-
-# target to generate assembly for a file
-sylar/util.cc.s:
-	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.s
-.PHONY : sylar/util.cc.s
+windgent/fast:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/build
+.PHONY : windgent/fast
 
 tests/test_config.o: tests/test_config.cc.o
 
@@ -287,6 +206,87 @@ tests/test_log.cc.s:
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.s
 .PHONY : tests/test_log.cc.s
 
+windgent/config.o: windgent/config.cc.o
+
+.PHONY : windgent/config.o
+
+# target to build an object file
+windgent/config.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/config.cc.o
+.PHONY : windgent/config.cc.o
+
+windgent/config.i: windgent/config.cc.i
+
+.PHONY : windgent/config.i
+
+# target to preprocess a source file
+windgent/config.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/config.cc.i
+.PHONY : windgent/config.cc.i
+
+windgent/config.s: windgent/config.cc.s
+
+.PHONY : windgent/config.s
+
+# target to generate assembly for a file
+windgent/config.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/config.cc.s
+.PHONY : windgent/config.cc.s
+
+windgent/log.o: windgent/log.cc.o
+
+.PHONY : windgent/log.o
+
+# target to build an object file
+windgent/log.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/log.cc.o
+.PHONY : windgent/log.cc.o
+
+windgent/log.i: windgent/log.cc.i
+
+.PHONY : windgent/log.i
+
+# target to preprocess a source file
+windgent/log.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/log.cc.i
+.PHONY : windgent/log.cc.i
+
+windgent/log.s: windgent/log.cc.s
+
+.PHONY : windgent/log.s
+
+# target to generate assembly for a file
+windgent/log.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/log.cc.s
+.PHONY : windgent/log.cc.s
+
+windgent/util.o: windgent/util.cc.o
+
+.PHONY : windgent/util.o
+
+# target to build an object file
+windgent/util.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/util.cc.o
+.PHONY : windgent/util.cc.o
+
+windgent/util.i: windgent/util.cc.i
+
+.PHONY : windgent/util.i
+
+# target to preprocess a source file
+windgent/util.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/util.cc.i
+.PHONY : windgent/util.cc.i
+
+windgent/util.s: windgent/util.cc.s
+
+.PHONY : windgent/util.s
+
+# target to generate assembly for a file
+windgent/util.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/util.cc.s
+.PHONY : windgent/util.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -297,22 +297,22 @@ help:
 	@echo "... edit_cache"
 	@echo "... test_config"
 	@echo "... test_log"
-	@echo "... sylar"
-	@echo "... sylar/config.o"
-	@echo "... sylar/config.i"
-	@echo "... sylar/config.s"
-	@echo "... sylar/log.o"
-	@echo "... sylar/log.i"
-	@echo "... sylar/log.s"
-	@echo "... sylar/util.o"
-	@echo "... sylar/util.i"
-	@echo "... sylar/util.s"
+	@echo "... windgent"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"
+	@echo "... windgent/config.o"
+	@echo "... windgent/config.i"
+	@echo "... windgent/config.s"
+	@echo "... windgent/log.o"
+	@echo "... windgent/log.i"
+	@echo "... windgent/log.s"
+	@echo "... windgent/util.o"
+	@echo "... windgent/util.i"
+	@echo "... windgent/util.s"
 .PHONY : help
 
 

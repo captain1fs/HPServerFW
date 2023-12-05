@@ -1,4 +1,4 @@
-# Install script for directory: /home/fangshao/CPP/Project/sylar
+# Install script for directory: /home/fangshao/CPP/Project/windgent
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/fangshao/CPP/Project/sylar/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/fangshao/CPP/Project/windgent/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

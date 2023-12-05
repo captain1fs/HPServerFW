@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 #项目名称
-project(sylar)
+project(windgent)
 
 #开启编译时的详细信息打印
 set(CMAKE_VERBOSE_MAKEFILE ON)
@@ -12,27 +12,27 @@ include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 
 
 set(LIB_SRC
-    sylar/log.cc    
-    sylar/util.cc    
-    sylar/config.cc    
+    windgent/log.cc    
+    windgent/util.cc    
+    windgent/config.cc    
 )
 
 #指定编译文件，编译可执行程序
-add_library(sylar SHARED ${LIB_SRC})
+add_library(windgent SHARED ${LIB_SRC})
 
 #编译库文件
-#add_library(sylar_static STATIC ${LIB_SRC})
-#SET_TARGET_PROPERTIES (sylar_static PROPERTIES OUTPUT_NAME "sylar")
+#add_library(windgent_static STATIC ${LIB_SRC})
+#SET_TARGET_PROPERTIES (windgent_static PROPERTIES OUTPUT_NAME "windgent")
 
 add_executable(test_log tests/test_log.cc)
-add_dependencies(test_log sylar)
+add_dependencies(test_log windgent)
 #添加依赖的库文件
-target_link_libraries(test_log sylar /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
+target_link_libraries(test_log windgent /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
 
 add_executable(test_config tests/test_config.cc)
-add_dependencies(test_config sylar)
+add_dependencies(test_config windgent)
 #添加依赖的库文件
-target_link_libraries(test_config sylar /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
+target_link_libraries(test_config windgent /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
