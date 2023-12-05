@@ -25,7 +25,8 @@ void ConfigMgr::LoadFromYaml(const YAML::Node& root){
     ListAllMember("", root, all_nodes);
 
     for(auto& node : all_nodes){
-        std::string key = node.first;
+        std::string key = node.first;    // int_vec
+        // std::cout << "ConfigMgr::LoadFromYaml() " << key << std::endl;
         if(key.empty()){
             continue;
         }
@@ -38,6 +39,7 @@ void ConfigMgr::LoadFromYaml(const YAML::Node& root){
             }else{
                 std::stringstream ss;
                 ss << node.second;
+                // std::cout << "ConfigMgr::LoadFromYaml() " << ss.str() << std::endl;   //[10, 20, 30]
                 var->fromString(ss.str());
             }
         }

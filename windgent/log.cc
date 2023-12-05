@@ -1,4 +1,6 @@
 #include "log.h" 
+#include "config.h" 
+
 #include <map>
 #include <functional>
 
@@ -59,6 +61,21 @@ const char* LogLevel::ToString(LogLevel::Level level){
     return "UNKNOWN";
 }
 
+LogLevel::Level LogLevel::FromString(const std::string& str) {
+#define XX(name) \
+    if(str == #name) { \
+        return LogLevel::name; \
+    } \
+
+    XX(DEBUG);
+    XX(INFO);
+    XX(WARN);
+    XX(ERROR);
+    XX(FATAL);
+#undef XX
+    return LogLevel::UNKNOWN;
+}
+
 //LogFormatter的定义
 LogFormatter::LogFormatter(const std::string& pattern)
     :m_pattern(pattern){
@@ -94,7 +111,7 @@ class NameFormatItem : public LogFormatter::FormatItem {
 public:
     NameFormatItem(const std::string& str = "") {}   
     void format(std::ostream& os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override {
-        os << logger->getName();
+        os << event->getLogger()->getName();
     }
 };
 
@@ -192,14 +209,14 @@ Logger::Logger(const std::string& name)
     m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));        //初始化日志输出格式
 }
 
-void Logger::addAppender(LogAppender::ptr appender){
+void Logger::addAppenders(LogAppender::ptr appender){
     if(!appender->getFormatter()){
         appender->setFormatter(m_formatter);
     }
     m_appenders.push_back(appender);
 }
 
-void Logger::delAppender(LogAppender::ptr appender){
+void Logger::delAppenders(LogAppender::ptr appender){
     for(auto it = m_appenders.begin(); it != m_appenders.end(); ++it){
         if(*it == appender){
             m_appenders.erase(it);
@@ -208,11 +225,35 @@ void Logger::delAppender(LogAppender::ptr appender){
     }
 }
 
+void Logger::clearAppenders() {
+    m_appenders.clear();
+}
+
+void Logger::setFormatter(LogFormatter::ptr val) {
+    m_formatter = val;
+}
+void Logger::setFormatter(std::string val) {
+    windgent::LogFormatter::ptr new_val(new windgent::LogFormatter(val));
+    if(new_val->isError()){
+        std::cout << "Logger setFormatter name= " << m_name << ", value= " << val << " valid format!" << std::endl;
+        return;
+    }
+    m_formatter = new_val;
+}
+LogFormatter::ptr Logger::getFormatter() {
+    return m_formatter;
+}
+
 void Logger::log(LogLevel::Level level, LogEvent::ptr event){
     if(level >= m_level){
         auto self = shared_from_this();
-        for(auto& appender : m_appenders){
-            appender->log(self, level, event);
+        //当logger的appenders为空时，使用默认的m_root写日志
+        if(!m_appenders.empty()){
+            for(auto& appender : m_appenders){
+                appender->log(self, level, event);
+            }
+        }else if(m_root){
+            m_root->log(level, event);
         }
     }
 }
@@ -345,6 +386,7 @@ void LogFormatter::init(){
             i = n - 1;
         }else if(fmt_status == 1){
             std::cout << "Pattern Parse Error: " << m_pattern << " - " << m_pattern.substr(i) << std::endl;
+            m_error = true;
             vec.push_back(std::make_tuple("pattern_error", fmt, 0));
         }
     }
@@ -390,6 +432,7 @@ void LogFormatter::init(){
             auto it = s_format_items.find(std::get<0>(i));
             if(it == s_format_items.end()){
                 m_items.emplace_back(FormatItem::ptr(new StringFormatItem("<<error_format %" + std::get<0>(i) + ">>")));
+                m_error = true;
             }else{
                 m_items.emplace_back(it->second(std::get<1>(i)));
             }
@@ -401,12 +444,191 @@ void LogFormatter::init(){
 
 LoggerManager::LoggerManager() {
     m_root.reset(new Logger);
-    m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
+    m_root->addAppenders(LogAppender::ptr(new StdoutLogAppender));
+
+    init();
 }
 
 Logger::ptr LoggerManager::getLogger(const std::string& name){
     auto it = m_loggers.find(name);
-    return it == m_loggers.end() ? m_root : it->second;
-}   
+    if(it != m_loggers.end()){
+        return it->second;
+    }
+
+    Logger::ptr logger(new Logger(name));
+    logger->m_root = m_root;
+    m_loggers[name] = logger;
+    return logger;
+}
+
+// 自定义类型，与Config类结合，实现通过yaml来指定写日志的方式
+struct LogAppenderDefine {
+    int type = 0;  //0 file, 1 stdout
+    LogLevel::Level level = LogLevel::UNKNOWN;
+    std::string formatter;
+    std::string file;
+
+    bool operator==(const LogAppenderDefine& oth) const {
+        return type == oth.type && level == oth.level && formatter == oth.formatter && file == oth.file;
+    }
+};
+
+struct LogDefine {
+    std::string name;
+    LogLevel::Level level = LogLevel::UNKNOWN;
+    std::string formatter;
+    std::vector<LogAppenderDefine> appenders;
+
+    bool operator==(const LogDefine& oth) const {
+        return name == oth.name && level == oth.level && formatter == oth.formatter && appenders == oth.appenders;
+    }
+
+    bool operator<(const LogDefine& oth) const {
+        return name < oth.name;
+    }
+};
+
+//偏特化
+template<>
+class LexicalCast<std::string, std::set<LogDefine> > {
+public:
+    std::set<LogDefine> operator() (const std::string& v){
+        typename std::set<LogDefine> st;
+        YAML::Node node = YAML::Load(v);
+        for(size_t i = 0;i < node.size(); ++i){
+            auto n = node[i];   //root / system
+            if(!n["name"].IsDefined()){
+                std::cout << "log config error: name is null, " << n << std::endl;
+                continue;
+            }
+            LogDefine ld;
+            ld.name = n["name"].as<std::string>();
+            ld.level = LogLevel::FromString(n["level"].IsDefined() ? n["level"].as<std::string>() : "");
+            if(n["formatter"].IsDefined()){
+                ld.formatter = n["formatter"].as<std::string>();
+            }
+
+            if(n["appenders"].IsDefined()){
+                for(size_t j = 0;j < n["appenders"].size(); ++j){
+                    auto a = n["appenders"][j];
+                    if(!a["type"].IsDefined()){
+                        std::cout << "log config error: appender type is null, " << a << std::endl;
+                        continue;
+                    }
+                    std::string type = a["type"].as<std::string>();
+                    LogAppenderDefine lad;
+                    if(type == "FileLogAppender") {
+                        lad.type = 1;
+                        if(!a["file"].IsDefined()){
+                            std::cout << "log config error: fileappender file is null, " << a << std::endl;
+                            continue;
+                        }
+                        lad.file = n["file"].as<std::string>();
+                        if(a["formatter"].IsDefined()){
+                            lad.formatter = a["formatter"].as<std::string>();
+                        }
+                    } else if(type == "StdoutLogAppender") {
+                        lad.type = 2;
+                    } else {
+                        std::cout << "log config error: appender type is invalid, " << a << std::endl;
+                        continue;
+                    }
+                    ld.appenders.push_back(lad);
+                }
+            }
+            st.insert(ld);
+        }
+        return st;
+    }
+};
+template<>
+class LexicalCast<std::set<LogDefine>, std::string> {
+public:
+    std::string operator() (const std::set<LogDefine>& v){
+        YAML::Node node;
+        for(auto& i : v){
+            YAML::Node n;
+            n["name"] = i.name;
+            n["level"] = LogLevel::ToString(i.level);
+            if(i.formatter.empty()){
+                n["level"] = i.formatter;
+            }
+
+            for(auto& a : i.appenders) {
+                YAML::Node na;
+                if(a.type == 1) {
+                    na["type"] = "FileLogAppender";
+                    na["file"] = a.file;
+                } else if(a.type == 2){
+                    na["type"] = "StdoutLogAppender";
+                }
+                na["level"] = LogLevel::ToString(a.level);
+                if(!a.formatter.empty()){
+                    na["formatter"] = a.formatter;
+                }
+                n["appenders"].push_back(na);
+            }
+            node.push_back(n);
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+};
+
+
+windgent::ConfigVar<std::set<LogDefine> >::ptr g_log_defines = windgent::ConfigMgr::Lookup("logs", std::set<LogDefine>(), "logs config");
+
+struct LogIniter {
+    LogIniter() {
+        //当logger的配置文件改变时
+        g_log_defines->addListener(0xF1E231, [](const std::set<LogDefine>& old_val, const std::set<LogDefine>& new_val) {
+            LOG_INFO(LOG_ROOT()) << "on_logger_conf_changed";
+            for(auto& i : new_val) {
+                auto it = old_val.find(i);
+                windgent::Logger::ptr logger;
+                if(it == old_val.end()){
+                    //添加新的logger
+                    logger = LOG_NAME(i.name);
+                }else {
+                    if(!(i == *it)){
+                        //修改logger
+                        logger = LOG_NAME(i.name);
+                    }
+                }
+                logger->setLevel(i.level);
+                if(!i.formatter.empty()){
+                    logger->setFormatter(i.formatter);
+                }
+                logger->clearAppenders();
+                for(auto& a : i.appenders){
+                    windgent::LogAppender::ptr ap;
+                    if(a.type == 1){
+                        ap.reset(new FileLogAppender(a.file));
+                    } else if(a.type == 2){
+                        ap.reset(new StdoutLogAppender);
+                    }
+                    ap->setLevel(a.level);
+                    logger->addAppenders(ap);
+                }
+            }
+            //删除logger
+            for(auto& i : old_val) {
+                auto it = new_val.find(i);
+                if(it == new_val.end()) {
+                    auto logger = LOG_NAME(i.name);
+                    logger->setLevel((LogLevel::Level)100);
+                    logger->clearAppenders();
+                }
+            }
+        });
+    }
+};
+
+static LogIniter __log_init;
+
+void LoggerManager::init(){
+    
+}
 
 } //namespace

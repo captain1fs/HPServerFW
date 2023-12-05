@@ -5,13 +5,13 @@
 
 int main(int argc, char** argv){
     windgent::Logger::ptr logger(new windgent::Logger);
-    logger->addAppender(windgent::LogAppender::ptr(new windgent::StdoutLogAppender));
+    logger->addAppenders(windgent::LogAppender::ptr(new windgent::StdoutLogAppender));
 
     windgent::FileLogAppender::ptr file_appender(new windgent::FileLogAppender("./log.txt"));
     windgent::LogFormatter::ptr fmt(new windgent::LogFormatter("%d%T%p%T%m%n"));
     file_appender->setFormatter(fmt);
     file_appender->setLevel(windgent::LogLevel::ERROR);
-    logger->addAppender(file_appender);
+    logger->addAppenders(file_appender);
 
     // std::cout << __FILE__ << ", " << __LINE__ << std::endl;
     // windgent::LogEvent::ptr event(new windgent::LogEvent(__FILE__, __LINE__, 0, std::hash<std::thread::id>()(std::this_thread::get_id()), 2, time(0)));

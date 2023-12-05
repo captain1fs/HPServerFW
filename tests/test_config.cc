@@ -64,11 +64,11 @@ void test_config(){
     }
 
     XX(g_int_vec_value_config, int_vec, before);
-    XX(g_int_lst_value_config, int_lst, before);
-    XX(g_int_set_value_config, int_set, before);
-    XX(g_int_uset_value_config, int_uset, before);
-    XX_M(g_str_int_map_value_config, str_int_map, before);
-    XX_M(g_str_int_umap_value_config, str_int_umap, before);
+    // XX(g_int_lst_value_config, int_lst, before);
+    // XX(g_int_set_value_config, int_set, before);
+    // XX(g_int_uset_value_config, int_uset, before);
+    // XX_M(g_str_int_map_value_config, str_int_map, before);
+    // XX_M(g_str_int_umap_value_config, str_int_umap, before);
 
     YAML::Node root = YAML::LoadFile("/home/fangshao/CPP/Project/windgent/bin/conf/test.yaml");
     windgent::ConfigMgr::LoadFromYaml(root);
@@ -77,12 +77,12 @@ void test_config(){
     LOG_INFO(LOG_ROOT()) << "after: " << g_float_value_config->toString();
 
     XX(g_int_vec_value_config, int_vec, after);
-    XX(g_int_lst_value_config, int_lst, after);
-    XX(g_int_set_value_config, int_set, after);
-    XX(g_int_uset_value_config, int_uset, after);
+    // XX(g_int_lst_value_config, int_lst, after);
+    // XX(g_int_set_value_config, int_set, after);
+    // XX(g_int_uset_value_config, int_uset, after);
     
-    XX_M(g_str_int_map_value_config, str_int_map, after);
-    XX_M(g_str_int_umap_value_config, str_int_umap, after);
+    // XX_M(g_str_int_map_value_config, str_int_map, after);
+    // XX_M(g_str_int_umap_value_config, str_int_umap, after);
 }
 
 class Person {
@@ -165,6 +165,11 @@ void test_class() {
     LOG_INFO(LOG_ROOT()) << "class.person_vec_map after: " << g_person_vec_map->toString();
 }
 
+void test_log() {
+    YAML::Node root = YAML::LoadFile("/home/fangshao/CPP/Project/windgent/bin/conf/log.yaml");
+    windgent::ConfigMgr::LoadFromYaml(root);
+}
+
 int main(){
     // windgent::ConfigVar<int>::ptr g_int_value_config = windgent::ConfigMgr::Lookup("system port", (int)8080, "system port");
     
@@ -175,7 +180,9 @@ int main(){
     // test_yaml();
 
     // test_config();
-    test_class();
+    // test_class();
+
+    test_log();
 
     return 0;
 }

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/windgent/config.cc
-config.h
-/home/fangshao/CPP/Project/windgent/windgent/config.h
-
 /home/fangshao/CPP/Project/windgent/windgent/config.h
 memory
 -
@@ -41,6 +37,8 @@ log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.cc
 log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
+config.h
+/home/fangshao/CPP/Project/windgent/windgent/config.h
 map
 -
 functional
@@ -57,6 +55,8 @@ vector
 -
 map
 -
+set
+-
 stdint.h
 -
 sstream
@@ -71,16 +71,14 @@ cstring
 -
 stdarg.h
 -
+yaml-cpp/yaml.h
+-
 singleton.h
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 util.h
 /home/fangshao/CPP/Project/windgent/windgent/util.h
 
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
-
-/home/fangshao/CPP/Project/windgent/windgent/util.cc
-util.h
-/home/fangshao/CPP/Project/windgent/windgent/util.h
 
 /home/fangshao/CPP/Project/windgent/windgent/util.h
 pthread.h

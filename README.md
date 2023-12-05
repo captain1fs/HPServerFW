@@ -1,10 +1,12 @@
-# sylar
+# windgent
 高性能服务器框架
 
 ## 日志系统
 
-日志系统的执行流程：
-Logger::log() --> LogAppender::log() --> LogFormatter::format() --> FormatItem::format()
+日志系统的执行流程：   
+
+Logger::log() --> LogAppender::log() --> LogFormatter::format() --> FormatItem::format()  
+
 当使用日志系统时，会先实例化出一个Logger对象，该对象针对不同的级别调用不同的处理函数，log函数会遍历所有日志输出器对象，调用它们的log函数。该log函数会通过日志格式器对象m_formatter来调用格式化输出函数format，而m_formatter对象在构造过程中已经将用户定义的输出格式解析为一个个对应的item对象，每个item都重写了format函数以定义如何输出每种日志信息，其中通过LogEvent对象获取到所有的日志信息。
 
 ```cpp
@@ -89,6 +91,19 @@ private:
 }
 
 ```
+
+```cpp
+//定义LogDefine和LogAppenderDefine，并偏特化LogDefine,实现日志配置解析 \\
+
+```
+//配置模块与日志模块怎样交互？ LogDefine和LogAppenderDefine与yaml文件中log的配置项关联   
+
+执行流程是：  
+
+1. 日志模块初始化时，在ConfigMgr::Lookup函数中会先调用ConfigVar<set<LogDefine>>("logs", set<LogDefine>(), "logs config")生成一个指向ConfigVar对象的指针g_log_defines，然后为它注册了一个回调函数（当yaml配置文件中的内容改变时，根据新的配置项更改写日志的logger）。   
+
+2. 当通过windgent::ConfigMgr::LoadFromYaml(root)加载yaml配置内容时，调用ConfigVar::fromString(str) --> setVal(val)改变了成员m_val的值，此时会执行已经注册好的回调函数：根据新的配置内容更改logger属性。  
+
 
 ## 线程模块
 

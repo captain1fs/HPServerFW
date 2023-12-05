@@ -7,6 +7,7 @@ CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/config.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.cc
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/singleton.h

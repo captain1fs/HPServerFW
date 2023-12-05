@@ -55,6 +55,8 @@ vector
 -
 map
 -
+set
+-
 stdint.h
 -
 sstream
@@ -68,6 +70,8 @@ ctime
 cstring
 -
 stdarg.h
+-
+yaml-cpp/yaml.h
 -
 singleton.h
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h

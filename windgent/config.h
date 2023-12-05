@@ -58,6 +58,7 @@ public:
         for(size_t i = 0;i < node.size(); ++i){
             ss.str("");
             ss << node[i];
+            // std::cout << "LexicalCast<std::string, std::vector<T> >() " << ss.str() << std::endl;
             vec.push_back(LexicalCast<std::string, T>() (ss.str()));
         }
         return vec;
@@ -239,6 +240,8 @@ public:
         ,m_val(val){
     }
 
+
+    //eg：当m_val是vector<int>类型时，根据ToStr指定的偏特化模板LexicalCast<vector<int>, std::string>>()将m_val转换为string类型
     std::string toString() override {
         try {
             // return boost::lexical_cast<std::string>(m_val);
@@ -249,6 +252,8 @@ public:
         return "";
     }
 
+    //val是yaml文件中每种配置项的值，比如systrm.int_vec的[10, 20, 30]。此时T的类型是vectot<int>，
+    //根据模板类型FromStr调用偏特化LexicalCast<std::string, std::vector<T>>()将val转换为vector类型，然后赋值给成员m_val
     bool fromString(const std::string& val) override {
         try {
             // m_val = boost::lexical_cast<T>(val);

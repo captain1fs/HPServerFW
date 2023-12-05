@@ -6,6 +6,7 @@
 #include<list>
 #include<vector>
 #include<map>
+#include<set>
 #include<stdint.h>
 #include<sstream>
 #include<fstream>
@@ -13,8 +14,10 @@
 #include<ctime>
 #include<cstring>
 #include<stdarg.h>
+#include<yaml-cpp/yaml.h>
+
 #include "singleton.h"
-#include"util.h"
+#include "util.h"
 
 #define LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -38,15 +41,17 @@
 #define LOG_FMT_FATAL(logger, fmt, ...) LOG_FMT_LEVEL(logger, windgent::LogLevel::FATAL, fmt, __VA_ARGS__)
 
 #define LOG_ROOT() windgent::LoggerMgr::GetInstance()->getRoot()
+#define LOG_NAME(name) windgent::LoggerMgr::GetInstance()->getLogger(name)
 
 namespace windgent {
 
 class Logger;
+class LoggerManager;
 
 //日志级别
 class LogLevel{
 public:
-    enum Level{
+    enum Level {
         UNKNOWN = 0,
         DEBUG = 1,
         INFO = 2,
@@ -56,6 +61,7 @@ public:
     };
 
     static const char* ToString(LogLevel::Level level);
+    static LogLevel::Level FromString(const std::string& str);
 };
 
 //日志事件：包含每条日志的所有信息
@@ -110,6 +116,8 @@ public:
 
     //格式化输出日志
     std::string format(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event);
+
+    bool isError() const { return m_error; }
 public:
     //日志信息条目
     class FormatItem{
@@ -123,6 +131,7 @@ public:
 private:
     std::string m_pattern;      //日志格式
     std::vector<FormatItem::ptr> m_items;
+    bool m_error = false;
 };
 
 //日志输出地
@@ -148,6 +157,7 @@ protected:
 //该log函数会通过日志格式器对象m_formatter来调用格式化输出函数format，而m_formatter对象在构造过程中已经将用户定义的输出格式解析为一个个对应的item对象，
 //每个item都重写了format函数以定义如何输出每种日志信息，其中通过LogEvent对象获取到所有的日志信息
 class Logger : public std::enable_shared_from_this<Logger> {
+    friend class LoggerManager;
 public:
     typedef std::shared_ptr<Logger> ptr;
 
@@ -162,17 +172,22 @@ public:
     void error(LogEvent::ptr event);
     void fatal(LogEvent::ptr event);
 
-    void addAppender(LogAppender::ptr appender);
-    void delAppender(LogAppender::ptr appender);
+    void addAppenders(LogAppender::ptr appender);
+    void delAppenders(LogAppender::ptr appender);
+    void clearAppenders();
     LogLevel::Level getLevel() { return m_level; };
     void setLevel(LogLevel::Level level) { m_level = level; }
 
     const std::string getName() const { return m_name; }
+    void setFormatter(LogFormatter::ptr val);
+    void setFormatter(std::string val);
+    LogFormatter::ptr getFormatter();
 private:
     std::string m_name;             //日志名称
     LogLevel::Level m_level;        //日志级别
     std::list<LogAppender::ptr> m_appenders;    //Appender列表
     LogFormatter::ptr m_formatter;
+    Logger::ptr m_root;
 };
 
 //输出到控制台的LogAppender
@@ -180,8 +195,6 @@ class StdoutLogAppender : public LogAppender{
 public:
     typedef std::shared_ptr<StdoutLogAppender> ptr;
     virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
-private:
-
 };
 
 //输出到文件的LogAppender
