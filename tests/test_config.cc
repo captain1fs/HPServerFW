@@ -166,8 +166,16 @@ void test_class() {
 }
 
 void test_log() {
+    windgent::Logger::ptr system_log = LOG_NAME("system");
+    LOG_INFO(system_log) << "hello system" << std::endl;
+
+    std::cout << windgent::LoggerMgr::GetInstance()->toYamlString() << std::endl;
     YAML::Node root = YAML::LoadFile("/home/fangshao/CPP/Project/windgent/bin/conf/log.yaml");
     windgent::ConfigMgr::LoadFromYaml(root);
+
+    std::cout << "===========================" << std::endl;
+    std::cout << windgent::LoggerMgr::GetInstance()->toYamlString() << std::endl; 
+    LOG_INFO(system_log) << "hello system" << std::endl;   //此时的输出格式已经变成log.yaml中system定义的格式
 }
 
 int main(){

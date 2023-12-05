@@ -102,7 +102,7 @@ private:
 
 1. 日志模块初始化时，在ConfigMgr::Lookup函数中会先调用ConfigVar<set\<LogDefine\>>("logs", set\<LogDefine\>(), "logs config")生成一个指向ConfigVar对象的指针g_log_defines，然后为它注册了一个回调函数（当yaml配置文件中的内容改变时，根据新的配置项更改写日志的logger）。   
 
-2. 当通过windgent::ConfigMgr::LoadFromYaml(root)加载yaml配置内容时，调用ConfigVar::fromString(str) --> setVal(val)改变了成员m_val的值，此时会执行已经注册好的回调函数：根据新的配置内容更改logger属性。  
+2. 当通过windgent::ConfigMgr::LoadFromYaml(root)加载yaml配置内容时，调用ConfigVar::fromString(str) --> setVal(val)改变了成员m_val的值，此时会执行已经注册好的回调函数：根据新的配置内容更改logger属性，比如变更日志格式、输出文件等。
 
 
 ## 线程模块
