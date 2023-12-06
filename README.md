@@ -58,8 +58,14 @@ private:
 };
 
 //管理日志器
-class LoggerMgr;
-
+class LoggerMgr {
+public:
+    Logger::ptr getLogger(const std::string& name);
+    std::string toYamlString();
+private:
+    Logger::ptr m_root;         //初始logger
+    std::map<std::string, Logger::ptr> m_loggers;    //后续添加/更改/删除的logger
+}
 ```
 
 ## 配置系统
@@ -67,6 +73,7 @@ class LoggerMgr;
 主要用于读取yaml配置文件，获取配置信息
 
 ```cpp
+//接口类
 class ConfigVarBase {
 public:
     virtual std::string toString() = 0;
@@ -76,24 +83,25 @@ public:
 template<class T>
 class ConfigVar {
 public:
-    std::string toString();
-    bool fromString(const std::string& val);
+    std::string toString();          //T --> string
+    bool fromString(const std::string& val);     //string --> T
 private:
     T m_val;
 }
-
+//配置管理类
 class ConfigMgr {
 public:
     ConfigVar<T>::ptr Lookup();
+    //从yaml文件中加载所有配置内容，其中会调用ConfigVar::fromString() --> LexicalCast<string, T>()转换为自定义配置参数，比如LogDefine/LogAppenderDefine
     static void LoadFromYaml(const YAML::Node& root);
 private:
+    //s_datas在被调用前就已经通过局部静态变量方式完成初始化,管理着所有指向具体某种配置参数的ConfigVar类
     static std::map<std::string, ConfigVarBase::ptr> s_datas;
 }
-
 ```
 
 ```cpp
-//定义LogDefine和LogAppenderDefine，并偏特化LogDefine,实现日志配置解析 \\
+//定义struct LogDefine和LogAppenderDefine，并偏特化LogDefine,实现日志配置解析 \\
 
 ```
 //配置模块与日志模块怎样交互？ LogDefine和LogAppenderDefine与yaml文件中log的配置项关联   
