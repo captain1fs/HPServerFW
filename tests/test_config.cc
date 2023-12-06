@@ -175,7 +175,14 @@ void test_log() {
 
     std::cout << "===========================" << std::endl;
     std::cout << windgent::LoggerMgr::GetInstance()->toYamlString() << std::endl; 
+    std::cout << "===========================" << std::endl;
+    std::cout << root << std::endl;
     LOG_INFO(system_log) << "hello system" << std::endl;   //此时的输出格式已经变成log.yaml中system定义的格式
+
+    std::cout << "-------------------- change formatter ------------------" << std::endl;
+    system_log->setFormatter("%d - %m%n");
+    std::cout << windgent::LoggerMgr::GetInstance()->toYamlString() << std::endl; 
+    LOG_INFO(system_log) << "hello system" << std::endl; 
 }
 
 int main(){

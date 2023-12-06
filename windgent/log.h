@@ -65,7 +65,7 @@ public:
 };
 
 //日志事件：包含每条日志的所有信息
-class LogEvent{
+class LogEvent {
 public:
     typedef std::shared_ptr<LogEvent> ptr;
     LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse, uint32_t threadId, uint32_t fiberID, uint64_t time);
@@ -109,7 +109,7 @@ private:
 };
 
 //日志格式器
-class LogFormatter{
+class LogFormatter {
 public:
     typedef std::shared_ptr<LogFormatter> ptr;
     LogFormatter(const std::string& pattern);
@@ -137,6 +137,7 @@ private:
 
 //日志输出地
 class LogAppender {
+    friend class Logger;
 public:
     typedef std::shared_ptr<LogAppender> ptr;
     virtual ~LogAppender() { }
@@ -146,12 +147,13 @@ public:
     virtual std::string toYamlString() = 0;
 
     LogFormatter::ptr getFormatter() const { return m_formatter; }
-    void setFormatter(LogFormatter::ptr formatter) { m_formatter = formatter; }
+    void setFormatter(LogFormatter::ptr formatter);
 
     LogLevel::Level getLevel() const { return m_level; }
     void setLevel(LogLevel::Level level) { m_level = level; }
 protected:
     LogLevel::Level m_level = LogLevel::DEBUG;
+    bool m_hasFormatter = false;   //是否有自己的格式器
     LogFormatter::ptr m_formatter;
 };
 

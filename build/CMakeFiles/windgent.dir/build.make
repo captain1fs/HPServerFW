@@ -63,41 +63,41 @@ include CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/log.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/windgent.dir/windgent/log.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/log.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/log.cc
+	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/log.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/log.cc
 
 CMakeFiles/windgent.dir/windgent/log.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/windgent.dir/windgent/log.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/log.cc > CMakeFiles/windgent.dir/windgent/log.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/log.cc > CMakeFiles/windgent.dir/windgent/log.cc.i
 
 CMakeFiles/windgent.dir/windgent/log.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/windgent.dir/windgent/log.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/log.cc -o CMakeFiles/windgent.dir/windgent/log.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/log.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/log.cc -o CMakeFiles/windgent.dir/windgent/log.cc.s
 
 CMakeFiles/windgent.dir/windgent/util.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/windgent.dir/windgent/util.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/util.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/util.cc
+	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/util.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/util.cc
 
 CMakeFiles/windgent.dir/windgent/util.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/windgent.dir/windgent/util.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/util.cc > CMakeFiles/windgent.dir/windgent/util.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/util.cc > CMakeFiles/windgent.dir/windgent/util.cc.i
 
 CMakeFiles/windgent.dir/windgent/util.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/windgent.dir/windgent/util.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/util.cc -o CMakeFiles/windgent.dir/windgent/util.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/util.cc -o CMakeFiles/windgent.dir/windgent/util.cc.s
 
 CMakeFiles/windgent.dir/windgent/config.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/windgent.dir/windgent/config.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/config.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/config.cc
+	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/config.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/config.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/config.cc
 
 CMakeFiles/windgent.dir/windgent/config.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/windgent.dir/windgent/config.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/config.cc > CMakeFiles/windgent.dir/windgent/config.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/config.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/config.cc > CMakeFiles/windgent.dir/windgent/config.cc.i
 
 CMakeFiles/windgent.dir/windgent/config.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/windgent.dir/windgent/config.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/config.cc -o CMakeFiles/windgent.dir/windgent/config.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/config.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/config.cc -o CMakeFiles/windgent.dir/windgent/config.cc.s
 
 # Object files for target windgent
 windgent_OBJECTS = \

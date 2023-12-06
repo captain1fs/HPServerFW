@@ -217,7 +217,7 @@ Logger::Logger(const std::string& name)
 
 void Logger::addAppenders(LogAppender::ptr appender){
     if(!appender->getFormatter()){
-        appender->setFormatter(m_formatter);
+        appender->m_formatter = m_formatter;
     }
     m_appenders.push_back(appender);
 }
@@ -237,14 +237,23 @@ void Logger::clearAppenders() {
 
 void Logger::setFormatter(LogFormatter::ptr val) {
     m_formatter = val;
+
+    //如果yaml文件中的appender自己定义了formatter，它的m_hasFormatter在回调函数执行ap->setFormatter()中已经变更为true，因此不会因logger调用setFormatter而改变
+    for(auto& i : m_appenders) {
+        if(!i->m_hasFormatter) {
+            i->m_formatter = m_formatter;
+        }
+    }
 }
 void Logger::setFormatter(std::string val) {
+    // std::cout << "--------- " << val << " -----------" << std::endl;
     windgent::LogFormatter::ptr new_val(new windgent::LogFormatter(val));
     if(new_val->isError()){
         std::cout << "Logger setFormatter name= " << m_name << ", value= " << val << " valid format!" << std::endl;
         return;
     }
-    m_formatter = new_val;
+    // m_formatter = new_val;
+    setFormatter(new_val);
 }
 LogFormatter::ptr Logger::getFormatter() {
     return m_formatter;
@@ -301,8 +310,17 @@ std::string Logger::toYamlString() {
     return ss.str();
 }
 
+void LogAppender::setFormatter(LogFormatter::ptr formatter) {
+    m_formatter = formatter;
+    if(m_formatter) {
+        m_hasFormatter = true;
+    } else {
+        m_hasFormatter = false;
+    }
+}
+
 //不同类型Appender的定义
-void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event){
+void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) {
     if(level >= m_level){
         std::cout << m_formatter->format(logger, level, event);
     }
@@ -314,7 +332,7 @@ std::string StdoutLogAppender::toYamlString() {
     if(m_level != LogLevel::UNKNOWN) {
         node["level"] = LogLevel::ToString(m_level);
     }
-    if(m_formatter) {
+    if(m_hasFormatter && m_formatter) {
         node["formatter"] = m_formatter->getPattern();
     }
     std::stringstream ss;
@@ -329,7 +347,7 @@ std::string FileLogAppender::toYamlString() {
     if(m_level != LogLevel::UNKNOWN) {
         node["level"] = LogLevel::ToString(m_level);
     }
-    if(m_formatter) {
+    if(m_hasFormatter &&  m_formatter) {
         node["formatter"] = m_formatter->getPattern();
     }
     std::stringstream ss;
@@ -499,7 +517,7 @@ LoggerManager::LoggerManager() {
     m_root.reset(new Logger);
     m_root->addAppenders(LogAppender::ptr(new StdoutLogAppender));
 
-    m_loggers[m_root->getName()] = m_root;
+    m_loggers[m_root->m_name] = m_root;
     init();
 }
 
@@ -559,7 +577,7 @@ public:
     LogDefine operator() (const std::string& v){
         YAML::Node n = YAML::Load(v);
         LogDefine ld;
-        
+        // std::cout << ">>>>>>>>>>>>>>>>>>>>>>>> convert yaml string to LogDefine" << std::endl;
         if(!n["name"].IsDefined()){
             std::cout << "log config error: name is null, " << n << std::endl;
             throw std::logic_error("log config name is null");
@@ -586,6 +604,7 @@ public:
                     }
                     lad.file = a["file"].as<std::string>();
                     if(a["formatter"].IsDefined()){
+                        // std::cout << " >>>>>>>>>>>> a[formatter] = " << a["formatter"].as<std::string>() << std::endl;
                         lad.formatter = a["formatter"].as<std::string>();
                     }
                 } else if(type == "StdoutLogAppender") {
@@ -656,8 +675,11 @@ struct LogIniter {
                     if(!(i == *it)){
                         //修改logger
                         logger = LOG_NAME(i.name);
+                    } else {
+                        continue;
                     }
                 }
+                //拿到logger后再根据yaml中的配置信息去设置logger的属性
                 logger->setLevel(i.level);
                 if(!i.formatter.empty()){
                     logger->setFormatter(i.formatter);
@@ -671,7 +693,7 @@ struct LogIniter {
                         ap.reset(new StdoutLogAppender);
                     }
                     ap->setLevel(a.level);
-                    if(!a.formatter.empty()){
+                    if(!a.formatter.empty()) {
                         LogFormatter::ptr fmt(new LogFormatter(a.formatter));
                         if(!fmt->isError()) {
                             ap->setFormatter(fmt);
@@ -688,7 +710,7 @@ struct LogIniter {
                 auto it = new_val.find(i);
                 if(it == new_val.end()) {
                     auto logger = LOG_NAME(i.name);
-                    logger->setLevel((LogLevel::Level)100);
+                    logger->setLevel((LogLevel::Level)0);
                     logger->clearAppenders();
                 }
             }
