@@ -13,6 +13,13 @@ CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.cc
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/util.h
+
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.cc
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.h
 

@@ -14,3 +14,5 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/config.cc.o_DEFINES = __FILE__="windgent/config.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/thread.cc.o_DEFINES = __FILE__="windgent/thread.cc"
+

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "../lib/libwindgent.so"
   "CMakeFiles/windgent.dir/windgent/config.cc.o"
   "CMakeFiles/windgent.dir/windgent/log.cc.o"
+  "CMakeFiles/windgent.dir/windgent/thread.cc.o"
   "CMakeFiles/windgent.dir/windgent/util.cc.o"
 )
 

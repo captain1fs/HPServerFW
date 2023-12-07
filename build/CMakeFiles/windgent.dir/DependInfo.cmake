@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fangshao/CPP/Project/windgent/windgent/config.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/config.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/log.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/log.cc.o"
+  "/home/fangshao/CPP/Project/windgent/windgent/thread.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/thread.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/util.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/util.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -6,6 +6,38 @@
 
 #IncludeRegexTransform: 
 
+/home/fangshao/CPP/Project/windgent/tests/test_thread.cc
+../windgent/windgent.h
+/home/fangshao/CPP/Project/windgent/windgent/windgent.h
+
+/home/fangshao/CPP/Project/windgent/windgent/config.h
+memory
+-
+string
+-
+vector
+-
+map
+-
+set
+-
+unordered_map
+-
+unordered_set
+-
+list
+-
+ctype.h
+-
+functional
+-
+boost/lexical_cast.hpp
+-
+yaml-cpp/yaml.h
+-
+log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
+
 /home/fangshao/CPP/Project/windgent/windgent/log.h
 iostream
 -
@@ -48,14 +80,6 @@ semaphore.h
 
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 
-/home/fangshao/CPP/Project/windgent/windgent/thread.cc
-thread.h
-/home/fangshao/CPP/Project/windgent/windgent/thread.h
-log.h
-/home/fangshao/CPP/Project/windgent/windgent/log.h
-util.h
-/home/fangshao/CPP/Project/windgent/windgent/util.h
-
 /home/fangshao/CPP/Project/windgent/windgent/thread.h
 thread
 -
@@ -79,4 +103,18 @@ stdio.h
 -
 stdint.h
 -
+
+/home/fangshao/CPP/Project/windgent/windgent/windgent.h
+./log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
+./config.h
+/home/fangshao/CPP/Project/windgent/windgent/config.h
+./util.h
+/home/fangshao/CPP/Project/windgent/windgent/util.h
+./singleton.h
+/home/fangshao/CPP/Project/windgent/windgent/singleton.h
+./thread.h
+/home/fangshao/CPP/Project/windgent/windgent/thread.h
+./mutex.h
+/home/fangshao/CPP/Project/windgent/windgent/mutex.h
 

@@ -15,6 +15,11 @@ set(LIB_SRC
     windgent/log.cc    
     windgent/util.cc    
     windgent/config.cc    
+    windgent/thread.cc    
+)
+
+set(YAMLCPP
+    /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so
 )
 
 #指定编译文件，编译可执行程序
@@ -25,17 +30,29 @@ force_redefine_file_macro_for_sources(windgent)
 #add_library(windgent_static STATIC ${LIB_SRC})
 #SET_TARGET_PROPERTIES (windgent_static PROPERTIES OUTPUT_NAME "windgent")
 
+set(LIB_LIB
+    windgent
+    pthread
+    ${YAMLCPP}
+)
+
 add_executable(test_log tests/test_log.cc)
 add_dependencies(test_log windgent)
-force_redefine_file_macro_for_sources(test_log)
+force_redefine_file_macro_for_sources(test_log)   #__FILE__
 #添加依赖的库文件
-target_link_libraries(test_log windgent /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
+target_link_libraries(test_log ${LIB_LIB})
 
 add_executable(test_config tests/test_config.cc)
 add_dependencies(test_config windgent)
-force_redefine_file_macro_for_sources(test_config)
+force_redefine_file_macro_for_sources(test_config)   #__FILE__
 #添加依赖的库文件
-target_link_libraries(test_config windgent /home/fangshao/CPP/Project/yaml-cpp/build/libyaml-cpp.so)
+target_link_libraries(test_config ${LIB_LIB})
+
+add_executable(test_thread tests/test_thread.cc)
+add_dependencies(test_thread windgent)
+force_redefine_file_macro_for_sources(test_thread)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_thread ${LIB_LIB})
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

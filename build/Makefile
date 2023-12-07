@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_thread
+
+# Build rule for target.
+test_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_thread
+.PHONY : test_thread
+
+# fast build rule for target.
+test_thread/fast:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
+.PHONY : test_thread/fast
+
+#=============================================================================
 # Target rules for targets named test_config
 
 # Build rule for target.
@@ -206,6 +219,33 @@ tests/test_log.cc.s:
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.s
 .PHONY : tests/test_log.cc.s
 
+tests/test_thread.o: tests/test_thread.cc.o
+
+.PHONY : tests/test_thread.o
+
+# target to build an object file
+tests/test_thread.cc.o:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.o
+.PHONY : tests/test_thread.cc.o
+
+tests/test_thread.i: tests/test_thread.cc.i
+
+.PHONY : tests/test_thread.i
+
+# target to preprocess a source file
+tests/test_thread.cc.i:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.i
+.PHONY : tests/test_thread.cc.i
+
+tests/test_thread.s: tests/test_thread.cc.s
+
+.PHONY : tests/test_thread.s
+
+# target to generate assembly for a file
+tests/test_thread.cc.s:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
+.PHONY : tests/test_thread.cc.s
+
 windgent/config.o: windgent/config.cc.o
 
 .PHONY : windgent/config.o
@@ -260,6 +300,33 @@ windgent/log.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/log.cc.s
 .PHONY : windgent/log.cc.s
 
+windgent/thread.o: windgent/thread.cc.o
+
+.PHONY : windgent/thread.o
+
+# target to build an object file
+windgent/thread.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/thread.cc.o
+.PHONY : windgent/thread.cc.o
+
+windgent/thread.i: windgent/thread.cc.i
+
+.PHONY : windgent/thread.i
+
+# target to preprocess a source file
+windgent/thread.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/thread.cc.i
+.PHONY : windgent/thread.cc.i
+
+windgent/thread.s: windgent/thread.cc.s
+
+.PHONY : windgent/thread.s
+
+# target to generate assembly for a file
+windgent/thread.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/thread.cc.s
+.PHONY : windgent/thread.cc.s
+
 windgent/util.o: windgent/util.cc.o
 
 .PHONY : windgent/util.o
@@ -295,6 +362,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_thread"
 	@echo "... test_config"
 	@echo "... test_log"
 	@echo "... windgent"
@@ -304,12 +372,18 @@ help:
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"
+	@echo "... tests/test_thread.o"
+	@echo "... tests/test_thread.i"
+	@echo "... tests/test_thread.s"
 	@echo "... windgent/config.o"
 	@echo "... windgent/config.i"
 	@echo "... windgent/config.s"
 	@echo "... windgent/log.o"
 	@echo "... windgent/log.i"
 	@echo "... windgent/log.s"
+	@echo "... windgent/thread.o"
+	@echo "... windgent/thread.i"
+	@echo "... windgent/thread.s"
 	@echo "... windgent/util.o"
 	@echo "... windgent/util.i"
 	@echo "... windgent/util.s"
