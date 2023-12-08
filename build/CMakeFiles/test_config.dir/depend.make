@@ -4,6 +4,7 @@
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../tests/test_config.cc
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../windgent/config.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../windgent/log.h
+CMakeFiles/test_config.dir/tests/test_config.cc.o: ../windgent/mutex.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../windgent/singleton.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../windgent/util.h
 

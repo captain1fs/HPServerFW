@@ -36,6 +36,7 @@ private:
     std::string m_name;
 
     Semaphore m_sem;
+    // Cond m_cond;
 };
 
 }

@@ -141,7 +141,7 @@ windgent::ConfigVar<std::map<std::string, std::vector<Person> > >::ptr g_person_
 void test_class() {
     LOG_INFO(LOG_ROOT()) << "before: " << g_person->getVal().toString() << " - " << g_person->toString();
 
-    g_person->addListener(10, [](const Person& old_val, const Person& new_val){
+    g_person->addListener([](const Person& old_val, const Person& new_val){
         LOG_INFO(LOG_ROOT()) << "old_val= " << old_val.toString() << ", new_val= " << new_val.toString();
     });
 
@@ -197,7 +197,14 @@ int main(){
     // test_config();
     // test_class();
 
-    test_log();
+    // test_log();
+
+    windgent::ConfigMgr::Visit([](windgent::ConfigVarBase::ptr var) {
+        LOG_INFO(LOG_ROOT()) << "name=" << var->getName()
+                    << " description=" << var->getDescription()
+                    << " typename=" << var->getTypeName()
+                    << " value=" << var->toString();
+    });
 
     return 0;
 }

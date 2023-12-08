@@ -18,6 +18,7 @@
 
 #include "singleton.h"
 #include "util.h"
+#include "mutex.h"
 
 #define LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -140,13 +141,14 @@ class LogAppender {
     friend class Logger;
 public:
     typedef std::shared_ptr<LogAppender> ptr;
+    typedef SpinLock MutexType;
     virtual ~LogAppender() { }
 
     //写日志
     virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
     virtual std::string toYamlString() = 0;
 
-    LogFormatter::ptr getFormatter() const { return m_formatter; }
+    LogFormatter::ptr getFormatter();
     void setFormatter(LogFormatter::ptr formatter);
 
     LogLevel::Level getLevel() const { return m_level; }
@@ -154,6 +156,7 @@ public:
 protected:
     LogLevel::Level m_level = LogLevel::DEBUG;
     bool m_hasFormatter = false;   //是否有自己的格式器
+    MutexType m_mutex;                 //用于保护对m_formatter的互斥访问
     LogFormatter::ptr m_formatter;
 };
 
@@ -164,6 +167,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
     friend class LoggerManager;
 public:
     typedef std::shared_ptr<Logger> ptr;
+    typedef SpinLock MutexType;
 
     Logger(const std::string& name = "root");
 
@@ -191,6 +195,7 @@ public:
 private:
     std::string m_name;             //日志名称
     LogLevel::Level m_level;        //日志级别
+    MutexType m_mutex;                  //用于保护对m_appenders的互斥访问
     std::list<LogAppender::ptr> m_appenders;    //Appender列表
     LogFormatter::ptr m_formatter;
     Logger::ptr m_root;
@@ -221,6 +226,7 @@ private:
 
 class LoggerManager {
 public:
+    typedef SpinLock MutexType;
     LoggerManager();
     Logger::ptr getLogger(const std::string& name);
 
@@ -230,6 +236,7 @@ public:
 private:
     Logger::ptr m_root;
     std::map<std::string, Logger::ptr> m_loggers;
+    MutexType m_mutex;          ////用于保护对m_loggers的互斥访问
 };
 
 typedef windgent::Singleton<LoggerManager> LoggerMgr;

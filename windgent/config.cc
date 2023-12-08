@@ -3,6 +3,7 @@
 namespace windgent {
 
 ConfigVarBase::ptr ConfigMgr::LookupBase(const std::string& name){
+    RWMutexType::RdLock lock(getMutex());
     auto it = GetDatas().find(name);
     return it == GetDatas().end() ? nullptr : it->second;
 }
@@ -43,6 +44,14 @@ void ConfigMgr::LoadFromYaml(const YAML::Node& root){
                 var->fromString(ss.str());
             }
         }
+    }
+}
+
+void ConfigMgr::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+    RWMutexType::RdLock lock(getMutex());
+    ConfigVarMap& mp = GetDatas();
+    for(auto it = mp.begin(); it != mp.end(); ++it) {
+        cb(it->second);
     }
 }
 

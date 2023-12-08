@@ -234,6 +234,7 @@ class ConfigVar : public ConfigVarBase {
 public:
     typedef std::shared_ptr<ConfigVar> ptr;
     typedef std::function<void (const T& old_val, const T& new_val)> on_change_cb;
+    typedef RWMutex RWMutexType;
 
     ConfigVar(const std::string& name , const T& val, const std::string& description = "")
         :ConfigVarBase(name, description)
@@ -245,6 +246,7 @@ public:
     std::string toString() override {
         try {
             // return boost::lexical_cast<std::string>(m_val);
+            RWMutexType::RdLock lock(m_mutex);
             return ToStr()(m_val);
         } catch(std::exception& e ){
             LOG_ERROR(LOG_ROOT()) << "ConfigVar::toString execption" << e.what() << " convert: " << typeid(m_val).name() << " to string";
@@ -264,45 +266,63 @@ public:
         return false;
     }
 
-    const T getVal() const { return m_val; }
-    void setVal(const T& val) { 
-        if(val == m_val){
-            return;
+    const T getVal() { 
+        RWMutexType::RdLock lock(m_mutex);
+        return m_val; 
+    }
+
+    void setVal(const T& val) {
+        {
+            RWMutexType::RdLock lock(m_mutex);
+            if(val == m_val){
+                return;
+            }
+            for(auto& i : m_cbs){
+                i.second(m_val, val);
+            }
         }
-        for(auto& i : m_cbs){
-            i.second(m_val, val);
-        }
+        RWMutexType::WrLock lock(m_mutex);
         m_val = val;
     }
     std::string getTypeName() const override { return typeid(T).name(); }
 
-    void addListener(uint64_t key, on_change_cb cb){
-        m_cbs[key] = cb;
+    uint64_t addListener(on_change_cb cb){
+        static uint64_t s_func_id = 0;
+        ++s_func_id;
+        RWMutexType::WrLock lock(m_mutex);
+        m_cbs[s_func_id] = cb;
+        return s_func_id;
     }
 
     void delListener(uint64_t key){
+        RWMutexType::WrLock lock(m_mutex);
         m_cbs.erase(key);
     }
 
     on_change_cb getListener(uint64_t key) const {
+        RWMutexType::RdLock lock(m_mutex);
         auto it = m_cbs.find(key);
         return it != m_cbs.end() ? it->second : nullptr;
     }
 
     void clearListener() {
+        RWMutexType::WrLock lock(m_mutex);
         m_cbs.clear();
     }
 private:
     T m_val;
     std::map<uint64_t, on_change_cb> m_cbs;
+    RWMutexType m_mutex;
 };
 
 class ConfigMgr {
 public:
     typedef std::map<std::string, ConfigVarBase::ptr> ConfigVarMap;
+    typedef RWMutex RWMutexType;
 
     template<typename T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name, const T& default_value, const std::string& description = ""){
+        RWMutexType::WrLock lock(getMutex());
         auto it = GetDatas().find(name);
         if(it != GetDatas().end()){
             auto tmp = std::dynamic_pointer_cast<ConfigVar<T> > (it->second);   //dynamic_cast转换失败时返回nullptr
@@ -327,7 +347,8 @@ public:
     }
 
     template<typename T>
-    static typename ConfigVar<T>::ptr Lookup(const std::string& name){
+    static typename ConfigVar<T>::ptr Lookup(const std::string& name) {
+        RWMutexType::RdLock lock(getMutex());
         auto it = GetDatas().find(name);
         if(it == GetDatas().end()){
             return  nullptr;
@@ -337,11 +358,16 @@ public:
 
     static ConfigVarBase::ptr LookupBase(const std::string& name);
     static void LoadFromYaml(const YAML::Node& root);
+    static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
 private:
     //防止因静态成员初始化顺序问题，s_datas被使用时还没完成初始化，导致报错
     static ConfigVarMap& GetDatas() {
         static ConfigVarMap s_datas;
         return s_datas;
+    }
+    static RWMutexType& getMutex() {
+        static RWMutexType m_mutex;
+        return m_mutex;
     }
 };
 

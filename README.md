@@ -115,6 +115,8 @@ private:
 
 ## 线程模块
 
+首先，封装了POSIX线程Thread、信号量Semaphore、条件变量Cond、互斥锁Mutex、读写锁RWMutex、自旋锁SoinLock、CAS锁CASLock。
+
 ## 协程模块
 
 ## socket函数库

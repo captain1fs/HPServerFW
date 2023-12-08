@@ -300,6 +300,33 @@ windgent/log.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/log.cc.s
 .PHONY : windgent/log.cc.s
 
+windgent/mutex.o: windgent/mutex.cc.o
+
+.PHONY : windgent/mutex.o
+
+# target to build an object file
+windgent/mutex.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/mutex.cc.o
+.PHONY : windgent/mutex.cc.o
+
+windgent/mutex.i: windgent/mutex.cc.i
+
+.PHONY : windgent/mutex.i
+
+# target to preprocess a source file
+windgent/mutex.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/mutex.cc.i
+.PHONY : windgent/mutex.cc.i
+
+windgent/mutex.s: windgent/mutex.cc.s
+
+.PHONY : windgent/mutex.s
+
+# target to generate assembly for a file
+windgent/mutex.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/mutex.cc.s
+.PHONY : windgent/mutex.cc.s
+
 windgent/thread.o: windgent/thread.cc.o
 
 .PHONY : windgent/thread.o
@@ -381,6 +408,9 @@ help:
 	@echo "... windgent/log.o"
 	@echo "... windgent/log.i"
 	@echo "... windgent/log.s"
+	@echo "... windgent/mutex.o"
+	@echo "... windgent/mutex.i"
+	@echo "... windgent/mutex.s"
 	@echo "... windgent/thread.o"
 	@echo "... windgent/thread.i"
 	@echo "... windgent/thread.s"
