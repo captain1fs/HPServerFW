@@ -1,2 +1,2 @@
-2023-12-05 23:16:07	hello system
-
+2023-12-17 16:23:23	ERROR	test define error
+2023-12-17 16:23:23	ERROR	test fmt error aa
