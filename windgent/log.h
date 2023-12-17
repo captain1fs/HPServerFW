@@ -19,10 +19,12 @@
 #include "singleton.h"
 #include "util.h"
 #include "mutex.h"
+#include "thread.h"
 
 #define LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
-        windgent::LogEventWarp(windgent::LogEvent::ptr(new windgent::LogEvent(logger, level, __FILE__, __LINE__, 0, windgent::GetThreadId(), windgent::GetFiberId(), time(0)))).getSS()
+        windgent::LogEventWarp(windgent::LogEvent::ptr(new windgent::LogEvent(logger, level, __FILE__, __LINE__, 0, windgent::GetThreadId() \
+        ,windgent::GetFiberId(), time(0), windgent::Thread::GetName()))).getSS()
 
 #define LOG_DEBUG(logger) LOG_LEVEL(logger, windgent::LogLevel::DEBUG)
 #define LOG_INFO(logger) LOG_LEVEL(logger, windgent::LogLevel::INFO)
@@ -33,7 +35,7 @@
 #define LOG_FMT_LEVEL(logger, level, fmt, ...) \
     if(logger->getLevel() <= level) \
         windgent::LogEventWarp(windgent::LogEvent::ptr(new windgent::LogEvent(logger, level, __FILE__, __LINE__, 0, \
-            windgent::GetThreadId(), windgent::GetFiberId(), time(0)))).getEvent()->format(fmt, __VA_ARGS__)
+            windgent::GetThreadId(), windgent::GetFiberId(), time(0), windgent::Thread::GetName()))).getEvent()->format(fmt, __VA_ARGS__)
 
 #define LOG_FMT_DEBUG(logger, fmt, ...) LOG_FMT_LEVEL(logger, windgent::LogLevel::DEBUG, fmt, __VA_ARGS__)
 #define LOG_FMT_INFO(logger, fmt, ...) LOG_FMT_LEVEL(logger, windgent::LogLevel::INFO, fmt, __VA_ARGS__)
@@ -69,7 +71,8 @@ public:
 class LogEvent {
 public:
     typedef std::shared_ptr<LogEvent> ptr;
-    LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse, uint32_t threadId, uint32_t fiberID, uint64_t time);
+    LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse
+        ,uint32_t threadId, uint32_t fiberID, uint64_t time, const std::string& threadName);
 
     const char* getFile() const { return m_file; }
     int32_t getLine() const { return m_line; }
@@ -78,6 +81,7 @@ public:
     uint32_t getFiberId() const { return m_fiberId; }
     uint64_t getTime() const { return m_time; }
     std::string getContent() const { return m_ss.str(); }
+    const std::string& getThreadName() const { return m_threadName; }
 
     std::stringstream& getSS() { return m_ss; }
     std::shared_ptr<Logger> getLogger() const { return m_logger; }
@@ -92,7 +96,8 @@ private:
     uint32_t m_threadId = 0;         //线程id
     uint32_t m_fiberId = 0;          //协程id
     uint64_t m_time;                 //时间戳
-    std::stringstream m_ss;           //日志信息
+    std::stringstream m_ss;          //日志信息
+    std::string m_threadName;        //线程名称
 
     std::shared_ptr<Logger> m_logger;
     LogLevel::Level m_level;

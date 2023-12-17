@@ -6,8 +6,9 @@
 
 namespace windgent {
 
-LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse, uint32_t threadId, uint32_t fiberID, uint64_t time)
-    :m_file(file), m_line(line), m_elapse(elapse), m_threadId(threadId), m_fiberId(fiberID), m_time(time), m_logger(logger), m_level(level)
+LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse
+                    ,uint32_t threadId, uint32_t fiberID, uint64_t time, const std::string& threadName)
+    :m_file(file), m_line(line), m_elapse(elapse), m_threadId(threadId), m_fiberId(fiberID), m_time(time), m_threadName(threadName), m_logger(logger), m_level(level)
 {
     // std::cout << "m_file = " << m_file << ", m_line = " << m_line << std::endl;
 }
@@ -129,6 +130,14 @@ public:
     }
 };
 
+class ThreadNameFormatItem : public LogFormatter::FormatItem {
+public:
+    ThreadNameFormatItem(const std::string& str = "") {}
+    void format(std::ostream& os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override {
+        os << event->getThreadName();
+    }
+};
+
 class FiberIdFormatItem : public LogFormatter::FormatItem {
 public:
     FiberIdFormatItem(const std::string& str = "") {}
@@ -212,7 +221,7 @@ private:
 Logger::Logger(const std::string& name)
     :m_name(name)
     ,m_level(LogLevel::DEBUG) {
-    m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));        //初始化日志输出格式
+    m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));        //初始化日志输出格式
 }
 
 void Logger::addAppenders(LogAppender::ptr appender){
@@ -485,32 +494,23 @@ void LogFormatter::init(){
         vec.push_back(std::make_tuple(nstr, "", 0));
     }
 
-    // %m -- 消息体
-    // %p -- level
-    // %r -- 启动的时间
-    // %c -- 日志名称
-    // %t -- 线程id
-    // %n -- 回车换行
-    // %d -- 时间
-    // %f -- 文件名
-    // %l -- 行号
-    // %T -- 退格
     //每种信息条目有其对应的输出类对象
     static std::map<std::string, std::function<FormatItem::ptr(const std::string& str)> > s_format_items = {
 #define XX(str, C) \
         {#str, [](const std::string& fmt) { return FormatItem::ptr(new C(fmt));}}
 
-        XX(m, MessageFormatItem),
-        XX(p, LevelFormatItem),
-        XX(r, ElapseFormatItem),
-        XX(c, NameFormatItem),
-        XX(t, ThreadIdFormatItem),
-        XX(n, NewLineFormatItem),
-        XX(d, DateTimeFormatItem),
-        XX(f, FileNameFormatItem),
-        XX(l, LineFormatItem),
-        XX(T, TabFormatItem),
-        XX(F, FiberIdFormatItem),
+        XX(m, MessageFormatItem),           // %m -- 消息体
+        XX(p, LevelFormatItem),             // %p -- level
+        XX(r, ElapseFormatItem),            // %r -- 启动的时间
+        XX(c, NameFormatItem),              // %c -- 日志名称
+        XX(t, ThreadIdFormatItem),          // %t -- 线程id
+        XX(n, NewLineFormatItem),           // %n -- 回车换行
+        XX(d, DateTimeFormatItem),          // %d -- 时间
+        XX(f, FileNameFormatItem),          // %f -- 文件名
+        XX(l, LineFormatItem),              // %l -- 行号
+        XX(T, TabFormatItem),               // %T -- 退格
+        XX(F, FiberIdFormatItem),           // %F -- 协程id
+        XX(N, ThreadNameFormatItem),        // %N -- 线程名称
 #undef XX
     };
 

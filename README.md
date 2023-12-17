@@ -119,7 +119,13 @@ private:
 
 ## 协程模块
 
-协程是用户态的
+协程是用户态的线程，借助linux ucontext族函数来实现，详细可参考：
+
+https://zhuanlan.zhihu.com/p/535658398?utm_id=0
+
+https://blog.csdn.net/qq_44443986/article/details/117739157
+
+每个线程有一个主协程，主协程可切换为子协程执行，执行结束后会自动切换为主协程。
 
 ## socket函数库
 

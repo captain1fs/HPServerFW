@@ -7,5 +7,7 @@
 #include "./singleton.h"
 #include "./thread.h"
 #include "./mutex.h"
+#include "./macro.h"
+#include "./fiber.h"
 
 #endif
