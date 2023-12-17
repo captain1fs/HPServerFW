@@ -3,7 +3,9 @@
 
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../tests/test_thread.cc
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/config.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/fiber.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/log.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/macro.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/mutex.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/singleton.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../windgent/thread.h

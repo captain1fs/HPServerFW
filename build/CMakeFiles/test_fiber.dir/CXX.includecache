@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/tests/test_thread.cc
+/home/fangshao/CPP/Project/windgent/tests/test_fiber.cc
 ../windgent/windgent.h
 /home/fangshao/CPP/Project/windgent/windgent/windgent.h
 

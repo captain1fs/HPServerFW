@@ -1,4 +1,6 @@
+/home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_fiber.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/rebuild_cache.dir
+/home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_util.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/edit_cache.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_thread.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_config.dir

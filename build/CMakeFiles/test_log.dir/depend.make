@@ -5,5 +5,6 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: ../tests/test_log.cc
 CMakeFiles/test_log.dir/tests/test_log.cc.o: ../windgent/log.h
 CMakeFiles/test_log.dir/tests/test_log.cc.o: ../windgent/mutex.h
 CMakeFiles/test_log.dir/tests/test_log.cc.o: ../windgent/singleton.h
+CMakeFiles/test_log.dir/tests/test_log.cc.o: ../windgent/thread.h
 CMakeFiles/test_log.dir/tests/test_log.cc.o: ../windgent/util.h
 

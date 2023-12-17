@@ -49,6 +49,8 @@ util.h
 /home/fangshao/CPP/Project/windgent/windgent/util.h
 mutex.h
 /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+thread.h
+/home/fangshao/CPP/Project/windgent/windgent/thread.h
 
 /home/fangshao/CPP/Project/windgent/windgent/mutex.h
 pthread.h
@@ -62,6 +64,16 @@ atomic
 
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 
+/home/fangshao/CPP/Project/windgent/windgent/thread.h
+thread
+-
+functional
+-
+memory
+-
+mutex.h
+/home/fangshao/CPP/Project/windgent/windgent/mutex.h
+
 /home/fangshao/CPP/Project/windgent/windgent/util.h
 pthread.h
 -
@@ -74,5 +86,11 @@ sys/syscall.h
 stdio.h
 -
 stdint.h
+-
+vector
+-
+string
+-
+execinfo.h
 -
 

@@ -6,13 +6,25 @@ CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/mutex.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/util.h
+
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/config.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/fiber.cc
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/macro.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/config.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.cc
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/mutex.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/mutex.cc.o: ../windgent/mutex.cc
@@ -25,6 +37,11 @@ CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.cc
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.cc
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.h
 
