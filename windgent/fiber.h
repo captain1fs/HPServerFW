@@ -7,7 +7,10 @@
 
 namespace windgent {
 
+class Scheduler;
+
 class Fiber : public std::enable_shared_from_this<Fiber> {
+    friend class Scheduler;
 public:
     typedef std::shared_ptr<Fiber> ptr;
     enum State {
@@ -19,7 +22,7 @@ public:
         EXCEPT
     };
 public:
-    Fiber(std::function<void()> cb, size_t stacksize = 0);
+    Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
     ~Fiber();
 
     //重置协程函数和状态
@@ -29,7 +32,13 @@ public:
     //切换当前协程到后台执行
     void swapOut();
 
+    //主协程执行次函数，切换到当前协程执行
+    void call();
+    //当前协程执行此函数，切换到主协程执行
+    void back();
+
     uint64_t getId() const { return m_id; }
+    State getState() const { return m_state; }
 
     //设置当前协程
     static void SetThis(Fiber* f);
@@ -45,6 +54,8 @@ public:
 
     //上下文入口函数，在每个协程的独立栈空间上执行
     static void MainFunc();
+
+    static void CallerMainFunc();
 private:
     //只用来设置初始协程，即当前线程状态
     Fiber();

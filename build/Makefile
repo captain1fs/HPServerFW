@@ -166,6 +166,19 @@ test_config/fast:
 .PHONY : test_config/fast
 
 #=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
+#=============================================================================
 # Target rules for targets named test_log
 
 # Build rule for target.
@@ -271,6 +284,33 @@ tests/test_log.s: tests/test_log.cc.s
 tests/test_log.cc.s:
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.s
 .PHONY : tests/test_log.cc.s
+
+tests/test_scheduler.o: tests/test_scheduler.cc.o
+
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.cc.o
+
+tests/test_scheduler.i: tests/test_scheduler.cc.i
+
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.cc.i
+
+tests/test_scheduler.s: tests/test_scheduler.cc.s
+
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.cc.s
 
 tests/test_thread.o: tests/test_thread.cc.o
 
@@ -434,6 +474,33 @@ windgent/mutex.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/mutex.cc.s
 .PHONY : windgent/mutex.cc.s
 
+windgent/scheduler.o: windgent/scheduler.cc.o
+
+.PHONY : windgent/scheduler.o
+
+# target to build an object file
+windgent/scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/scheduler.cc.o
+.PHONY : windgent/scheduler.cc.o
+
+windgent/scheduler.i: windgent/scheduler.cc.i
+
+.PHONY : windgent/scheduler.i
+
+# target to preprocess a source file
+windgent/scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/scheduler.cc.i
+.PHONY : windgent/scheduler.cc.i
+
+windgent/scheduler.s: windgent/scheduler.cc.s
+
+.PHONY : windgent/scheduler.s
+
+# target to generate assembly for a file
+windgent/scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/scheduler.cc.s
+.PHONY : windgent/scheduler.cc.s
+
 windgent/thread.o: windgent/thread.cc.o
 
 .PHONY : windgent/thread.o
@@ -500,6 +567,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... test_thread"
 	@echo "... test_config"
+	@echo "... test_scheduler"
 	@echo "... test_log"
 	@echo "... windgent"
 	@echo "... tests/test_config.o"
@@ -511,6 +579,9 @@ help:
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -529,6 +600,9 @@ help:
 	@echo "... windgent/mutex.o"
 	@echo "... windgent/mutex.i"
 	@echo "... windgent/mutex.s"
+	@echo "... windgent/scheduler.o"
+	@echo "... windgent/scheduler.i"
+	@echo "... windgent/scheduler.s"
 	@echo "... windgent/thread.o"
 	@echo "... windgent/thread.i"
 	@echo "... windgent/thread.s"

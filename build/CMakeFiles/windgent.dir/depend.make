@@ -15,6 +15,7 @@ CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/macro.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/scheduler.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/util.h
@@ -29,6 +30,16 @@ CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/mutex.cc.o: ../windgent/mutex.cc
 CMakeFiles/windgent.dir/windgent/mutex.cc.o: ../windgent/mutex.h
+
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/macro.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/scheduler.cc
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/scheduler.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/mutex.h

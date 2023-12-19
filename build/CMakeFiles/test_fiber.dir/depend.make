@@ -7,6 +7,7 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/fiber.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/log.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/macro.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/mutex.h
+CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/singleton.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/thread.h
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: ../windgent/util.h

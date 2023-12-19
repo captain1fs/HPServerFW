@@ -3,6 +3,7 @@
 #include "./macro.h"
 #include "./log.h"
 #include "./config.h"
+#include "./scheduler.h"
 
 namespace windgent {
 
@@ -41,7 +42,7 @@ Fiber::Fiber() {
 }
 
 //创建协程
-Fiber::Fiber(std::function<void()> cb, size_t stacksize) 
+Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) 
     :m_id(++s_fiber_id), m_cb(cb) {
     m_stacksize = stacksize ? stacksize : g_fiber_config->getVal();
     m_stack = StackAllocator::Alloc(m_stacksize);
@@ -54,7 +55,11 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize)
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stacksize;
 
-    makecontext(&m_ctx, &Fiber::MainFunc, 0);
+    if(!use_caller) {
+        makecontext(&m_ctx, &Fiber::MainFunc, 0);
+    } else {
+        makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+    }
     LOG_DEBUG(g_logger) << "Fiber::Fiber(cb, sz) id=" << m_id;
 }
 
@@ -93,9 +98,8 @@ void Fiber::reset(std::function<void()> cb) {
 }
 
 //保存主协程上下文，切换到当前协程执行
-void Fiber::swapIn() {
+void Fiber::call() {
     SetThis(this);
-    ASSERT(m_state != EXEC);
     m_state = EXEC;
     if(swapcontext(&(t_threadFiber->m_ctx), &m_ctx)) {
         ASSERT2(false, "swapcontext");
@@ -103,10 +107,29 @@ void Fiber::swapIn() {
 }
 
 //切换当前协程到后台执行，恢复主协程上下文
-void Fiber::swapOut() {
+void Fiber::back() {
     SetThis(t_threadFiber.get());
     m_state = TERM;
     if(swapcontext(&m_ctx, &(t_threadFiber->m_ctx))) {
+        ASSERT2(false, "swapcontext");
+    }
+}
+
+//切换到当前协程执行
+void Fiber::swapIn() {
+    SetThis(this);
+    ASSERT(m_state != EXEC);
+    m_state = EXEC;
+    if(swapcontext(&(Scheduler::GetMainFiber()->m_ctx), &m_ctx)) {
+        ASSERT2(false, "swapcontext");
+    }
+}
+
+//切换当前协程到后台
+void Fiber::swapOut() {
+    SetThis(Scheduler::GetMainFiber());
+    m_state = TERM;
+    if(swapcontext(&m_ctx, &(Scheduler::GetMainFiber()->m_ctx))) {
         ASSERT2(false, "swapcontext");
     }
 }
@@ -137,7 +160,7 @@ void Fiber::YieldToReady() {
 //切换协程到后台，并设为HOLD状态
 void Fiber::YieldToHold() {
     Fiber::ptr cur = GetThis();
-    cur->m_state = HOLD;
+    // cur->m_state = HOLD;
     cur->swapOut();
 }
 
@@ -173,6 +196,31 @@ void Fiber::MainFunc() {
     auto raw_ptr = cur.get();
     cur.reset();
     raw_ptr->swapOut();
+
+    ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
+}
+
+void Fiber::CallerMainFunc() {
+    Fiber::ptr cur = GetThis();
+    ASSERT(cur);
+    try {
+        cur->m_cb();
+        cur->m_cb = nullptr;
+        cur->m_state = TERM;
+    } catch (std::exception& e) {
+        cur->m_state = EXCEPT;
+        LOG_ERROR(g_logger) << "Fiber::MainFunc Exception: " << e.what() << ", fiber id= " << cur->getId() << std::endl << windgent::BacktraceToString();
+    } catch (...) {
+        cur->m_state = EXCEPT;
+        LOG_ERROR(g_logger) << "Fiber::MainFunc Exception" << ", fiber id= " << cur->getId() << std::endl << windgent::BacktraceToString();
+    }
+
+    //减少一次this的引用计数，使得能够正确析构
+    auto raw_ptr = cur.get();
+    cur.reset();
+    raw_ptr->back();
+
+    ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
 }
 
 }

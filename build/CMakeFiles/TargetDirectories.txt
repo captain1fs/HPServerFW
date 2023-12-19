@@ -4,5 +4,6 @@
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/edit_cache.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_thread.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_config.dir
+/home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_scheduler.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/test_log.dir
 /home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir

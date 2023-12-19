@@ -7,6 +7,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/fiber.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/log.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/macro.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/mutex.h
+CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/singleton.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/thread.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/util.h

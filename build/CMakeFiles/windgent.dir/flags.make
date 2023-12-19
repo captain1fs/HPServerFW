@@ -20,3 +20,5 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/fiber.cc.o_DEFINES = __FILE__="windgent/fiber.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/scheduler.cc.o_DEFINES = __FILE__="windgent/scheduler.cc"
+

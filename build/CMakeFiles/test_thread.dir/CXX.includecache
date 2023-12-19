@@ -102,6 +102,24 @@ stdint.h
 atomic
 -
 
+/home/fangshao/CPP/Project/windgent/windgent/scheduler.h
+memory
+-
+atomic
+-
+vector
+-
+string
+-
+list
+-
+fiber.h
+/home/fangshao/CPP/Project/windgent/windgent/fiber.h
+thread.h
+/home/fangshao/CPP/Project/windgent/windgent/thread.h
+mutex.h
+/home/fangshao/CPP/Project/windgent/windgent/mutex.h
+
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 
 /home/fangshao/CPP/Project/windgent/windgent/thread.h
@@ -151,4 +169,6 @@ execinfo.h
 /home/fangshao/CPP/Project/windgent/windgent/macro.h
 ./fiber.h
 /home/fangshao/CPP/Project/windgent/windgent/fiber.h
+./scheduler.h
+/home/fangshao/CPP/Project/windgent/windgent/scheduler.h
 
