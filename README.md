@@ -127,6 +127,50 @@ https://blog.csdn.net/qq_44443986/article/details/117739157
 
 每个线程有一个主协程，主协程可切换为子协程执行，执行结束后会自动切换为主协程。
 
+协程调度器如何工作?协程调度器内有一个线程池,这一组工作线程都运行run函数,不断地检查任务队列(协程)中是否有协程存在.
+如果有,则拿出这个协程来执行,否则这些线程都在执行空闲协程.
+
+```cpp
+//协程调度器,内有一个线程池
+class Scheduler {
+public:
+    Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "");
+    //启动协程调度器,创建一组线程,每个线程都执行run函数
+    void start();
+    void stop();
+
+    //协程调度:可以指定协程在某个线程中执行
+    template<class FiberOrcb>
+    void schedule(FiberOrcb fc, int thd = -1) {
+        bool need_tickle = false;
+        {
+            MutexType::Lock lock(m_mtx);
+            need_tickle = scheduleNoLock(fc, thd);
+        }
+        if(need_tickle) {
+            tickle();   //通知线程有协程到来
+        }
+    }
+
+    //协程调度函数,不断地从任务队列中拿一个协程(函数)去执行:swapIn
+    void run();
+    virtual void idle();    //协程无任务可调度时执行idle协程
+private:
+    //工作线程要执行的协程/函数,看作是任务队列中的一个任务
+    struct FiberAndThread {
+        Fiber::ptr fiber;
+        std::function<void()> cb;
+        int threadId;
+    };
+private:
+    MutexType m_mtx;
+    std::vector<Thread::ptr> m_threads;     //工作线程
+    std::list<FiberAndThread> m_fibers;     //待执行的协程（任务）队列
+    Fiber::ptr m_rootFiber;                 //use_caller为true时有效, 调度协程
+    int m_rootThread = 0;       //主线程id（user_caller）
+};
+```
+
 ## socket函数库
 
 ## Http协议开发

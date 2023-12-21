@@ -30,7 +30,7 @@ public:
     void start();
     void stop();
 
-    //协程调度
+    //协程调度:可以指定协程在某个线程中执行
     template<class FiberOrcb>
     void schedule(FiberOrcb fc, int thd = -1) {
         bool need_tickle = false;

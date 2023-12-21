@@ -112,6 +112,14 @@ stdint.h
 atomic
 -
 
+/home/fangshao/CPP/Project/windgent/windgent/scheduler.cc
+scheduler.h
+/home/fangshao/CPP/Project/windgent/windgent/scheduler.h
+log.h
+/home/fangshao/CPP/Project/windgent/windgent/log.h
+macro.h
+/home/fangshao/CPP/Project/windgent/windgent/macro.h
+
 /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
 memory
 -

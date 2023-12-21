@@ -15,7 +15,7 @@ void test_fiber() {
 
 int main(int argc, char** argv) {
     LOG_INFO(g_logger) << "main";
-    windgent::Scheduler sc(3, false, "test");
+    windgent::Scheduler sc(3, true, "test");
     sc.start();
     sleep(2);
     LOG_INFO(g_logger) << "schedule";
