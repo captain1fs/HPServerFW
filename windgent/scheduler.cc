@@ -8,7 +8,7 @@ namespace windgent {
 windgent::Logger::ptr g_logger = LOG_NAME("system");
 
 static thread_local Scheduler* t_scheduler = nullptr;               //调度器
-static thread_local Fiber* t_scheduler_fiber = nullptr;             //掌管调度器的协程
+static thread_local Fiber* t_scheduler_fiber = nullptr;             //掌管协程调度器的调度协程
 
 Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name) :m_name(name) {
     ASSERT(threads > 0);
@@ -159,7 +159,7 @@ void Scheduler::run() {
         }
 
         //协程任务
-        if(ft.fiber && ft.fiber->getState() != Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT) {
+        if(ft.fiber && (ft.fiber->getState() != Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT)) {
             ft.fiber->swapIn();
             --m_activeThreadCount;
 
@@ -221,7 +221,7 @@ bool Scheduler::stopping() {
 
 void Scheduler::idle() {
     LOG_INFO(g_logger) << "idle";
-    while(!m_stopping) {
+    while(!stopping()) {
         windgent::Fiber::YieldToHold();
     }
 }

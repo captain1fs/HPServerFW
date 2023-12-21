@@ -8,7 +8,8 @@ void test_fiber() {
 
     sleep(1);
     if(--s_count >= 0) {
-        windgent::Scheduler::GetThis()->schedule(&test_fiber, windgent::GetThreadId());
+        windgent::Scheduler::GetThis()->schedule(&test_fiber);  //随机到某个协程
+        // windgent::Scheduler::GetThis()->schedule(&test_fiber, windgent::GetThreadId());  //指定到一个协程
     }
 }
 

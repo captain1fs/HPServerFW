@@ -49,7 +49,7 @@ public:
         {
             MutexType::Lock lock(m_mtx);
             while(begin != end) {
-                need_tickle = scheduleNoLock(&*begin) || need_tickle;
+                need_tickle = scheduleNoLock(&*begin, -1) || need_tickle;
                 ++begin;
             }
         }
@@ -73,7 +73,7 @@ protected:
 private:
 
     template<class FiberOrcb>
-    bool scheduleNoLock(FiberOrcb fc, int thd = -1) {
+    bool scheduleNoLock(FiberOrcb fc, int thd) {
         bool need_tickle = m_fibers.empty();
         FiberAndThread ft(fc, thd);
         if(ft.fiber || ft.cb) {
@@ -128,7 +128,7 @@ protected:
     std::atomic<size_t> m_idleThreadCount = {0};          //空闲线程数
     bool m_stopping = true;
     bool m_autostop = false;
-    int m_rootThread = 0;
+    int m_rootThread = 0;       //主线程id（user_caller）
 };
 
 

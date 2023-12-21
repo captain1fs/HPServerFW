@@ -9,10 +9,10 @@ namespace windgent {
 
 static windgent::Logger::ptr g_logger = LOG_NAME("system");
 
-std::atomic<uint64_t> s_fiber_id {0};    //协程id
-std::atomic<uint64_t> s_fiber_count {0};    //协程数量
+static std::atomic<uint64_t> s_fiber_id {0};    //协程id
+static std::atomic<uint64_t> s_fiber_count {0};    //协程数量
 
-static windgent::ConfigVar<uint32_t>::ptr g_fiber_config = windgent::ConfigMgr::Lookup<uint32_t>("fiber.stacksize", 1024 * 1024, "fiber stack size");
+static windgent::ConfigVar<uint32_t>::ptr g_fiber_config = windgent::ConfigMgr::Lookup<uint32_t>("fiber.stacksize", 128 * 1024, "fiber stack size");
 
 static thread_local Fiber* t_fiber = nullptr;   //当前正在执行的协程
 static thread_local Fiber::ptr t_threadFiber = nullptr;   //主协程
@@ -38,7 +38,7 @@ Fiber::Fiber() {
     }
     ++s_fiber_count;
 
-    LOG_DEBUG(g_logger) << "Fiber::Fiber() id=" << m_id;
+    LOG_DEBUG(g_logger) << "Fiber::Fiber main";
 }
 
 //创建协程
@@ -109,7 +109,7 @@ void Fiber::call() {
 //切换当前协程到后台执行，恢复主协程上下文
 void Fiber::back() {
     SetThis(t_threadFiber.get());
-    m_state = TERM;
+    // m_state = TERM;
     if(swapcontext(&m_ctx, &(t_threadFiber->m_ctx))) {
         ASSERT2(false, "swapcontext");
     }
@@ -128,7 +128,7 @@ void Fiber::swapIn() {
 //切换当前协程到后台
 void Fiber::swapOut() {
     SetThis(Scheduler::GetMainFiber());
-    m_state = TERM;
+    // m_state = TERM;
     if(swapcontext(&m_ctx, &(Scheduler::GetMainFiber()->m_ctx))) {
         ASSERT2(false, "swapcontext");
     }
@@ -153,6 +153,7 @@ Fiber::ptr Fiber::GetThis() {
 //切换协程到后台，并设为READY状态
 void Fiber::YieldToReady() {
     Fiber::ptr cur = GetThis();
+    ASSERT(cur->m_state == EXEC);
     cur->m_state = READY;
     cur->swapOut();
 }
@@ -160,7 +161,8 @@ void Fiber::YieldToReady() {
 //切换协程到后台，并设为HOLD状态
 void Fiber::YieldToHold() {
     Fiber::ptr cur = GetThis();
-    // cur->m_state = HOLD;
+    ASSERT(cur->m_state == EXEC);
+    cur->m_state = HOLD;
     cur->swapOut();
 }
 
