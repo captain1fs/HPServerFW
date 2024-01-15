@@ -1,6 +1,7 @@
 #ifndef __SCHEDULER_H__
 #define __SCHEDULER_H__
 
+#include <iostream>
 #include <memory>
 #include <atomic>
 #include <vector>
@@ -13,7 +14,7 @@
 
 namespace windgent {
 
-//调度器类，可看作是线程池
+//协程调度器类，内部有一个线程池和一个待执行的协程（任务）队列，调度即M个协程可在N个线程之间切换
 class Scheduler {
 public:
     typedef std::shared_ptr<Scheduler> ptr;
@@ -33,12 +34,14 @@ public:
     //协程调度:可以指定协程在某个线程中执行
     template<class FiberOrcb>
     void schedule(FiberOrcb fc, int thd = -1) {
+        std::cout << "--------- Scheduler::schedule() ---------" << std::endl;
         bool need_tickle = false;
         {
             MutexType::Lock lock(m_mtx);
             need_tickle = scheduleNoLock(fc, thd);
         }
         if(need_tickle) {
+            std::cout << "--------- need_tickle ---------" << std::endl;
             tickle();
         }
     }
@@ -131,9 +134,6 @@ protected:
     int m_rootThread = 0;       //主线程id（user_caller）
 };
 
-
-
 }
-
 
 #endif

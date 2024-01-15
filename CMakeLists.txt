@@ -20,6 +20,7 @@ set(LIB_SRC
     windgent/mutex.cc
     windgent/fiber.cc
     windgent/scheduler.cc
+    windgent/iomanager.cc
 )
 
 #设置依赖的库
@@ -78,6 +79,12 @@ add_dependencies(test_scheduler windgent)
 force_redefine_file_macro_for_sources(test_scheduler)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_scheduler ${LIB_LIB})
+
+add_executable(test_iomanager tests/test_iomanager.cc)
+add_dependencies(test_iomanager windgent)
+force_redefine_file_macro_for_sources(test_iomanager)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_iomanager ${LIB_LIB})
 
 
 #指定可执行文件输出路径

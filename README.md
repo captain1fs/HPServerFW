@@ -117,7 +117,7 @@ private:
 
 首先，封装了POSIX线程Thread、信号量Semaphore、条件变量Cond、互斥锁Mutex、读写锁RWMutex、自旋锁SoinLock、CAS锁CASLock。
 
-## 协程模块
+## 协程调度模块
 
 协程是用户态的线程，借助linux ucontext族函数来实现，详细可参考：
 
@@ -129,6 +129,10 @@ https://blog.csdn.net/qq_44443986/article/details/117739157
 
 协程调度器如何工作?协程调度器内有一个线程池,这一组工作线程都运行run函数,不断地检查任务队列(协程)中是否有协程存在.
 如果有,则拿出这个协程来执行,否则这些线程都在执行空闲协程.
+
+线程数：协程数 = N : M
+
+协程调度模块下面有N个线程，用于执行M个协程，这M个协程会在N个线程之间切换。协程被看作是一个个任务，线程可以执行这些任务。
 
 ```cpp
 //协程调度器,内有一个线程池
@@ -168,6 +172,79 @@ private:
     std::list<FiberAndThread> m_fibers;     //待执行的协程（任务）队列
     Fiber::ptr m_rootFiber;                 //use_caller为true时有效, 调度协程
     int m_rootThread = 0;       //主线程id（user_caller）
+};
+```
+
+### IO协程调度模块
+
+```cpp
+class IOManager : public Scheduler {
+public:
+    typedef std::shared_ptr<IOManager> ptr;
+    typedef RWMutex RWMutexType;
+    //事件类型
+    enum Event {
+        NONE = 0x0;
+        READ = 0x1;
+        WRITE = 0x2;
+    };
+private:
+    //句柄的上下文
+    struct FdContext {
+        typedef Mutex MutexType;
+        //事件的上下文
+        struct EventContext {
+            Scheduler* scheduler = nullptr;     //事件执行的scheduler
+            Fiber::ptr fiber;                   //事件协程
+            std::function<void()> cb;           //事件回调函数
+        };
+        //获取事件上下文
+        EventContext& getContext(Event event);
+        //重置事件上下文
+        void resetContext(EventContext& ctx);
+        //触发事件的执行
+        void triggerEvent(Event event);
+
+        EventContext read;          //读事件
+        EventContext write;         //写事件
+        Event events = NONE;        //已经注册的事件
+        int fd = 0;                 //事件关联的句柄
+        MutexType mutex;
+    };
+
+public:
+    IOManager(size_t threads = 1, bool use_caller = true, const std::string& name = "");
+    ~IOManager();
+
+    //添加事件
+    int addEvent(int fd, Event event, std::function<void()> cb = nullptr);
+    //删除事件
+    bool delEvent(int fd, Event event);
+    //取消事件：强制触发执行该事件
+    bool cancelEvent(int fd, Event event);
+    //取消fd上的所有事件
+    bool cancelAll(int fd);
+
+    static IOManager* GetThis();
+
+protected:
+    void tickle() override;
+    bool stopping() override;
+
+    //没有协程任务时，协程调度器会执行idle函数，其中通过epoll_wait监听是否有IO事件到来。如果有IO事件到来，根据事件类型触发事件的执行。
+    //当通过addEvent将fd及其事件纳入监听后，如果有就绪事件到来，epoll_wait会立即返回，根据事件的类型触发执行：获取事件上下文，生成一个IO协程供调度器来调度。
+    //执行流程：triggerEvent() --->Scheduler::schedule() ---> IOManager::tickle()
+    void idle() override;
+
+    //初始化事件列表
+    void contextResize();
+private:
+    int m_epfd = 0;        //epoll fd
+    int m_tickleFds[2];   //管道通信
+
+    std::atomic<size_t> m_pendingEventCount = {0};  //等待的事件数
+    RWMutexType m_mutex;
+    std::vector<FdContext*> m_fdContexts;           //事件列表
 };
 ```
 

@@ -20,6 +20,17 @@ CMakeFiles/windgent.dir/windgent/fiber.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
+CMakeFiles/windgent.dir/windgent/iomanager.cc.o
+ /home/fangshao/CPP/Project/windgent/windgent/fiber.h
+ /home/fangshao/CPP/Project/windgent/windgent/iomanager.cc
+ /home/fangshao/CPP/Project/windgent/windgent/iomanager.h
+ /home/fangshao/CPP/Project/windgent/windgent/log.h
+ /home/fangshao/CPP/Project/windgent/windgent/macro.h
+ /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
+ /home/fangshao/CPP/Project/windgent/windgent/singleton.h
+ /home/fangshao/CPP/Project/windgent/windgent/thread.h
+ /home/fangshao/CPP/Project/windgent/windgent/util.h
 CMakeFiles/windgent.dir/windgent/log.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/config.h
  /home/fangshao/CPP/Project/windgent/windgent/log.cc
