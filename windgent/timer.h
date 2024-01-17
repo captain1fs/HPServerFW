@@ -3,6 +3,7 @@
 
 #include "./mutex.h"
 
+#include <iostream>
 #include <memory>
 #include <functional>
 #include <set>
@@ -47,6 +48,7 @@ public:
     virtual ~TimerManager();
 
     Timer::ptr addTimer(uint64_t ms, std::function<void()> cb, bool isRecur = false);
+    //添加条件定时器，满足条件weak_cond时才会执行
     Timer::ptr addCondTimer(uint64_t ms, std::function<void()> cb
                             , std::weak_ptr<void> weak_cond, bool isRecur = false);
 
@@ -54,13 +56,13 @@ public:
     uint64_t getTimeOfNextTimer();
     //获取所有超时的定时器的回调函数，从而创建出协程来schedule
     void listExpiredCbs(std::vector<std::function<void()> >& cbs);
-
+    //是否有定时器任务
     bool hasTimer();
 protected:
     //如果有新的定时器插入到首部时，表示这个定时器任务很快就会执行，此时应主动将IOManager从epoll_wait中唤醒来执行此任务
     //因为epoll_wait等待的时间TIMEOUT可能太长
     virtual void onTimerInsertedAtFront() = 0;
-
+    //添加定时器，供上层调用
     void addTimer(Timer::ptr timer, RWMutexType::WrLock& lock);
 private:
     //检测服务器时间是否延后

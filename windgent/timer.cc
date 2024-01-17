@@ -67,7 +67,7 @@ bool Timer::reset(uint64_t ms, bool from_now) {
 }
 
 Timer::Timer(uint64_t ms, std::function<void()> cb, bool isRecur, TimerManager* manager)
-    : m_isRecur(isRecur), m_ms(ms), m_cb(cb), m_manager(manager) {
+    :m_isRecur(isRecur), m_ms(ms), m_cb(cb), m_manager(manager) {
     m_next = windgent::GetCurrentMS() + m_ms;
 }
 
