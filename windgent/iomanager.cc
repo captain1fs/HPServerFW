@@ -78,7 +78,7 @@ void IOManager::FdContext::resetContext(IOManager::FdContext::EventContext& ctx)
 }
 
 void IOManager::FdContext::triggerEvent(IOManager::Event event) {
-    std::cout << "--------- IOManager::FdContext::triggerEvent() ---------" << std::endl;
+    // std::cout << "--------- IOManager::FdContext::triggerEvent() ---------" << std::endl;
     ASSERT(events & event);
     events = (Event)(events & ~event);
     EventContext& ctx = getContext(event);
@@ -259,14 +259,20 @@ void IOManager::tickle() {
     if(!hasIdleThreads()) {
         return;
     }
-    std::cout << "---------- IOManager::tickle() -----------" << std::endl;
+    // std::cout << "---------- IOManager::tickle() -----------" << std::endl;
     //如果有空闲线程，往m_tickleFds写端写入一个字符
     int ret = write(m_tickleFds[1], "T", 1);
     ASSERT(ret == 1);
 }
 
 bool IOManager::stopping() {
-    return Scheduler::stopping() && m_pendingEventCount == 0;
+    uint64_t timeout = 0;
+    return stopping(timeout);
+}
+
+bool IOManager::stopping(uint64_t& timeout) {
+    timeout = getTimeOfNextTimer();
+    return timeout == ~0ull && m_pendingEventCount == 0 && Scheduler::stopping();
 }
 
 //IO调度器无任务时执行idle函数，阻塞在epoll_wait上等待着IO事件到来
@@ -278,22 +284,37 @@ void IOManager::idle() {
     });
 
     while(true) {
-        if(stopping()) {
+        uint64_t next_timeout = 0;
+        if(stopping(next_timeout)) {
             LOG_INFO(g_logger) << "name= " << getName() << ", idle stopping exit";
             break;
         }
 
         int ret = 0;
         do {
-            static const int MAX_TIMEOUT = 5000;
-            ret = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
-            LOG_INFO(g_logger) << "epoll_wait ret = " << ret;
+            static const int MAX_TIMEOUT = 3000;
+            if(next_timeout != ~0ull) {
+                next_timeout = (int)next_timeout > MAX_TIMEOUT ? MAX_TIMEOUT : next_timeout;
+            } else {
+                next_timeout = MAX_TIMEOUT;
+            }
+            ret = epoll_wait(m_epfd, events, 64, (int)next_timeout);
+            // LOG_INFO(g_logger) << "epoll_wait ret = " << ret;
             if(ret < 0 && errno == EINTR) {
                 ;
             } else {
                 break;
             }
         }while(true);
+
+        //处理定时器任务
+        std::vector<std::function<void()> > cbs;
+        listExpiredCbs(cbs);
+        if(!cbs.empty()) {
+            // std::cout << "--------- schedule(cbs.begin(), cbs.end()) ---------" << std::endl;
+            schedule(cbs.begin(), cbs.end());
+            cbs.clear();
+        }
 
         for(int i = 0;i < ret; ++i) {
             epoll_event& event = events[i];
@@ -335,12 +356,12 @@ void IOManager::idle() {
             }
 
             if(real_event & READ) {
-                std::cout << "--------- fd_ctx->triggerEvent(READ) ---------" << std::endl;
+                // std::cout << "--------- fd_ctx->triggerEvent(READ) ---------" << std::endl;
                 fd_ctx->triggerEvent(READ);
                 --m_pendingEventCount;
             }
             if(real_event & WRITE) {
-                std::cout << "--------- fd_ctx->triggerEvent(WRITE) ---------" << std::endl;
+                // std::cout << "--------- fd_ctx->triggerEvent(WRITE) ---------" << std::endl;
                 fd_ctx->triggerEvent(WRITE);
                 --m_pendingEventCount;
             }
@@ -349,8 +370,12 @@ void IOManager::idle() {
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();
         cur.reset();
-        raw_ptr->swapOut();   //回到mainFiber
+        raw_ptr->swapOut();   //回到调度协程
     }
+}
+
+void IOManager::onTimerInsertedAtFront() {
+    tickle();
 }
 
 }

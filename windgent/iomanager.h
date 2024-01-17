@@ -2,11 +2,12 @@
 #define __IOMANAGER_H__
 
 #include "./scheduler.h"
+#include "./timer.h"
 
 namespace windgent {
 
 //基于epoll的IO协程调度器
-class IOManager : public Scheduler {
+class IOManager : public Scheduler, public TimerManager {
 public:
     typedef std::shared_ptr<IOManager> ptr;
     typedef RWMutex RWMutexType;
@@ -56,12 +57,15 @@ public:
     static IOManager* GetThis();
 
 protected:
+    //往m_tickleFds写端写，用于主动通知线程有协程任务到来，此时epoll_wait会立即返回
     void tickle() override;
     bool stopping() override;
     void idle() override;
+    void onTimerInsertedAtFront() override;
 
     //初始化事件列表
     void contextResize(size_t size);
+    bool stopping(uint64_t& timeout);
 private:
     int m_epfd = 0;        //epoll fd
     int m_tickleFds[2];   //管道通信

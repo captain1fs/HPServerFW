@@ -47,8 +47,21 @@ void test_iomanager() {
     iom.schedule(&test_fiber);
 }
 
-int main() {
-    test_iomanager();
+windgent::Timer::ptr s_timer;
+void test_timer() {
+    windgent::IOManager iom(2);
+    s_timer = iom.addTimer(1000, [](){
+        static int i = 0;
+        LOG_INFO(g_logger) << "hello timer i=" << i;
+        if(++i == 3) {
+            s_timer->reset(2000, true);
+            // s_timer->cancel();
+        }
+    }, true);
+}
 
+int main() {
+    // test_iomanager();
+    test_timer();
     return 0;
 }

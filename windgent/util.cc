@@ -1,4 +1,5 @@
 #include <sstream>
+#include <sys/time.h>
 
 #include "util.h"
 #include "log.h"
@@ -14,6 +15,17 @@ pid_t GetThreadId(){
 
 uint32_t GetFiberId(){
     return windgent::Fiber::GetFiberId();
+}
+
+uint64_t GetCurrentMS() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000ul + tv.tv_usec / 1000;
+}
+uint64_t GetCurrentUS() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000 * 1000ul + tv.tv_usec;
 }
 
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {

@@ -28,11 +28,11 @@ int main(int argc, char** argv) {
     windgent::Thread::SetName("main");
 
     std::vector<windgent::Thread::ptr> thds;
-    for(int i = 0;i < 3; ++i) {
+    for(int i = 0;i < 1; ++i) {
         thds.push_back(windgent::Thread::ptr(new windgent::Thread(&test_fiber, "name_" + std::to_string(i))));
     }
 
-    for(int i = 0;i < 3; ++i) {
+    for(int i = 0;i < 1; ++i) {
         thds[i]->join();
     }
     

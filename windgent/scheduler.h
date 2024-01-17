@@ -34,14 +34,14 @@ public:
     //协程调度:可以指定协程在某个线程中执行
     template<class FiberOrcb>
     void schedule(FiberOrcb fc, int thd = -1) {
-        std::cout << "--------- Scheduler::schedule() ---------" << std::endl;
+        // std::cout << "--------- Scheduler::schedule() ---------" << std::endl;
         bool need_tickle = false;
         {
             MutexType::Lock lock(m_mtx);
             need_tickle = scheduleNoLock(fc, thd);
         }
         if(need_tickle) {
-            std::cout << "--------- need_tickle ---------" << std::endl;
+            // std::cout << "--------- need_tickle ---------" << std::endl;
             tickle();
         }
     }

@@ -123,6 +123,7 @@ void Fiber::swapIn() {
     if(swapcontext(&(Scheduler::GetMainFiber()->m_ctx), &m_ctx)) {
         ASSERT2(false, "swapcontext");
     }
+    // std::cout << "Fiber::swapIn()" << std::endl;
 }
 
 //切换当前协程到后台
@@ -132,6 +133,7 @@ void Fiber::swapOut() {
     if(swapcontext(&m_ctx, &(Scheduler::GetMainFiber()->m_ctx))) {
         ASSERT2(false, "swapcontext");
     }
+    // std::cout << "Fiber::swapOut()" << std::endl;
 }
 
 //设置当前执行的协程
@@ -156,6 +158,7 @@ void Fiber::YieldToReady() {
     ASSERT(cur->m_state == EXEC);
     cur->m_state = READY;
     cur->swapOut();
+    
 }
 
 //切换协程到后台，并设为HOLD状态

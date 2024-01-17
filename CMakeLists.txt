@@ -17,6 +17,7 @@ set(LIB_SRC
     windgent/util.cc    
     windgent/config.cc    
     windgent/thread.cc
+    windgent/timer.cc
     windgent/mutex.cc
     windgent/fiber.cc
     windgent/scheduler.cc
