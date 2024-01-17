@@ -285,6 +285,7 @@ void IOManager::idle() {
 
     while(true) {
         uint64_t next_timeout = 0;
+        //next_timeout每次都会重置为：到下一定时器执行要等待的时间
         if(stopping(next_timeout)) {
             LOG_INFO(g_logger) << "name= " << getName() << ", idle stopping exit";
             break;
@@ -298,6 +299,8 @@ void IOManager::idle() {
             } else {
                 next_timeout = MAX_TIMEOUT;
             }
+            //next_timeout是到下一定时器执行要等待的时间，因此epoll_wait等待next_timeout后会立即返回，从而跳出do...while
+            //去执行超时的定时器任务，而不需要等待MAX_TIMEOUT
             ret = epoll_wait(m_epfd, events, 64, (int)next_timeout);
             // LOG_INFO(g_logger) << "epoll_wait ret = " << ret;
             if(ret < 0 && errno == EINTR) {
@@ -307,7 +310,7 @@ void IOManager::idle() {
             }
         }while(true);
 
-        //处理定时器任务
+        //处理超时的定时器任务，这段流程在while内任何地方都能执行，但只有在此才能配合epoll_wait
         std::vector<std::function<void()> > cbs;
         listExpiredCbs(cbs);
         if(!cbs.empty()) {
@@ -366,6 +369,7 @@ void IOManager::idle() {
                 --m_pendingEventCount;
             }
         }
+
         //执行完毕，让出执行权
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();

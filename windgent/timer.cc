@@ -80,6 +80,7 @@ TimerManager::TimerManager() {
 TimerManager::~TimerManager() { }
 
 void TimerManager::addTimer(Timer::ptr timer, RWMutexType::WrLock& lock) {
+    // std::cout << "-------- TimerManager::addTimer() -----------" << std::endl;
     auto it = m_timers.insert(timer).first;
     bool at_front = it == m_timers.begin() && !m_tickled;
     if(at_front) {
@@ -88,6 +89,7 @@ void TimerManager::addTimer(Timer::ptr timer, RWMutexType::WrLock& lock) {
     lock.unlock();
     //如果插在首部，主动唤醒epoll_wait来执行此定时器
     if(at_front) {
+        // std::cout << "-------- trigger onTimerInsertedAtFront() -----------" << std::endl;
         onTimerInsertedAtFront();
     }
 }
@@ -136,6 +138,7 @@ bool TimerManager::detectClockRollover(uint64_t now_ms) {
 }
 
 void TimerManager::listExpiredCbs(std::vector<std::function<void()> >& cbs) {
+    // std::cout << "-------- TimerManager::listExpiredCbs() -----------" << std::endl;
     uint64_t now_ms = windgent::GetCurrentMS();
     std::vector<Timer::ptr> expired;
     {

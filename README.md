@@ -357,7 +357,7 @@ public:
     bool hasTimer();
 protected:
     //如果有新的定时器插入到首部时，表示这个定时器任务很快就会执行，此时应主动将IOManager从epoll_wait中唤醒来执行此任务
-    //因为epoll_wait等待的时间TIMEOUT可能太长
+    //因为epoll_wait等待的时间TIMEOUT可能太长，大于定时器的执行时刻
     virtual void onTimerInsertedAtFront() = 0;
     void addTimer(Timer::ptr timer, RWMutexType::WrLock& lock);
 private:

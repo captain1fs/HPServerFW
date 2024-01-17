@@ -52,7 +52,7 @@ public:
     Timer::ptr addCondTimer(uint64_t ms, std::function<void()> cb
                             , std::weak_ptr<void> weak_cond, bool isRecur = false);
 
-    //获取下一定时器执行要等待的时间
+    //获取到下一定时器执行要等待的时间
     uint64_t getTimeOfNextTimer();
     //获取所有超时的定时器的回调函数，从而创建出协程来schedule
     void listExpiredCbs(std::vector<std::function<void()> >& cbs);

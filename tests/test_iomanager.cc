@@ -49,7 +49,7 @@ void test_iomanager() {
 
 windgent::Timer::ptr s_timer;
 void test_timer() {
-    windgent::IOManager iom(2);
+    windgent::IOManager iom(1, false, "name");
     s_timer = iom.addTimer(1000, [](){
         static int i = 0;
         LOG_INFO(g_logger) << "hello timer i=" << i;
