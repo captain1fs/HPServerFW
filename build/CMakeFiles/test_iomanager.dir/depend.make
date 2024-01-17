@@ -11,6 +11,7 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/mutex.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/singleton.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/thread.h
+CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/timer.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/util.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/windgent.h
 

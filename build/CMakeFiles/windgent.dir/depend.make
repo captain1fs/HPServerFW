@@ -29,6 +29,7 @@ CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/mutex.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/scheduler.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/timer.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/log.cc.o: ../windgent/config.h
@@ -58,6 +59,11 @@ CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.cc
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/util.h
+
+CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/timer.cc
+CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/timer.h
+CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/log.h

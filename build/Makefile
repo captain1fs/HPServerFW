@@ -595,6 +595,33 @@ windgent/thread.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/thread.cc.s
 .PHONY : windgent/thread.cc.s
 
+windgent/timer.o: windgent/timer.cc.o
+
+.PHONY : windgent/timer.o
+
+# target to build an object file
+windgent/timer.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/timer.cc.o
+.PHONY : windgent/timer.cc.o
+
+windgent/timer.i: windgent/timer.cc.i
+
+.PHONY : windgent/timer.i
+
+# target to preprocess a source file
+windgent/timer.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/timer.cc.i
+.PHONY : windgent/timer.cc.i
+
+windgent/timer.s: windgent/timer.cc.s
+
+.PHONY : windgent/timer.s
+
+# target to generate assembly for a file
+windgent/timer.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/timer.cc.s
+.PHONY : windgent/timer.cc.s
+
 windgent/util.o: windgent/util.cc.o
 
 .PHONY : windgent/util.o
@@ -680,6 +707,9 @@ help:
 	@echo "... windgent/thread.o"
 	@echo "... windgent/thread.i"
 	@echo "... windgent/thread.s"
+	@echo "... windgent/timer.o"
+	@echo "... windgent/timer.i"
+	@echo "... windgent/timer.s"
 	@echo "... windgent/util.o"
 	@echo "... windgent/util.i"
 	@echo "... windgent/util.s"
