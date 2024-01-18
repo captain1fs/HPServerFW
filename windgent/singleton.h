@@ -1,6 +1,8 @@
 #ifndef __SINGLETON_H__
 #define __SINGLETON_H__
 
+#include <memory>
+
 namespace windgent {
 
 template<typename T, typename X = void, int N = 0>

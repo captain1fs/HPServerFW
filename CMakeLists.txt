@@ -12,16 +12,18 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-de
 include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 
 #设置依赖的源文件
-set(LIB_SRC
-    windgent/log.cc    
-    windgent/util.cc    
-    windgent/config.cc    
+set(LIB_SRC   
+    windgent/config.cc
+    windgent/fiber.cc
+    windgent/fd_manager.cc
+    windgent/hook.cc
+    windgent/iomanager.cc
+    windgent/log.cc 
+    windgent/mutex.cc   
+    windgent/scheduler.cc   
     windgent/thread.cc
     windgent/timer.cc
-    windgent/mutex.cc
-    windgent/fiber.cc
-    windgent/scheduler.cc
-    windgent/iomanager.cc
+    windgent/util.cc
 )
 
 #设置依赖的库
@@ -41,6 +43,7 @@ force_redefine_file_macro_for_sources(windgent)
 set(LIB_LIB
     windgent
     pthread
+    dl
     ${YAMLCPP}
 )
 
@@ -86,6 +89,12 @@ add_dependencies(test_iomanager windgent)
 force_redefine_file_macro_for_sources(test_iomanager)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_iomanager ${LIB_LIB})
+
+add_executable(test_hook tests/test_hook.cc)
+add_dependencies(test_hook windgent)
+force_redefine_file_macro_for_sources(test_hook)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_hook ${LIB_LIB})
 
 
 #指定可执行文件输出路径

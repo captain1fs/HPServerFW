@@ -310,7 +310,7 @@ void IOManager::idle() {
             }
         }while(true);
 
-        //处理超时的定时器任务，这段流程在while内任何地方都能执行，但只有在此才能配合epoll_wait
+        //处理超时的定时器任务
         std::vector<std::function<void()> > cbs;
         listExpiredCbs(cbs);
         if(!cbs.empty()) {

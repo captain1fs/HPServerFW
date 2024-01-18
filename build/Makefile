@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
 # Target rules for targets named test_iomanager
 
 # Build rule for target.
@@ -270,6 +283,33 @@ tests/test_fiber.s: tests/test_fiber.cc.s
 tests/test_fiber.cc.s:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
+
+tests/test_hook.o: tests/test_hook.cc.o
+
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cc.o:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.o
+.PHONY : tests/test_hook.cc.o
+
+tests/test_hook.i: tests/test_hook.cc.i
+
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cc.i:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.i
+.PHONY : tests/test_hook.cc.i
+
+tests/test_hook.s: tests/test_hook.cc.s
+
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cc.s:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
+.PHONY : tests/test_hook.cc.s
 
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
@@ -433,6 +473,33 @@ windgent/config.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/config.cc.s
 .PHONY : windgent/config.cc.s
 
+windgent/fd_manager.o: windgent/fd_manager.cc.o
+
+.PHONY : windgent/fd_manager.o
+
+# target to build an object file
+windgent/fd_manager.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/fd_manager.cc.o
+.PHONY : windgent/fd_manager.cc.o
+
+windgent/fd_manager.i: windgent/fd_manager.cc.i
+
+.PHONY : windgent/fd_manager.i
+
+# target to preprocess a source file
+windgent/fd_manager.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/fd_manager.cc.i
+.PHONY : windgent/fd_manager.cc.i
+
+windgent/fd_manager.s: windgent/fd_manager.cc.s
+
+.PHONY : windgent/fd_manager.s
+
+# target to generate assembly for a file
+windgent/fd_manager.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/fd_manager.cc.s
+.PHONY : windgent/fd_manager.cc.s
+
 windgent/fiber.o: windgent/fiber.cc.o
 
 .PHONY : windgent/fiber.o
@@ -459,6 +526,33 @@ windgent/fiber.s: windgent/fiber.cc.s
 windgent/fiber.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/fiber.cc.s
 .PHONY : windgent/fiber.cc.s
+
+windgent/hook.o: windgent/hook.cc.o
+
+.PHONY : windgent/hook.o
+
+# target to build an object file
+windgent/hook.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/hook.cc.o
+.PHONY : windgent/hook.cc.o
+
+windgent/hook.i: windgent/hook.cc.i
+
+.PHONY : windgent/hook.i
+
+# target to preprocess a source file
+windgent/hook.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/hook.cc.i
+.PHONY : windgent/hook.cc.i
+
+windgent/hook.s: windgent/hook.cc.s
+
+.PHONY : windgent/hook.s
+
+# target to generate assembly for a file
+windgent/hook.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/hook.cc.s
+.PHONY : windgent/hook.cc.s
 
 windgent/iomanager.o: windgent/iomanager.cc.o
 
@@ -655,6 +749,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test_hook"
 	@echo "... test_iomanager"
 	@echo "... test_fiber"
 	@echo "... rebuild_cache"
@@ -671,6 +766,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -689,9 +787,15 @@ help:
 	@echo "... windgent/config.o"
 	@echo "... windgent/config.i"
 	@echo "... windgent/config.s"
+	@echo "... windgent/fd_manager.o"
+	@echo "... windgent/fd_manager.i"
+	@echo "... windgent/fd_manager.s"
 	@echo "... windgent/fiber.o"
 	@echo "... windgent/fiber.i"
 	@echo "... windgent/fiber.s"
+	@echo "... windgent/hook.o"
+	@echo "... windgent/hook.i"
+	@echo "... windgent/hook.s"
 	@echo "... windgent/iomanager.o"
 	@echo "... windgent/iomanager.i"
 	@echo "... windgent/iomanager.s"

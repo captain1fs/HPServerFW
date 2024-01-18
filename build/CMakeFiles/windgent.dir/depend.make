@@ -9,6 +9,12 @@ CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/fd_manager.cc.o: ../windgent/fd_manager.cc
+CMakeFiles/windgent.dir/windgent/fd_manager.cc.o: ../windgent/fd_manager.h
+CMakeFiles/windgent.dir/windgent/fd_manager.cc.o: ../windgent/hook.h
+CMakeFiles/windgent.dir/windgent/fd_manager.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/fd_manager.cc.o: ../windgent/singleton.h
+
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/config.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/fiber.cc
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/fiber.h
@@ -19,6 +25,19 @@ CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/scheduler.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o: ../windgent/util.h
+
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/fd_manager.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/hook.cc
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/hook.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/iomanager.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/scheduler.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/timer.h
+CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/iomanager.cc
@@ -44,6 +63,7 @@ CMakeFiles/windgent.dir/windgent/mutex.cc.o: ../windgent/mutex.cc
 CMakeFiles/windgent.dir/windgent/mutex.cc.o: ../windgent/mutex.h
 
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/hook.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/macro.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/mutex.h

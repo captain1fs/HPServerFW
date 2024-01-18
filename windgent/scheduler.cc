@@ -1,7 +1,7 @@
 #include "scheduler.h"
 #include "log.h"
 #include "macro.h"
-
+#include "hook.h"
 
 namespace windgent {
 
@@ -115,6 +115,7 @@ void Scheduler::stop() {
 
 void Scheduler::run() {
     LOG_INFO(g_logger) << "run";
+    set_hook_enable(true);
     setThis();
     if(windgent::GetThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::GetThis().get();
@@ -164,7 +165,8 @@ void Scheduler::run() {
 
             if(ft.fiber->getState() == Fiber::READY) {
                 schedule(ft.fiber);
-            } else if(ft.fiber->getState() != Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT) {       //没有执行完毕
+            } else if(ft.fiber->getState() != Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT) {
+                //没有执行完毕
                 ft.fiber->m_state = Fiber::HOLD;
             }
             ft.reset();

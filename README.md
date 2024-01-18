@@ -117,7 +117,7 @@ private:
 
 首先，封装了POSIX线程Thread、信号量Semaphore、条件变量Cond、互斥锁Mutex、读写锁RWMutex、自旋锁SoinLock、CAS锁CASLock。
 
-## 协程调度模块
+## 协程模块
 
 协程是用户态的线程，借助linux ucontext族函数来实现，详细可参考：
 
@@ -371,6 +371,25 @@ private:
     uint64_t m_previouseTime = 0;
 };
 ```
+### 模块关系
+
+调度器直接管理线程，线程负责执行协程。IOManager负责IO事件和定时器任务。
+```cpp
+         [Fiber]              [Timer]
+            ^ M                  ^
+            |                    |
+            |                    |
+            | 1                  |
+         [Thread]          [TimerManager]
+            ^ N                  ^
+            |                    |
+            |                    |
+            | 1                  |
+        [Scheduler] <----- [IOManager(epoll)]
+```
+
+## HOOK
+hook系统底层和socket相关的API，socket io相关的API，以及sleep系列的API。hook的开启控制是线程粒度的。可以自由选择。通过hook模块，可以使一些不具异步功能的API，展现出异步的性能。
 
 ## socket函数库
 
