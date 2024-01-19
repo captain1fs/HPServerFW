@@ -82,7 +82,7 @@ TimerManager::~TimerManager() { }
 void TimerManager::addTimer(Timer::ptr timer, RWMutexType::WrLock& lock) {
     // std::cout << "-------- TimerManager::addTimer() -----------" << std::endl;
     auto it = m_timers.insert(timer).first;
-    bool at_front = it == m_timers.begin() && !m_tickled;
+    bool at_front = (it == m_timers.begin()) && !m_tickled;
     if(at_front) {
         m_tickled = true;
     }

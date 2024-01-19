@@ -6,10 +6,12 @@
 #include <stdint.h>
 #include <atomic>
 
+#include "./noncopyable.h"
+
 namespace windgent {
 
 //封装POSIX条件变量
-class Cond {
+class Cond : NonCopyable {
 public:
     Cond();
     ~Cond();
@@ -23,7 +25,7 @@ private:
 };
 
 //封装POSIX信号量
-class Semaphore {
+class Semaphore : NonCopyable {
 public:
     Semaphore(uint32_t count = 0);
     ~Semaphore();
@@ -31,8 +33,6 @@ public:
     void wait();  //P操作
     void notify();  //V操作
 private:
-    Semaphore(const Semaphore&) = delete;
-    Semaphore(const Semaphore&&) = delete;
     Semaphore& operator=(const Semaphore&) = delete;
 private:
     sem_t m_semaphore;
@@ -70,7 +70,7 @@ private:
     bool m_locked = false;
 };
 
-class Mutex {
+class Mutex : NonCopyable {
 public:
     typedef windgent::ScopedLockImpl<Mutex> Lock;
     Mutex() {
@@ -90,7 +90,7 @@ private:
     pthread_mutex_t m_mutex;
 };
 
-class NullMutex {
+class NullMutex : NonCopyable {
 public:
     typedef windgent::ScopedLockImpl<NullMutex> Lock;
     NullMutex() { }
@@ -164,7 +164,7 @@ private:
     bool m_locked = false;
 };
 //POSIX读写锁的封装
-class RWMutex {
+class RWMutex : NonCopyable {
 public:
     typedef windgent::RdScopedLockImpl<RWMutex> RdLock;
     typedef windgent::WrScopedLockImpl<RWMutex> WrLock;
@@ -189,7 +189,7 @@ private:
     pthread_rwlock_t m_rwlock;
 };
 
-class NullRWMutex {
+class NullRWMutex : NonCopyable {
 public:
     typedef windgent::RdScopedLockImpl<NullRWMutex> RdLock;
     typedef windgent::WrScopedLockImpl<NullRWMutex> WrLock;
@@ -207,7 +207,7 @@ public:
 //自旋锁的不足之处：（1）自旋锁一直占用着CPU，他在未获得锁的情况下，一直运行（自旋），所以占用着CPU，如果不能在很短的时间内获得锁，这无疑会使CPU效率降低。
 //（2）在用自旋锁时有可能造成死锁，当递归调用时有可能造成死锁，调用有些其他函数也可能造成死锁，如 copy_to_user()、copy_from_user()、kmalloc()等。
 //自旋锁适用于锁使用者保持锁时间比较短的情况下。
-class SpinLock {
+class SpinLock : NonCopyable {
 public:
     typedef ScopedLockImpl<SpinLock> Lock;
     SpinLock() {
@@ -230,7 +230,7 @@ private:
 
 //CAS锁：Compare And Swap的缩写，也就是比较和替换，这也正是它的核心。CAS机制中用到了三个基本操作数，内存地址V，旧预期值A，新预期值B。
 //当我们需要对一个变量进行修改时，会对内存地址V和旧预期值进行比较，如果两者相同，则将旧预期值A替换成新预期值B。而如果不同，则将V中的值作为旧预期值，继续重复以上操作，即自旋。
-class CASLock {
+class CASLock : NonCopyable {
 public:
     typedef ScopedLockImpl<CASLock> Lock;
     CASLock() {

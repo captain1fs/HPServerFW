@@ -44,14 +44,6 @@ bool FdCtx::init() {
     return m_isInit;
 }
 
-bool FdCtx::close() {
-    if(!m_isClosed) {
-        close_f(m_fd);
-        m_isClosed = true;
-    }
-    return m_isClosed;
-}
-
 void FdCtx::setTimeout(int type, uint64_t v) {
     if(type == SO_RCVTIMEO) {
         m_recvTimeout = v;

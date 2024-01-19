@@ -7,6 +7,7 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/fiber.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/log.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/macro.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/mutex.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/noncopyable.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/singleton.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/thread.h

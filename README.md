@@ -391,6 +391,12 @@ private:
 ## HOOK
 hook系统底层和socket相关的API，socket io相关的API，以及sleep系列的API。hook的开启控制是线程粒度的。可以自由选择。通过hook模块，可以使一些不具异步功能的API，展现出异步的性能。
 
+原理：首先，像connect、accept、recv、send等读写socket的函数，如果socket上没有数据到来，则线程会阻塞在此等待。如果将socket设置为非阻塞O_NONBLOCK，这些函数会立即返回-1且errno被设为EINPROGRESS/EAGAIN。
+
+HOOK模块通过hook自定义的同名API到系统API，改变了这些API的原有行为，使原来的同步操作变成了异步操作，从而充分利用协程阻塞的时间去执行其它任务。
+具体来说，如果有阻塞行为，比如recv原本要等待一段时间接受数据，但hook会添加一个定时器(监听socket上是否有读事件到来)并开始监听fd上的读事件，然后当前协程让出执行权。 当socket上有读事件到来时，唤醒当前协程，去读取socket上的数据。
+因此，添加定时器并注册事件--->协程让出执行权--->事件到来，定时器超时触发--->唤醒协程执行任务，同步操作就转换成了异步操作。
+
 ## socket函数库
 
 ## Http协议开发

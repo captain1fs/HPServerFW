@@ -61,6 +61,10 @@ stdint.h
 -
 atomic
 -
+./noncopyable.h
+/home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
+
+/home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
 
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 memory

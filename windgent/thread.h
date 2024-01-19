@@ -9,7 +9,7 @@
 namespace windgent {
 
 //POSIX线程的封装
-class Thread {
+class Thread : NonCopyable {
 public:
     typedef std::shared_ptr<Thread> ptr;
     Thread(std::function<void()> cb, std::string name);

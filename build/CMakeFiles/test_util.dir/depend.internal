@@ -8,6 +8,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/macro.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h

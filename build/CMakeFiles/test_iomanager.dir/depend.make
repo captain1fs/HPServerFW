@@ -8,6 +8,7 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/iomanager.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/log.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/macro.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/mutex.h
+CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/noncopyable.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/singleton.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/thread.h

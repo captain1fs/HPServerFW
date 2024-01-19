@@ -13,6 +13,12 @@
 /home/fangshao/CPP/Project/windgent/windgent/hook.h
 ../windgent/log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
+sys/types.h
+-
+unistd.h
+-
+arpa/inet.h
+-
 
 /home/fangshao/CPP/Project/windgent/windgent/fiber.h
 memory
@@ -91,6 +97,10 @@ stdint.h
 -
 atomic
 -
+./noncopyable.h
+/home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
+
+/home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
 
 /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
 iostream

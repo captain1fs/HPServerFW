@@ -6,6 +6,7 @@ CMakeFiles/windgent.dir/windgent/config.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/config.h
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
@@ -14,6 +15,7 @@ CMakeFiles/windgent.dir/windgent/fd_manager.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/fd_manager.h
  /home/fangshao/CPP/Project/windgent/windgent/hook.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/fiber.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/config.h
@@ -22,11 +24,13 @@ CMakeFiles/windgent.dir/windgent/fiber.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/macro.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
 CMakeFiles/windgent.dir/windgent/hook.cc.o
+ /home/fangshao/CPP/Project/windgent/windgent/config.h
  /home/fangshao/CPP/Project/windgent/windgent/fd_manager.h
  /home/fangshao/CPP/Project/windgent/windgent/fiber.h
  /home/fangshao/CPP/Project/windgent/windgent/hook.cc
@@ -34,6 +38,7 @@ CMakeFiles/windgent.dir/windgent/hook.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/iomanager.h
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
@@ -46,6 +51,7 @@ CMakeFiles/windgent.dir/windgent/iomanager.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/macro.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
@@ -56,18 +62,21 @@ CMakeFiles/windgent.dir/windgent/log.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/log.cc
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
 CMakeFiles/windgent.dir/windgent/mutex.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/mutex.cc
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/fiber.h
  /home/fangshao/CPP/Project/windgent/windgent/hook.h
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/macro.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.cc
  /home/fangshao/CPP/Project/windgent/windgent/scheduler.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
@@ -76,12 +85,14 @@ CMakeFiles/windgent.dir/windgent/scheduler.cc.o
 CMakeFiles/windgent.dir/windgent/thread.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.cc
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
 CMakeFiles/windgent.dir/windgent/timer.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/timer.cc
  /home/fangshao/CPP/Project/windgent/windgent/timer.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
@@ -89,6 +100,7 @@ CMakeFiles/windgent.dir/windgent/util.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/fiber.h
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
  /home/fangshao/CPP/Project/windgent/windgent/singleton.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/util.cc

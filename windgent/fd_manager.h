@@ -19,13 +19,12 @@ public:
     bool init();
     bool isInit() const { return m_isInit; }
     bool isSocket() const { return m_isSocket; }
-    bool isClose() const { return m_isClosed; }
-    bool close();
+    bool isClosed() const { return m_isClosed; }
 
-    void setUserBonblock(bool v) { m_userNonblock = v; }
+    void setUserNonblock(bool v) { m_userNonblock = v; }
     bool getUserNonblock() const { return m_userNonblock; }
 
-    void setSysBonblock(bool v) { m_sysNonblock = v; }
+    void setSysNonblock(bool v) { m_sysNonblock = v; }
     bool getSysNonblock() const { return m_sysNonblock; }
 
     void setTimeout(int type, uint64_t v);

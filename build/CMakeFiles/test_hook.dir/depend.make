@@ -7,6 +7,7 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/hook.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/iomanager.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/log.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/mutex.h
+CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/noncopyable.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/singleton.h
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: ../windgent/thread.h

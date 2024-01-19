@@ -61,7 +61,7 @@ void test_timer() {
 }
 
 int main() {
-    // test_iomanager();
-    test_timer();
+    test_iomanager();
+    // test_timer();
     return 0;
 }
