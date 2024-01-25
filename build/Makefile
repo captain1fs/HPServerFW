@@ -446,6 +446,33 @@ tests/test_util.cc.s:
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.s
 .PHONY : tests/test_util.cc.s
 
+windgent/address.o: windgent/address.cc.o
+
+.PHONY : windgent/address.o
+
+# target to build an object file
+windgent/address.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/address.cc.o
+.PHONY : windgent/address.cc.o
+
+windgent/address.i: windgent/address.cc.i
+
+.PHONY : windgent/address.i
+
+# target to preprocess a source file
+windgent/address.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/address.cc.i
+.PHONY : windgent/address.cc.i
+
+windgent/address.s: windgent/address.cc.s
+
+.PHONY : windgent/address.s
+
+# target to generate assembly for a file
+windgent/address.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/address.cc.s
+.PHONY : windgent/address.cc.s
+
 windgent/config.o: windgent/config.cc.o
 
 .PHONY : windgent/config.o
@@ -784,6 +811,9 @@ help:
 	@echo "... tests/test_util.o"
 	@echo "... tests/test_util.i"
 	@echo "... tests/test_util.s"
+	@echo "... windgent/address.o"
+	@echo "... windgent/address.i"
+	@echo "... windgent/address.s"
 	@echo "... windgent/config.o"
 	@echo "... windgent/config.i"
 	@echo "... windgent/config.s"

@@ -13,6 +13,7 @@ include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 
 #设置依赖的源文件
 set(LIB_SRC   
+    windgent/address.cc
     windgent/config.cc
     windgent/fiber.cc
     windgent/fd_manager.cc

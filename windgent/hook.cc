@@ -132,7 +132,7 @@ retry:
                     return;
                 }
                 t->cancelled = ETIMEDOUT;
-                //取消事件，若事件存在，则触发事件执行，也就是去做IO操作
+                //取消事件，若事件存在，则触发事件执行
                 iom->cancelEvent(fd, (windgent::IOManager::Event)event);
             }, wcond);
         }
@@ -148,14 +148,15 @@ retry:
             }
             return -1;
         } else {
-            //添加事件成功，当前协程让出执行权。当有数据到来时，此处可以被上面cancelEvent和addEvent唤醒
-            //两种被唤醒情况：1.addEvent后fd上有IO事件到来，那么取消定时器（若存在），若不取消，定时器任务cancelEvent会被执行（无意义了）； //2.addCondTimer添加的定时器超时了，执行定时任务cancelEvent，也会唤醒YieldToHold
+            //添加事件成功，当前协程让出执行权。两种被唤醒情况：
+            //1.如果addEvent后在超时时间内，fd上有事件到来表示socket有数据可读写。那么取消定时器，若不取消，定时器任务cancelEvent会被执行（无意义了）。然后再次尝试读写socket上的数据；
+            //2.addCondTimer添加的定时器超时了，执行定时任务cancelEvent，也会唤醒YieldToHold。因为在定时器的回调函数中tcond->cancelled被设置为ETIMEDOUT，则if条件通过，返回-1表示IO操作发生超时错误。
             windgent::Fiber::YieldToHold();
-            //当协程返回后，若定时器还存在，将其取消
+            //当从addEvent唤醒后，若定时器还存在，将其取消
             if(timer) {
                 timer->cancel();
             }
-            //若cancelled有值，说明是通过定时器任务cancelEvent唤醒的，说明已经超时
+            //若cancelled有值，说明是通过定时器任务cancelEvent唤醒的，说明已经超时且socket上还是没有数据可以读写
             if(tcond->cancelled) {
                 errno = tcond->cancelled;
                 return -1;
@@ -277,16 +278,17 @@ int connect_with_timeout(int sockfd, const struct sockaddr *addr, socklen_t addr
             iom->cancelEvent(sockfd, windgent::IOManager::WRITE);
         }, wcond);
     }
-    //监听fd上的写事件
+    //监听fd上的写事件，如果在超时时间内socket上可读写，则立即从YieldToHold出唤醒；如果超时时间到仍然socket没有数据可供读写，
+    //则取消事件或者触发，也会从YieldToHold出唤醒，但此时t->cancelled被设为ETIMEDOUT，在if中条件通过会直接返回-1表示错误
     int ret = iom->addEvent(sockfd, windgent::IOManager::WRITE);
     if(0 == ret) {
         //定时器超时后cancelEvent，或者connect连接成功(epoll监听到上面addEvent添加的事件)，都会将YieldToHold从此处唤醒
         windgent::Fiber::YieldToHold();
-        //若唤醒后定时器还存在，已经没有意义，取消掉
+        //若唤醒后定时器还存在(从addEvent出唤醒)，已经没有意义，取消掉
         if(timer) {
             timer->cancel();
         }
-        //若从cancelEvent唤醒后cancelled有值，说明定时器超时
+        //若从cancelEvent唤醒后cancelled有值，说明定时器超时了，socket上还是没有数据，则返回错误
         if(tcond->cancelled) {
             errno = tcond->cancelled;
             return -1;
