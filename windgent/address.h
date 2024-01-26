@@ -8,11 +8,16 @@
 #include <sys/un.h>
 #include <netinet/in.h>
 #include <string>
+#include <vector>
+#include <map>
 #include <cstring>
 #include <stdint.h>
 #include <arpa/inet.h>
+#include <ifaddrs.h>
 
 namespace windgent {
+
+class IPAddress;
 
 class Address {
 public:
@@ -20,13 +25,26 @@ public:
     virtual ~Address() { }
 
     static Address::ptr Create(const sockaddr* addr, socklen_t addrLen);
+    //通过域名返回所有对应的Address，比如www.baidu.com
+    static bool getAllAddrFromHost(std::vector<Address::ptr>& res, const std::string& host,
+                                   int family = AF_INET, int type = 0, int protocol = 0);
+    //通过域名返回任意对应的Address
+    static Address::ptr getAnyAddrFromHost(const std::string& host, int family = AF_INET, int type = 0, int protocol = 0);
+    //通过域名获取任意对应的的IPAddress
+    static std::shared_ptr<IPAddress> getAnyIPAddrFromHost(const std::string& host, int family = AF_INET,
+                                                           int type = 0, int protocol = 0);
+    //获取本机网卡的所有<网卡名，地址，子网掩码位数>
+    static bool getInterfaceAddress(std::multimap<std::string, std::pair<Address::ptr, uint32_t> >& result, int family = AF_INET);
+    //获取指定网卡的<地址，子网掩码位数>
+    static bool getInterfaceAddress(std::vector<std::pair<Address::ptr, uint32_t> >& result,
+                                    const std::string& iface, int family = AF_INET);
 
     int getFamily() const;
+    std::string toString();
 
     virtual const sockaddr* getAddr() const = 0;
     virtual socklen_t getAddrLen() const = 0;
     virtual std::ostream& insert(std::ostream& os) const = 0;
-    std::string toString();
 
     bool operator<(const Address& rhs) const;
     bool operator==(const Address& rhs) const;
@@ -53,7 +71,6 @@ public:
 class IPv4Address : public IPAddress {
 public: 
     typedef std::shared_ptr<IPv4Address> ptr;
-    IPv4Address();
     IPv4Address(const sockaddr_in& addr);
     //通过二进制地址构造
     IPv4Address(uint32_t address = INADDR_ANY, uint32_t port = 0);
@@ -115,6 +132,7 @@ class UnknownAddress : public Address {
 public:
     typedef std::shared_ptr<UnknownAddress> ptr;
     UnknownAddress(int family);
+    UnknownAddress(const sockaddr& addr);
 
     const sockaddr* getAddr() const override;
     socklen_t getAddrLen() const override;

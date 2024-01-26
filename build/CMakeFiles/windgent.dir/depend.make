@@ -4,6 +4,12 @@
 CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/address.cc
 CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/address.h
 CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/endian.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.cc
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.h

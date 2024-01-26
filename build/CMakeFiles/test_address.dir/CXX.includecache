@@ -6,17 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/windgent/address.cc
-./address.h
+/home/fangshao/CPP/Project/windgent/tests/test_address.cc
+../windgent/address.h
 /home/fangshao/CPP/Project/windgent/windgent/address.h
-./endian.h
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-./log.h
+../windgent/log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
-sstream
--
-netdb.h
--
 
 /home/fangshao/CPP/Project/windgent/windgent/address.h
 iostream
@@ -44,12 +38,6 @@ stdint.h
 arpa/inet.h
 -
 ifaddrs.h
--
-
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-byteswap.h
--
-stdint.h
 -
 
 /home/fangshao/CPP/Project/windgent/windgent/log.h

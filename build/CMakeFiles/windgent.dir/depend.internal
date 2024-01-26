@@ -5,6 +5,12 @@ CMakeFiles/windgent.dir/windgent/address.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/address.cc
  /home/fangshao/CPP/Project/windgent/windgent/address.h
  /home/fangshao/CPP/Project/windgent/windgent/endian.h
+ /home/fangshao/CPP/Project/windgent/windgent/log.h
+ /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+ /home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
+ /home/fangshao/CPP/Project/windgent/windgent/singleton.h
+ /home/fangshao/CPP/Project/windgent/windgent/thread.h
+ /home/fangshao/CPP/Project/windgent/windgent/util.h
 CMakeFiles/windgent.dir/windgent/config.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/config.cc
  /home/fangshao/CPP/Project/windgent/windgent/config.h

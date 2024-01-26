@@ -97,6 +97,12 @@ force_redefine_file_macro_for_sources(test_hook)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_hook ${LIB_LIB})
 
+add_executable(test_address tests/test_address.cc)
+add_dependencies(test_address windgent)
+force_redefine_file_macro_for_sources(test_address)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_address ${LIB_LIB})
+
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
