@@ -21,7 +21,8 @@ set(LIB_SRC
     windgent/iomanager.cc
     windgent/log.cc 
     windgent/mutex.cc   
-    windgent/scheduler.cc   
+    windgent/scheduler.cc 
+    windgent/socket.cc 
     windgent/thread.cc
     windgent/timer.cc
     windgent/util.cc
@@ -103,6 +104,11 @@ force_redefine_file_macro_for_sources(test_address)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_address ${LIB_LIB})
 
+add_executable(test_socket tests/test_socket.cc)
+add_dependencies(test_socket windgent)
+force_redefine_file_macro_for_sources(test_socket)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_socket ${LIB_LIB})
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

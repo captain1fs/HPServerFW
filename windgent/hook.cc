@@ -169,6 +169,7 @@ retry:
 }
 
 extern "C" {
+
 #define XX(name) name ## _fun name ## _f = nullptr;
     HOOK_FUNC(XX);
 #undef XX
@@ -266,7 +267,7 @@ int connect_with_timeout(int sockfd, const struct sockaddr *addr, socklen_t addr
     std::shared_ptr<timer_cond> tcond(new timer_cond);
     std::weak_ptr<timer_cond> wcond(tcond);
 
-    //connext存在超时时间
+    //connect存在超时时间
     if(timerout_ms != (uint64_t)-1) {
         //添加定时器，cb：超时后取消事件(如果有事件就触发)
         timer = iom->addCondTimer(timerout_ms, [wcond, iom, sockfd]() {

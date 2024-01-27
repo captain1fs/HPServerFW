@@ -177,9 +177,22 @@ CMakeFiles/windgent.dir/windgent/scheduler.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/windgent.dir/windgent/scheduler.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/scheduler.cc -o CMakeFiles/windgent.dir/windgent/scheduler.cc.s
 
+CMakeFiles/windgent.dir/windgent/socket.cc.o: CMakeFiles/windgent.dir/flags.make
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/socket.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/windgent.dir/windgent/socket.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/socket.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/socket.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/socket.cc
+
+CMakeFiles/windgent.dir/windgent/socket.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/windgent.dir/windgent/socket.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/socket.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fangshao/CPP/Project/windgent/windgent/socket.cc > CMakeFiles/windgent.dir/windgent/socket.cc.i
+
+CMakeFiles/windgent.dir/windgent/socket.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/windgent.dir/windgent/socket.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"windgent/socket.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fangshao/CPP/Project/windgent/windgent/socket.cc -o CMakeFiles/windgent.dir/windgent/socket.cc.s
+
 CMakeFiles/windgent.dir/windgent/thread.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/thread.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/windgent.dir/windgent/thread.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/windgent.dir/windgent/thread.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/thread.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/thread.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/thread.cc
 
 CMakeFiles/windgent.dir/windgent/thread.cc.i: cmake_force
@@ -192,7 +205,7 @@ CMakeFiles/windgent.dir/windgent/thread.cc.s: cmake_force
 
 CMakeFiles/windgent.dir/windgent/timer.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/timer.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/windgent.dir/windgent/timer.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/windgent.dir/windgent/timer.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/timer.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/timer.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/timer.cc
 
 CMakeFiles/windgent.dir/windgent/timer.cc.i: cmake_force
@@ -205,7 +218,7 @@ CMakeFiles/windgent.dir/windgent/timer.cc.s: cmake_force
 
 CMakeFiles/windgent.dir/windgent/util.cc.o: CMakeFiles/windgent.dir/flags.make
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/util.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/windgent.dir/windgent/util.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/windgent.dir/windgent/util.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) -D__FILE__=\"windgent/util.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/windgent.dir/windgent/util.cc.o -c /home/fangshao/CPP/Project/windgent/windgent/util.cc
 
 CMakeFiles/windgent.dir/windgent/util.cc.i: cmake_force
@@ -227,6 +240,7 @@ windgent_OBJECTS = \
 "CMakeFiles/windgent.dir/windgent/log.cc.o" \
 "CMakeFiles/windgent.dir/windgent/mutex.cc.o" \
 "CMakeFiles/windgent.dir/windgent/scheduler.cc.o" \
+"CMakeFiles/windgent.dir/windgent/socket.cc.o" \
 "CMakeFiles/windgent.dir/windgent/thread.cc.o" \
 "CMakeFiles/windgent.dir/windgent/timer.cc.o" \
 "CMakeFiles/windgent.dir/windgent/util.cc.o"
@@ -243,12 +257,13 @@ windgent_EXTERNAL_OBJECTS =
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/log.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/mutex.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/scheduler.cc.o
+../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/socket.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/thread.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/timer.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/windgent/util.cc.o
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/build.make
 ../lib/libwindgent.so: CMakeFiles/windgent.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX shared library ../lib/libwindgent.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX shared library ../lib/libwindgent.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/windgent.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

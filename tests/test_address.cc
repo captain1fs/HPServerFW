@@ -29,7 +29,7 @@ void test_iface() {
 }
 
 void test_ipv4() {
-    auto addr = windgent::IPAddress::Create("127.0.0.8");
+    auto addr = windgent::IPAddress::Create("www.baidu.com");
     if(addr) {
         LOG_INFO(g_logger) << addr->toString();
     }

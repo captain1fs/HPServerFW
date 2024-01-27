@@ -6,17 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/windgent/address.cc
-./address.h
+/home/fangshao/CPP/Project/windgent/tests/test_socket.cc
+../windgent/socket.h
+/home/fangshao/CPP/Project/windgent/windgent/socket.h
+../windgent/address.h
 /home/fangshao/CPP/Project/windgent/windgent/address.h
-./endian.h
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-./log.h
+../windgent/log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
-sstream
--
-netdb.h
--
 
 /home/fangshao/CPP/Project/windgent/windgent/address.h
 iostream
@@ -44,14 +40,6 @@ stdint.h
 arpa/inet.h
 -
 ifaddrs.h
--
-
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-byteswap.h
--
-stdint.h
--
-iostream
 -
 
 /home/fangshao/CPP/Project/windgent/windgent/log.h
@@ -108,6 +96,22 @@ atomic
 
 /home/fangshao/CPP/Project/windgent/windgent/singleton.h
 memory
+-
+
+/home/fangshao/CPP/Project/windgent/windgent/socket.h
+./address.h
+/home/fangshao/CPP/Project/windgent/windgent/address.h
+./noncopyable.h
+/home/fangshao/CPP/Project/windgent/windgent/noncopyable.h
+memory
+-
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+netinet/tcp.h
 -
 
 /home/fangshao/CPP/Project/windgent/windgent/thread.h

@@ -37,6 +37,8 @@ extern connect_fun connect_f;
 typedef int (*accept_fun)(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 extern accept_fun accept_f;
 
+extern int connect_with_timeout(int sockfd, const struct sockaddr *addr, socklen_t addrlen, uint64_t timerout_ms);
+
 //read
 typedef ssize_t (*read_fun)(int fd, void *buf, size_t count);
 extern read_fun read_f;

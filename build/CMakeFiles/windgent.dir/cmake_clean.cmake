@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/windgent.dir/windgent/log.cc.o"
   "CMakeFiles/windgent.dir/windgent/mutex.cc.o"
   "CMakeFiles/windgent.dir/windgent/scheduler.cc.o"
+  "CMakeFiles/windgent.dir/windgent/socket.cc.o"
   "CMakeFiles/windgent.dir/windgent/thread.cc.o"
   "CMakeFiles/windgent.dir/windgent/timer.cc.o"
   "CMakeFiles/windgent.dir/windgent/util.cc.o"

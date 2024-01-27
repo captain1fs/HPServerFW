@@ -43,6 +43,7 @@ public:
     std::string toString();
 
     virtual const sockaddr* getAddr() const = 0;
+    virtual sockaddr* getAddr() = 0;
     virtual socklen_t getAddrLen() const = 0;
     virtual std::ostream& insert(std::ostream& os) const = 0;
 
@@ -55,7 +56,7 @@ class IPAddress : public Address {
 public:
     typedef std::shared_ptr<IPAddress> ptr;
 
-    static IPAddress::ptr Create(const char* address, uint32_t port = 0);
+    static IPAddress::ptr Create(const char* address, uint16_t port = 0);
 
     //获取具体地址的广播地址
     virtual IPAddress::ptr broadcastaAddress(uint32_t prefix_len) = 0;
@@ -65,7 +66,7 @@ public:
     virtual IPAddress::ptr subNetMask(uint32_t prefix_len) = 0;
 
     virtual uint32_t getPort() const = 0;
-    virtual void setPort(uint32_t val) = 0;
+    virtual void setPort(uint16_t val) = 0;         //uint32_t时报错，无法connect
 };
 
 class IPv4Address : public IPAddress {
@@ -73,11 +74,12 @@ public:
     typedef std::shared_ptr<IPv4Address> ptr;
     IPv4Address(const sockaddr_in& addr);
     //通过二进制地址构造
-    IPv4Address(uint32_t address = INADDR_ANY, uint32_t port = 0);
+    IPv4Address(uint32_t address = INADDR_ANY, uint16_t port = 0);
     //通过点分文本创建
-    static IPv4Address::ptr Create(const char* address, uint32_t port = 0);
+    static IPv4Address::ptr Create(const char* address, uint16_t port = 0);
 
     const sockaddr* getAddr() const override;
+    sockaddr* getAddr() override;
     socklen_t getAddrLen() const override;
     std::ostream& insert(std::ostream& os) const override;
 
@@ -85,7 +87,7 @@ public:
     IPAddress::ptr networkAddress(uint32_t prefix_len) override;
     IPAddress::ptr subNetMask(uint32_t prefix_len) override;
     uint32_t getPort() const override;
-    void setPort(uint32_t val) override;
+    void setPort(uint16_t val) override;
 private:
     struct sockaddr_in m_addr;
 };
@@ -96,11 +98,12 @@ public:
     IPv6Address();
     IPv6Address(const sockaddr_in6& addr);
     //通过二进制地址构造
-    IPv6Address(const uint8_t address[16], uint32_t port = 0);
+    IPv6Address(const uint8_t address[16], uint16_t port = 0);
     //通过点分文本创建
-    static IPv6Address::ptr Create(const char* address, uint32_t port = 0);
+    static IPv6Address::ptr Create(const char* address, uint16_t port = 0);
 
     const sockaddr* getAddr() const override;
+    sockaddr* getAddr() override;
     socklen_t getAddrLen() const override;
     std::ostream& insert(std::ostream& os) const override;
 
@@ -108,7 +111,7 @@ public:
     IPAddress::ptr networkAddress(uint32_t prefix_len) override;
     IPAddress::ptr subNetMask(uint32_t prefix_len) override;
     uint32_t getPort() const override;
-    void setPort(uint32_t val) override;
+    void setPort(uint16_t val) override;
 private:
     struct sockaddr_in6 m_addr;
 };
@@ -121,7 +124,9 @@ public:
     UnixAddress(const std::string& path);
 
     const sockaddr* getAddr() const override;
+    sockaddr* getAddr() override;
     socklen_t getAddrLen() const override;
+    void setAddrLen(uint32_t val);
     std::ostream& insert(std::ostream& os) const override;
 private:
     struct sockaddr_un m_addr;
@@ -135,6 +140,7 @@ public:
     UnknownAddress(const sockaddr& addr);
 
     const sockaddr* getAddr() const override;
+    sockaddr* getAddr() override;
     socklen_t getAddrLen() const override;
     std::ostream& insert(std::ostream& os) const override;
 private:

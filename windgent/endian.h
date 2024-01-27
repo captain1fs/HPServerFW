@@ -6,6 +6,7 @@
 
 #include <byteswap.h>
 #include <stdint.h>
+#include <iostream>
 
 namespace windgent {
 
@@ -38,7 +39,7 @@ typename std::enable_if<sizeof(T) == sizeof(uint16_t), T>::type byteswap(T val) 
 
 template<class T>
 T byteswapOnLittleEndian(T t) {
-    return t;   //？？
+    return t;
 }
 
 template<class T>
@@ -48,6 +49,7 @@ T byteswapOnBigEndian(T t) {
 
 #else
 
+//当前机器字节序为小端，调用此模板函数
 template<class T>
 T byteswapOnLittleEndian(T t) {
     return byteswap(t);

@@ -92,6 +92,23 @@ CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/scheduler.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/fd_manager.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/hook.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/iomanager.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/macro.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/scheduler.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/socket.cc
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/timer.h
+CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/util.h
+
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/mutex.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/noncopyable.h
