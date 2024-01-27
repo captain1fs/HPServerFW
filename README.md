@@ -399,6 +399,8 @@ HOOK模块通过hook自定义的同名API到系统API，改变了这些API的原
 
 ## socket函数库
 
+封装IPv4、IPv4、Unix地址，以及socket相关的API
+
 ## Http协议开发
 
 ## 分布协议
