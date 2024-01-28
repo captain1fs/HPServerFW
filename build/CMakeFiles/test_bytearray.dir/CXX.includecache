@@ -6,23 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/windgent/bytearray.cc
-./bytearray.h
+/home/fangshao/CPP/Project/windgent/tests/test_bytearray.cc
+../windgent/bytearray.h
 /home/fangshao/CPP/Project/windgent/windgent/bytearray.h
-./endian.h
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-./log.h
+../windgent/log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
-math.h
--
-fstream
--
-sstream
--
-string.h
--
-iomanip
--
+../windgent/macro.h
+/home/fangshao/CPP/Project/windgent/windgent/macro.h
 
 /home/fangshao/CPP/Project/windgent/windgent/bytearray.h
 memory
@@ -36,14 +26,6 @@ vector
 sys/types.h
 -
 sys/socket.h
--
-
-/home/fangshao/CPP/Project/windgent/windgent/endian.h
-byteswap.h
--
-stdint.h
--
-iostream
 -
 
 /home/fangshao/CPP/Project/windgent/windgent/log.h
@@ -83,6 +65,14 @@ mutex.h
 /home/fangshao/CPP/Project/windgent/windgent/mutex.h
 thread.h
 /home/fangshao/CPP/Project/windgent/windgent/thread.h
+
+/home/fangshao/CPP/Project/windgent/windgent/macro.h
+string.h
+-
+assert.h
+-
+util.h
+/home/fangshao/CPP/Project/windgent/windgent/util.h
 
 /home/fangshao/CPP/Project/windgent/windgent/mutex.h
 pthread.h

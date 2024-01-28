@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "../lib/libwindgent.pdb"
   "../lib/libwindgent.so"
   "CMakeFiles/windgent.dir/windgent/address.cc.o"
+  "CMakeFiles/windgent.dir/windgent/bytearray.cc.o"
   "CMakeFiles/windgent.dir/windgent/config.cc.o"
   "CMakeFiles/windgent.dir/windgent/fd_manager.cc.o"
   "CMakeFiles/windgent.dir/windgent/fiber.cc.o"

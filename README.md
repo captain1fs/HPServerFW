@@ -401,6 +401,10 @@ HOOK模块通过hook自定义的同名API到系统API，改变了这些API的原
 
 封装IPv4、IPv4、Unix地址，以及socket相关的API
 
+## ByteArray序列化模块
+
+提供对二进制数据的序列化操作，支持多种数据类型int8_t、uint8_t、int16_t、uint16_t,...。内部维护了一个链表用于管理内存块作为缓存，用于缓存socket上的读写数据。
+
 ## Http协议开发
 
 ## 分布协议

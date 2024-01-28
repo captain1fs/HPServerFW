@@ -3,11 +3,15 @@
 
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../tests/test_socket.cc
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/address.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/fiber.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/iomanager.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/log.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/mutex.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/noncopyable.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/scheduler.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/singleton.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/socket.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/thread.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/timer.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../windgent/util.h
 

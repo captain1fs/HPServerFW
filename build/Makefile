@@ -114,108 +114,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_socket
+# Target rules for targets named windgent
 
 # Build rule for target.
-test_socket: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_socket
-.PHONY : test_socket
+windgent: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 windgent
+.PHONY : windgent
 
 # fast build rule for target.
-test_socket/fast:
-	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
-.PHONY : test_socket/fast
-
-#=============================================================================
-# Target rules for targets named test_hook
-
-# Build rule for target.
-test_hook: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_hook
-.PHONY : test_hook
-
-# fast build rule for target.
-test_hook/fast:
-	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
-.PHONY : test_hook/fast
-
-#=============================================================================
-# Target rules for targets named test_iomanager
-
-# Build rule for target.
-test_iomanager: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
-.PHONY : test_iomanager
-
-# fast build rule for target.
-test_iomanager/fast:
-	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
-.PHONY : test_iomanager/fast
-
-#=============================================================================
-# Target rules for targets named test_address
-
-# Build rule for target.
-test_address: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_address
-.PHONY : test_address
-
-# fast build rule for target.
-test_address/fast:
-	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
-.PHONY : test_address/fast
-
-#=============================================================================
-# Target rules for targets named test_fiber
-
-# Build rule for target.
-test_fiber: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_fiber
-.PHONY : test_fiber
-
-# fast build rule for target.
-test_fiber/fast:
-	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
-.PHONY : test_fiber/fast
-
-#=============================================================================
-# Target rules for targets named test_util
-
-# Build rule for target.
-test_util: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_util
-.PHONY : test_util
-
-# fast build rule for target.
-test_util/fast:
-	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
-.PHONY : test_util/fast
-
-#=============================================================================
-# Target rules for targets named test_thread
-
-# Build rule for target.
-test_thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_thread
-.PHONY : test_thread
-
-# fast build rule for target.
-test_thread/fast:
-	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-.PHONY : test_thread/fast
-
-#=============================================================================
-# Target rules for targets named test_config
-
-# Build rule for target.
-test_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_config
-.PHONY : test_config
-
-# fast build rule for target.
-test_config/fast:
-	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
-.PHONY : test_config/fast
+windgent/fast:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/build
+.PHONY : windgent/fast
 
 #=============================================================================
 # Target rules for targets named test_scheduler
@@ -231,6 +140,71 @@ test_scheduler/fast:
 .PHONY : test_scheduler/fast
 
 #=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+#=============================================================================
+# Target rules for targets named test_bytearray
+
+# Build rule for target.
+test_bytearray: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_bytearray
+.PHONY : test_bytearray
+
+# fast build rule for target.
+test_bytearray/fast:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
+.PHONY : test_bytearray/fast
+
+#=============================================================================
+# Target rules for targets named test_thread
+
+# Build rule for target.
+test_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_thread
+.PHONY : test_thread
+
+# fast build rule for target.
+test_thread/fast:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
+.PHONY : test_thread/fast
+
+#=============================================================================
+# Target rules for targets named test_util
+
+# Build rule for target.
+test_util: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_util
+.PHONY : test_util
+
+# fast build rule for target.
+test_util/fast:
+	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
+.PHONY : test_util/fast
+
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
+#=============================================================================
 # Target rules for targets named test_log
 
 # Build rule for target.
@@ -244,17 +218,56 @@ test_log/fast:
 .PHONY : test_log/fast
 
 #=============================================================================
-# Target rules for targets named windgent
+# Target rules for targets named test_address
 
 # Build rule for target.
-windgent: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 windgent
-.PHONY : windgent
+test_address: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_address
+.PHONY : test_address
 
 # fast build rule for target.
-windgent/fast:
-	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/build
-.PHONY : windgent/fast
+test_address/fast:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
+.PHONY : test_address/fast
+
+#=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
+# Target rules for targets named test_socket
+
+# Build rule for target.
+test_socket: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_socket
+.PHONY : test_socket
+
+# fast build rule for target.
+test_socket/fast:
+	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
+.PHONY : test_socket/fast
 
 tests/test_address.o: tests/test_address.cc.o
 
@@ -282,6 +295,33 @@ tests/test_address.s: tests/test_address.cc.s
 tests/test_address.cc.s:
 	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.s
 .PHONY : tests/test_address.cc.s
+
+tests/test_bytearray.o: tests/test_bytearray.cc.o
+
+.PHONY : tests/test_bytearray.o
+
+# target to build an object file
+tests/test_bytearray.cc.o:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.cc.o
+
+tests/test_bytearray.i: tests/test_bytearray.cc.i
+
+.PHONY : tests/test_bytearray.i
+
+# target to preprocess a source file
+tests/test_bytearray.cc.i:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.cc.i
+
+tests/test_bytearray.s: tests/test_bytearray.cc.s
+
+.PHONY : tests/test_bytearray.s
+
+# target to generate assembly for a file
+tests/test_bytearray.cc.s:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.cc.s
 
 tests/test_config.o: tests/test_config.cc.o
 
@@ -552,6 +592,33 @@ windgent/address.s: windgent/address.cc.s
 windgent/address.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/address.cc.s
 .PHONY : windgent/address.cc.s
+
+windgent/bytearray.o: windgent/bytearray.cc.o
+
+.PHONY : windgent/bytearray.o
+
+# target to build an object file
+windgent/bytearray.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/bytearray.cc.o
+.PHONY : windgent/bytearray.cc.o
+
+windgent/bytearray.i: windgent/bytearray.cc.i
+
+.PHONY : windgent/bytearray.i
+
+# target to preprocess a source file
+windgent/bytearray.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/bytearray.cc.i
+.PHONY : windgent/bytearray.cc.i
+
+windgent/bytearray.s: windgent/bytearray.cc.s
+
+.PHONY : windgent/bytearray.s
+
+# target to generate assembly for a file
+windgent/bytearray.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/bytearray.cc.s
+.PHONY : windgent/bytearray.cc.s
 
 windgent/config.o: windgent/config.cc.o
 
@@ -883,22 +950,26 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test_socket"
-	@echo "... test_hook"
-	@echo "... test_iomanager"
-	@echo "... test_address"
-	@echo "... test_fiber"
-	@echo "... rebuild_cache"
-	@echo "... test_util"
-	@echo "... edit_cache"
-	@echo "... test_thread"
-	@echo "... test_config"
-	@echo "... test_scheduler"
-	@echo "... test_log"
 	@echo "... windgent"
+	@echo "... test_scheduler"
+	@echo "... test_config"
+	@echo "... test_bytearray"
+	@echo "... test_thread"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test_util"
+	@echo "... test_fiber"
+	@echo "... test_log"
+	@echo "... test_address"
+	@echo "... test_iomanager"
+	@echo "... test_hook"
+	@echo "... test_socket"
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
+	@echo "... tests/test_bytearray.o"
+	@echo "... tests/test_bytearray.i"
+	@echo "... tests/test_bytearray.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
@@ -929,6 +1000,9 @@ help:
 	@echo "... windgent/address.o"
 	@echo "... windgent/address.i"
 	@echo "... windgent/address.s"
+	@echo "... windgent/bytearray.o"
+	@echo "... windgent/bytearray.i"
+	@echo "... windgent/bytearray.s"
 	@echo "... windgent/config.o"
 	@echo "... windgent/config.i"
 	@echo "... windgent/config.s"

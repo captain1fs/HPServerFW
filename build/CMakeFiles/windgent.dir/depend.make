@@ -11,6 +11,16 @@ CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/address.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/bytearray.cc
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/endian.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/bytearray.cc.o: ../windgent/util.h
+
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.cc
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/config.h
 CMakeFiles/windgent.dir/windgent/config.cc.o: ../windgent/log.h
