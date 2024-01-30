@@ -13,6 +13,7 @@ include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 
 #设置依赖的源文件
 set(LIB_SRC   
+    windgent/http/http.cc
     windgent/address.cc
     windgent/bytearray.cc
     windgent/config.cc
@@ -116,6 +117,12 @@ add_dependencies(test_bytearray windgent)
 force_redefine_file_macro_for_sources(test_bytearray)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_bytearray ${LIB_LIB})
+
+add_executable(test_http tests/test_http.cc)
+add_dependencies(test_http windgent)
+force_redefine_file_macro_for_sources(test_http)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_http ${LIB_LIB})
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

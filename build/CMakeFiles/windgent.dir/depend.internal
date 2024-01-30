@@ -64,6 +64,9 @@ CMakeFiles/windgent.dir/windgent/hook.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/timer.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h
+CMakeFiles/windgent.dir/windgent/http/http.cc.o
+ /home/fangshao/CPP/Project/windgent/windgent/http/http.cc
+ /home/fangshao/CPP/Project/windgent/windgent/http/http.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/fiber.h
  /home/fangshao/CPP/Project/windgent/windgent/iomanager.cc

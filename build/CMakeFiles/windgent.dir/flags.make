@@ -8,6 +8,8 @@ CXX_DEFINES = -Dwindgent_EXPORTS
 
 CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build 
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/http/http.cc.o_DEFINES = __FILE__="windgent/http/http.cc"
+
 # Custom defines: CMakeFiles/windgent.dir/windgent/address.cc.o_DEFINES = __FILE__="windgent/address.cc"
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/bytearray.cc.o_DEFINES = __FILE__="windgent/bytearray.cc"

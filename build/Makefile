@@ -269,6 +269,19 @@ test_socket/fast:
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
 .PHONY : test_socket/fast
 
+#=============================================================================
+# Target rules for targets named test_http
+
+# Build rule for target.
+test_http: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http
+.PHONY : test_http
+
+# fast build rule for target.
+test_http/fast:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/build
+.PHONY : test_http/fast
+
 tests/test_address.o: tests/test_address.cc.o
 
 .PHONY : tests/test_address.o
@@ -403,6 +416,33 @@ tests/test_hook.s: tests/test_hook.cc.s
 tests/test_hook.cc.s:
 	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
 .PHONY : tests/test_hook.cc.s
+
+tests/test_http.o: tests/test_http.cc.o
+
+.PHONY : tests/test_http.o
+
+# target to build an object file
+tests/test_http.cc.o:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.o
+.PHONY : tests/test_http.cc.o
+
+tests/test_http.i: tests/test_http.cc.i
+
+.PHONY : tests/test_http.i
+
+# target to preprocess a source file
+tests/test_http.cc.i:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.i
+.PHONY : tests/test_http.cc.i
+
+tests/test_http.s: tests/test_http.cc.s
+
+.PHONY : tests/test_http.s
+
+# target to generate assembly for a file
+tests/test_http.cc.s:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
+.PHONY : tests/test_http.cc.s
 
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
@@ -728,6 +768,33 @@ windgent/hook.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/hook.cc.s
 .PHONY : windgent/hook.cc.s
 
+windgent/http/http.o: windgent/http/http.cc.o
+
+.PHONY : windgent/http/http.o
+
+# target to build an object file
+windgent/http/http.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http.cc.o
+.PHONY : windgent/http/http.cc.o
+
+windgent/http/http.i: windgent/http/http.cc.i
+
+.PHONY : windgent/http/http.i
+
+# target to preprocess a source file
+windgent/http/http.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http.cc.i
+.PHONY : windgent/http/http.cc.i
+
+windgent/http/http.s: windgent/http/http.cc.s
+
+.PHONY : windgent/http/http.s
+
+# target to generate assembly for a file
+windgent/http/http.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http.cc.s
+.PHONY : windgent/http/http.cc.s
+
 windgent/iomanager.o: windgent/iomanager.cc.o
 
 .PHONY : windgent/iomanager.o
@@ -950,13 +1017,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
 	@echo "... windgent"
 	@echo "... test_scheduler"
 	@echo "... test_config"
 	@echo "... test_bytearray"
 	@echo "... test_thread"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... test_util"
 	@echo "... test_fiber"
 	@echo "... test_log"
@@ -964,6 +1031,7 @@ help:
 	@echo "... test_iomanager"
 	@echo "... test_hook"
 	@echo "... test_socket"
+	@echo "... test_http"
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
@@ -979,6 +1047,9 @@ help:
 	@echo "... tests/test_hook.o"
 	@echo "... tests/test_hook.i"
 	@echo "... tests/test_hook.s"
+	@echo "... tests/test_http.o"
+	@echo "... tests/test_http.i"
+	@echo "... tests/test_http.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -1015,6 +1086,9 @@ help:
 	@echo "... windgent/hook.o"
 	@echo "... windgent/hook.i"
 	@echo "... windgent/hook.s"
+	@echo "... windgent/http/http.o"
+	@echo "... windgent/http/http.i"
+	@echo "... windgent/http/http.s"
 	@echo "... windgent/iomanager.o"
 	@echo "... windgent/iomanager.i"
 	@echo "... windgent/iomanager.s"

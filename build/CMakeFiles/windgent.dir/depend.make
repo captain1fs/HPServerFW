@@ -64,6 +64,9 @@ CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/timer.h
 CMakeFiles/windgent.dir/windgent/hook.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/http/http.cc.o: ../windgent/http/http.cc
+CMakeFiles/windgent.dir/windgent/http/http.cc.o: ../windgent/http/http.h
+
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/iomanager.cc
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/iomanager.h
