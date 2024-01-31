@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "../lib/libwindgent.pdb"
   "../lib/libwindgent.so"
+  "../windgent/http/http11_parser.rl.cc"
+  "../windgent/http/httpclient_parser.rl.cc"
   "CMakeFiles/windgent.dir/windgent/address.cc.o"
   "CMakeFiles/windgent.dir/windgent/bytearray.cc.o"
   "CMakeFiles/windgent.dir/windgent/config.cc.o"
@@ -8,6 +10,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/windgent.dir/windgent/fiber.cc.o"
   "CMakeFiles/windgent.dir/windgent/hook.cc.o"
   "CMakeFiles/windgent.dir/windgent/http/http.cc.o"
+  "CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.o"
+  "CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o"
+  "CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o"
   "CMakeFiles/windgent.dir/windgent/iomanager.cc.o"
   "CMakeFiles/windgent.dir/windgent/log.cc.o"
   "CMakeFiles/windgent.dir/windgent/mutex.cc.o"

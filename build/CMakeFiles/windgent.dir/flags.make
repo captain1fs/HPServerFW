@@ -10,6 +10,8 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/http/http.cc.o_DEFINES = __FILE__="windgent/http/http.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o_DEFINES = __FILE__="windgent/http/http_parser.cc"
+
 # Custom defines: CMakeFiles/windgent.dir/windgent/address.cc.o_DEFINES = __FILE__="windgent/address.cc"
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/bytearray.cc.o_DEFINES = __FILE__="windgent/bytearray.cc"
@@ -37,4 +39,8 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 # Custom defines: CMakeFiles/windgent.dir/windgent/timer.cc.o_DEFINES = __FILE__="windgent/timer.cc"
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/util.cc.o_DEFINES = __FILE__="windgent/util.cc"
+
+# Custom defines: CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.o_DEFINES = __FILE__="windgent/http/http11_parser.rl.cc"
+
+# Custom defines: CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o_DEFINES = __FILE__="windgent/http/httpclient_parser.rl.cc"
 

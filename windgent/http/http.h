@@ -153,6 +153,7 @@ T getAs(const MapType& m, const std::string& key, const T& def = T()) {
         return def;
     }
     try {
+        // std::cout << "----------- map[" << key << "] = " << boost::lexical_cast<T>(it->second) << std::endl;
         return boost::lexical_cast<T>(it->second);
     } catch (...) {
         // return def;
@@ -223,7 +224,7 @@ public:
         return checkGetAs(m_headers, key, val, def);
     }
     template<class T>
-    bool getHeaderAs(const std::string& key, const T& def = T()) {
+    T getHeaderAs(const std::string& key, const T& def = T()) {
         return getAs(m_headers, key, def);
     }
 
@@ -232,7 +233,7 @@ public:
         return checkGetAs(m_params, key, val, def);
     }
     template<class T>
-    bool getParamAs(const std::string& key, const T& def = T()) {
+    T getParamAs(const std::string& key, const T& def = T()) {
         return getAs(m_params, key, def);
     }
 
@@ -241,7 +242,7 @@ public:
         return checkGetAs(m_cookies, key, val, def);
     }
     template<class T>
-    bool getCookieAs(const std::string& key, const T& def = T()) {
+    T getCookieAs(const std::string& key, const T& def = T()) {
         return getAs(m_cookies, key, def);
     }
 
@@ -293,7 +294,7 @@ public:
         return checkGetAs(m_headers, key, val, def);
     }
     template<class T>
-    bool getHeaderAs(const std::string& key, const T& def = T()) {
+    T getHeaderAs(const std::string& key, const T& def = T()) {
         return getAs(m_headers, key, def);
     }
 

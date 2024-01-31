@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_http_parser
+
+# Build rule for target.
+test_http_parser: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http_parser
+.PHONY : test_http_parser
+
+# fast build rule for target.
+test_http_parser/fast:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
+.PHONY : test_http_parser/fast
+
+#=============================================================================
 # Target rules for targets named windgent
 
 # Build rule for target.
@@ -443,6 +456,33 @@ tests/test_http.s: tests/test_http.cc.s
 tests/test_http.cc.s:
 	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
 .PHONY : tests/test_http.cc.s
+
+tests/test_http_parser.o: tests/test_http_parser.cc.o
+
+.PHONY : tests/test_http_parser.o
+
+# target to build an object file
+tests/test_http_parser.cc.o:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o
+.PHONY : tests/test_http_parser.cc.o
+
+tests/test_http_parser.i: tests/test_http_parser.cc.i
+
+.PHONY : tests/test_http_parser.i
+
+# target to preprocess a source file
+tests/test_http_parser.cc.i:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.i
+.PHONY : tests/test_http_parser.cc.i
+
+tests/test_http_parser.s: tests/test_http_parser.cc.s
+
+.PHONY : tests/test_http_parser.s
+
+# target to generate assembly for a file
+tests/test_http_parser.cc.s:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.s
+.PHONY : tests/test_http_parser.cc.s
 
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
@@ -795,6 +835,87 @@ windgent/http/http.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http.cc.s
 .PHONY : windgent/http/http.cc.s
 
+windgent/http/http11_parser.rl.o: windgent/http/http11_parser.rl.cc.o
+
+.PHONY : windgent/http/http11_parser.rl.o
+
+# target to build an object file
+windgent/http/http11_parser.rl.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.o
+.PHONY : windgent/http/http11_parser.rl.cc.o
+
+windgent/http/http11_parser.rl.i: windgent/http/http11_parser.rl.cc.i
+
+.PHONY : windgent/http/http11_parser.rl.i
+
+# target to preprocess a source file
+windgent/http/http11_parser.rl.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.i
+.PHONY : windgent/http/http11_parser.rl.cc.i
+
+windgent/http/http11_parser.rl.s: windgent/http/http11_parser.rl.cc.s
+
+.PHONY : windgent/http/http11_parser.rl.s
+
+# target to generate assembly for a file
+windgent/http/http11_parser.rl.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.s
+.PHONY : windgent/http/http11_parser.rl.cc.s
+
+windgent/http/http_parser.o: windgent/http/http_parser.cc.o
+
+.PHONY : windgent/http/http_parser.o
+
+# target to build an object file
+windgent/http/http_parser.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o
+.PHONY : windgent/http/http_parser.cc.o
+
+windgent/http/http_parser.i: windgent/http/http_parser.cc.i
+
+.PHONY : windgent/http/http_parser.i
+
+# target to preprocess a source file
+windgent/http/http_parser.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_parser.cc.i
+.PHONY : windgent/http/http_parser.cc.i
+
+windgent/http/http_parser.s: windgent/http/http_parser.cc.s
+
+.PHONY : windgent/http/http_parser.s
+
+# target to generate assembly for a file
+windgent/http/http_parser.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_parser.cc.s
+.PHONY : windgent/http/http_parser.cc.s
+
+windgent/http/httpclient_parser.rl.o: windgent/http/httpclient_parser.rl.cc.o
+
+.PHONY : windgent/http/httpclient_parser.rl.o
+
+# target to build an object file
+windgent/http/httpclient_parser.rl.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o
+.PHONY : windgent/http/httpclient_parser.rl.cc.o
+
+windgent/http/httpclient_parser.rl.i: windgent/http/httpclient_parser.rl.cc.i
+
+.PHONY : windgent/http/httpclient_parser.rl.i
+
+# target to preprocess a source file
+windgent/http/httpclient_parser.rl.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.i
+.PHONY : windgent/http/httpclient_parser.rl.cc.i
+
+windgent/http/httpclient_parser.rl.s: windgent/http/httpclient_parser.rl.cc.s
+
+.PHONY : windgent/http/httpclient_parser.rl.s
+
+# target to generate assembly for a file
+windgent/http/httpclient_parser.rl.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.s
+.PHONY : windgent/http/httpclient_parser.rl.cc.s
+
 windgent/iomanager.o: windgent/iomanager.cc.o
 
 .PHONY : windgent/iomanager.o
@@ -1019,6 +1140,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_http_parser"
 	@echo "... windgent"
 	@echo "... test_scheduler"
 	@echo "... test_config"
@@ -1050,6 +1172,9 @@ help:
 	@echo "... tests/test_http.o"
 	@echo "... tests/test_http.i"
 	@echo "... tests/test_http.s"
+	@echo "... tests/test_http_parser.o"
+	@echo "... tests/test_http_parser.i"
+	@echo "... tests/test_http_parser.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -1089,6 +1214,15 @@ help:
 	@echo "... windgent/http/http.o"
 	@echo "... windgent/http/http.i"
 	@echo "... windgent/http/http.s"
+	@echo "... windgent/http/http11_parser.rl.o"
+	@echo "... windgent/http/http11_parser.rl.i"
+	@echo "... windgent/http/http11_parser.rl.s"
+	@echo "... windgent/http/http_parser.o"
+	@echo "... windgent/http/http_parser.i"
+	@echo "... windgent/http/http_parser.s"
+	@echo "... windgent/http/httpclient_parser.rl.o"
+	@echo "... windgent/http/httpclient_parser.rl.i"
+	@echo "... windgent/http/httpclient_parser.rl.s"
 	@echo "... windgent/iomanager.o"
 	@echo "... windgent/iomanager.i"
 	@echo "... windgent/iomanager.s"

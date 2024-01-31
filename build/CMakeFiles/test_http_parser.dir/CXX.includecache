@@ -6,32 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/home/fangshao/CPP/Project/windgent/windgent/config.h
-memory
--
-string
--
-vector
--
-map
--
-set
--
-unordered_map
--
-unordered_set
--
-list
--
-ctype.h
--
-functional
--
-boost/lexical_cast.hpp
--
-yaml-cpp/yaml.h
--
-log.h
+/home/fangshao/CPP/Project/windgent/tests/test_http_parser.cc
+../windgent/http/http_parser.h
+/home/fangshao/CPP/Project/windgent/windgent/http/http_parser.h
+../windgent/log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
 
 /home/fangshao/CPP/Project/windgent/windgent/http/http.h
@@ -58,14 +36,6 @@ sys/types.h
 ./http11_common.h
 /home/fangshao/CPP/Project/windgent/windgent/http/http11_common.h
 
-/home/fangshao/CPP/Project/windgent/windgent/http/http_parser.cc
-./http_parser.h
-/home/fangshao/CPP/Project/windgent/windgent/http/http_parser.h
-../log.h
-/home/fangshao/CPP/Project/windgent/windgent/log.h
-../config.h
-/home/fangshao/CPP/Project/windgent/windgent/config.h
-
 /home/fangshao/CPP/Project/windgent/windgent/http/http_parser.h
 ./http.h
 /home/fangshao/CPP/Project/windgent/windgent/http/http.h
@@ -77,22 +47,6 @@ sys/types.h
 /home/fangshao/CPP/Project/windgent/windgent/http/httpclient_parser.h
 ./http11_common.h
 /home/fangshao/CPP/Project/windgent/windgent/http/http11_common.h
-
-/home/fangshao/CPP/Project/windgent/windgent/http/httpclient_parser.rl.cc
-httpclient_parser.h
-/home/fangshao/CPP/Project/windgent/windgent/http/httpclient_parser.h
-stdio.h
--
-assert.h
--
-stdlib.h
--
-ctype.h
--
-string.h
--
-cerrno
--
 
 /home/fangshao/CPP/Project/windgent/windgent/log.h
 iostream

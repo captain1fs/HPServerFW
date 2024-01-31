@@ -408,4 +408,7 @@ HOOK模块通过hook自定义的同名API到系统API，改变了这些API的原
 
 ## Http协议开发
 
+封装了HttpRequest、HttpResponse作为http的请求和响应报文类，提供序列化功能。
+又借助现有的http11_parser封装了ttpRequestParser、HttpResponseParser，用于解析http请求与相应报文。
+
 ## 分布协议

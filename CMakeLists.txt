@@ -14,6 +14,7 @@ include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 #设置依赖的源文件
 set(LIB_SRC   
     windgent/http/http.cc
+    windgent/http/http_parser.cc
     windgent/address.cc
     windgent/bytearray.cc
     windgent/config.cc
@@ -29,6 +30,9 @@ set(LIB_SRC
     windgent/timer.cc
     windgent/util.cc
 )
+
+ragelmaker(windgent/http/http11_parser.rl LIB_SRC ${CMAKE_CURRENT_SOURCE_DIR}/windgent/http)
+ragelmaker(windgent/http/httpclient_parser.rl LIB_SRC ${CMAKE_CURRENT_SOURCE_DIR}/windgent/http)
 
 #设置依赖的库
 set(YAMLCPP
@@ -123,6 +127,12 @@ add_dependencies(test_http windgent)
 force_redefine_file_macro_for_sources(test_http)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_http ${LIB_LIB})
+
+add_executable(test_http_parser tests/test_http_parser.cc)
+add_dependencies(test_http_parser windgent)
+force_redefine_file_macro_for_sources(test_http_parser)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_http_parser ${LIB_LIB})
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
