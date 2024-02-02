@@ -114,6 +114,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named echo_server
+
+# Build rule for target.
+echo_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 echo_server
+.PHONY : echo_server
+
+# fast build rule for target.
+echo_server/fast:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/build
+.PHONY : echo_server/fast
+
+#=============================================================================
+# Target rules for targets named test_tcp_server
+
+# Build rule for target.
+test_tcp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_tcp_server
+.PHONY : test_tcp_server
+
+# fast build rule for target.
+test_tcp_server/fast:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/build
+.PHONY : test_tcp_server/fast
+
+#=============================================================================
 # Target rules for targets named test_http_parser
 
 # Build rule for target.
@@ -294,6 +320,33 @@ test_http: cmake_check_build_system
 test_http/fast:
 	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/build
 .PHONY : test_http/fast
+
+examples/echo_server.o: examples/echo_server.cc.o
+
+.PHONY : examples/echo_server.o
+
+# target to build an object file
+examples/echo_server.cc.o:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.o
+.PHONY : examples/echo_server.cc.o
+
+examples/echo_server.i: examples/echo_server.cc.i
+
+.PHONY : examples/echo_server.i
+
+# target to preprocess a source file
+examples/echo_server.cc.i:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.i
+.PHONY : examples/echo_server.cc.i
+
+examples/echo_server.s: examples/echo_server.cc.s
+
+.PHONY : examples/echo_server.s
+
+# target to generate assembly for a file
+examples/echo_server.cc.s:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.s
+.PHONY : examples/echo_server.cc.s
 
 tests/test_address.o: tests/test_address.cc.o
 
@@ -591,6 +644,33 @@ tests/test_socket.s: tests/test_socket.cc.s
 tests/test_socket.cc.s:
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.s
 .PHONY : tests/test_socket.cc.s
+
+tests/test_tcp_server.o: tests/test_tcp_server.cc.o
+
+.PHONY : tests/test_tcp_server.o
+
+# target to build an object file
+tests/test_tcp_server.cc.o:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.o
+.PHONY : tests/test_tcp_server.cc.o
+
+tests/test_tcp_server.i: tests/test_tcp_server.cc.i
+
+.PHONY : tests/test_tcp_server.i
+
+# target to preprocess a source file
+tests/test_tcp_server.cc.i:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.i
+.PHONY : tests/test_tcp_server.cc.i
+
+tests/test_tcp_server.s: tests/test_tcp_server.cc.s
+
+.PHONY : tests/test_tcp_server.s
+
+# target to generate assembly for a file
+tests/test_tcp_server.cc.s:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.s
+.PHONY : tests/test_tcp_server.cc.s
 
 tests/test_thread.o: tests/test_thread.cc.o
 
@@ -1051,6 +1131,87 @@ windgent/socket.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/socket.cc.s
 .PHONY : windgent/socket.cc.s
 
+windgent/socket_stream.o: windgent/socket_stream.cc.o
+
+.PHONY : windgent/socket_stream.o
+
+# target to build an object file
+windgent/socket_stream.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/socket_stream.cc.o
+.PHONY : windgent/socket_stream.cc.o
+
+windgent/socket_stream.i: windgent/socket_stream.cc.i
+
+.PHONY : windgent/socket_stream.i
+
+# target to preprocess a source file
+windgent/socket_stream.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/socket_stream.cc.i
+.PHONY : windgent/socket_stream.cc.i
+
+windgent/socket_stream.s: windgent/socket_stream.cc.s
+
+.PHONY : windgent/socket_stream.s
+
+# target to generate assembly for a file
+windgent/socket_stream.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/socket_stream.cc.s
+.PHONY : windgent/socket_stream.cc.s
+
+windgent/stream.o: windgent/stream.cc.o
+
+.PHONY : windgent/stream.o
+
+# target to build an object file
+windgent/stream.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/stream.cc.o
+.PHONY : windgent/stream.cc.o
+
+windgent/stream.i: windgent/stream.cc.i
+
+.PHONY : windgent/stream.i
+
+# target to preprocess a source file
+windgent/stream.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/stream.cc.i
+.PHONY : windgent/stream.cc.i
+
+windgent/stream.s: windgent/stream.cc.s
+
+.PHONY : windgent/stream.s
+
+# target to generate assembly for a file
+windgent/stream.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/stream.cc.s
+.PHONY : windgent/stream.cc.s
+
+windgent/tcp_server.o: windgent/tcp_server.cc.o
+
+.PHONY : windgent/tcp_server.o
+
+# target to build an object file
+windgent/tcp_server.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/tcp_server.cc.o
+.PHONY : windgent/tcp_server.cc.o
+
+windgent/tcp_server.i: windgent/tcp_server.cc.i
+
+.PHONY : windgent/tcp_server.i
+
+# target to preprocess a source file
+windgent/tcp_server.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/tcp_server.cc.i
+.PHONY : windgent/tcp_server.cc.i
+
+windgent/tcp_server.s: windgent/tcp_server.cc.s
+
+.PHONY : windgent/tcp_server.s
+
+# target to generate assembly for a file
+windgent/tcp_server.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/tcp_server.cc.s
+.PHONY : windgent/tcp_server.cc.s
+
 windgent/thread.o: windgent/thread.cc.o
 
 .PHONY : windgent/thread.o
@@ -1140,6 +1301,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... echo_server"
+	@echo "... test_tcp_server"
 	@echo "... test_http_parser"
 	@echo "... windgent"
 	@echo "... test_scheduler"
@@ -1154,6 +1317,9 @@ help:
 	@echo "... test_hook"
 	@echo "... test_socket"
 	@echo "... test_http"
+	@echo "... examples/echo_server.o"
+	@echo "... examples/echo_server.i"
+	@echo "... examples/echo_server.s"
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
@@ -1187,6 +1353,9 @@ help:
 	@echo "... tests/test_socket.o"
 	@echo "... tests/test_socket.i"
 	@echo "... tests/test_socket.s"
+	@echo "... tests/test_tcp_server.o"
+	@echo "... tests/test_tcp_server.i"
+	@echo "... tests/test_tcp_server.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -1238,6 +1407,15 @@ help:
 	@echo "... windgent/socket.o"
 	@echo "... windgent/socket.i"
 	@echo "... windgent/socket.s"
+	@echo "... windgent/socket_stream.o"
+	@echo "... windgent/socket_stream.i"
+	@echo "... windgent/socket_stream.s"
+	@echo "... windgent/stream.o"
+	@echo "... windgent/stream.i"
+	@echo "... windgent/stream.s"
+	@echo "... windgent/tcp_server.o"
+	@echo "... windgent/tcp_server.i"
+	@echo "... windgent/tcp_server.s"
 	@echo "... windgent/thread.o"
 	@echo "... windgent/thread.i"
 	@echo "... windgent/thread.s"

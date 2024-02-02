@@ -496,7 +496,7 @@ void ByteArray::clear() {
 }
 
 void ByteArray::setPosition(size_t val) {
-    if(val > m_size) {
+    if(val > m_capacity) {
         throw std::out_of_range("setPosition out of range");
     }
     m_position = val;

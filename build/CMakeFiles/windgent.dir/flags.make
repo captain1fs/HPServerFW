@@ -34,6 +34,12 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/socket.cc.o_DEFINES = __FILE__="windgent/socket.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/socket_stream.cc.o_DEFINES = __FILE__="windgent/socket_stream.cc"
+
+# Custom defines: CMakeFiles/windgent.dir/windgent/stream.cc.o_DEFINES = __FILE__="windgent/stream.cc"
+
+# Custom defines: CMakeFiles/windgent.dir/windgent/tcp_server.cc.o_DEFINES = __FILE__="windgent/tcp_server.cc"
+
 # Custom defines: CMakeFiles/windgent.dir/windgent/thread.cc.o_DEFINES = __FILE__="windgent/thread.cc"
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/timer.cc.o_DEFINES = __FILE__="windgent/timer.cc"

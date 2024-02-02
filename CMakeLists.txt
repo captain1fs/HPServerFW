@@ -26,6 +26,9 @@ set(LIB_SRC
     windgent/mutex.cc   
     windgent/scheduler.cc 
     windgent/socket.cc 
+    windgent/socket_stream.cc 
+    windgent/stream.cc 
+    windgent/tcp_server.cc
     windgent/thread.cc
     windgent/timer.cc
     windgent/util.cc
@@ -133,6 +136,18 @@ add_dependencies(test_http_parser windgent)
 force_redefine_file_macro_for_sources(test_http_parser)   #__FILE__
 #添加依赖的库文件
 target_link_libraries(test_http_parser ${LIB_LIB})
+
+add_executable(test_tcp_server tests/test_tcp_server.cc)
+add_dependencies(test_tcp_server windgent)
+force_redefine_file_macro_for_sources(test_tcp_server)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(test_tcp_server ${LIB_LIB})
+
+add_executable(echo_server examples/echo_server.cc)
+add_dependencies(echo_server windgent)
+force_redefine_file_macro_for_sources(echo_server)   #__FILE__
+#添加依赖的库文件
+target_link_libraries(echo_server ${LIB_LIB})
 
 #指定可执行文件输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

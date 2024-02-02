@@ -82,9 +82,9 @@ public:
     Address::ptr getRemoteAddress();
     int getSocket() const { return m_sockfd; }
     int getFamily() const { return m_family; }
-    int getType() const {return m_type; }
-    int getProtocol() const {return m_protocol; }
-    bool isConnected() const {return m_isConnected; }
+    int getType() const { return m_type; }
+    int getProtocol() const { return m_protocol; }
+    bool isConnected() const { return m_isConnected; }
 
     bool isValid() const;
     int getError();
@@ -109,6 +109,9 @@ private:
     Address::ptr m_localAddress;
     Address::ptr m_remoteAddress;
 };
+
+//流式输出socket
+std::ostream& operator<<(std::ostream& os, const Socket& sock);
 
 }
 

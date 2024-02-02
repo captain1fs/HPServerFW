@@ -40,7 +40,7 @@ public:
                                     const std::string& iface, int family = AF_INET);
 
     int getFamily() const;
-    std::string toString();
+    std::string toString() const;
 
     virtual const sockaddr* getAddr() const = 0;
     virtual sockaddr* getAddr() = 0;
@@ -147,7 +147,7 @@ private:
     struct sockaddr m_addr;
 };
 
+std::ostream& operator<<(std::ostream& os, const Address& addr);
 }
-
 
 #endif

@@ -144,6 +144,34 @@ CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/timer.h
 CMakeFiles/windgent.dir/windgent/socket.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/socket_stream.cc
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/socket_stream.h
+CMakeFiles/windgent.dir/windgent/socket_stream.cc.o: ../windgent/stream.h
+
+CMakeFiles/windgent.dir/windgent/stream.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/stream.cc.o: ../windgent/stream.cc
+CMakeFiles/windgent.dir/windgent/stream.cc.o: ../windgent/stream.h
+
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/config.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/iomanager.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/scheduler.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/tcp_server.cc
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/tcp_server.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/timer.h
+CMakeFiles/windgent.dir/windgent/tcp_server.cc.o: ../windgent/util.h
+
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/mutex.h
 CMakeFiles/windgent.dir/windgent/thread.cc.o: ../windgent/noncopyable.h
