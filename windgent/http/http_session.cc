@@ -10,8 +10,7 @@ HttpSession::HttpSession(Socket::ptr socket, bool owner)
 
 HttpRequest::ptr HttpSession::recvRequest() {
     HttpRequestParser::ptr parser(new HttpRequestParser);
-    // uint64_t buffer_size = HttpRequestParser::getHttpRequestBufferSize();
-    uint64_t buffer_size = 150;
+    uint64_t buffer_size = HttpRequestParser::getHttpRequestBufferSize();
     std::shared_ptr<char> buffer(new char[buffer_size], [](char* ptr){ delete[] ptr; });
     char* data = buffer.get();
     uint64_t last_size = 0;      //data中剩余的未解析完的数据大小
