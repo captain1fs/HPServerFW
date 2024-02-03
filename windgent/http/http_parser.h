@@ -12,7 +12,7 @@ class HttpRequestParser {
 public:
     typedef std::shared_ptr<HttpRequestParser> ptr;
     HttpRequestParser();
-
+    //解析请求报文，返回已经解析的长度，并移除已经解析的数据
     size_t execute(char* data, size_t len);
     int isFinished();
     int hasError();
@@ -21,6 +21,9 @@ public:
     HttpRequest::ptr getData() const { return m_data; }
     uint64_t getContentLength();
     void setError(int v) { m_error = v; }
+
+    static uint64_t getHttpRequestBufferSize();
+    static uint64_t getHttpRequestMaxBodySize();
 private:
     http_parser m_parser;
     HttpRequest::ptr m_data;

@@ -14,6 +14,7 @@ static windgent::ConfigVar<uint64_t>::ptr g_http_request_max_body_size
 //在main函数执行之前初始化
 static uint64_t s_http_request_buffer_size = 0;
 static uint64_t s_http_request_max_body_size = 0;
+namespace {
 struct _RequestSizeIniter {
     _RequestSizeIniter() {
         s_http_request_buffer_size = g_http_request_buffer_size->getVal();
@@ -28,6 +29,15 @@ struct _RequestSizeIniter {
     }
 };
 static _RequestSizeIniter _Initer;
+}
+
+uint64_t HttpRequestParser::getHttpRequestBufferSize() {
+    return s_http_request_buffer_size;
+}
+
+uint64_t HttpRequestParser::getHttpRequestMaxBodySize() {
+    return s_http_request_max_body_size;
+}
 
 void on_request_http_field(void *data, const char *field, size_t flen, const char *value, size_t vlen) {
     if(flen == 0) {

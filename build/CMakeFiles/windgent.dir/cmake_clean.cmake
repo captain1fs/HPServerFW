@@ -12,6 +12,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/windgent.dir/windgent/http/http.cc.o"
   "CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.o"
   "CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o"
+  "CMakeFiles/windgent.dir/windgent/http/http_server.cc.o"
+  "CMakeFiles/windgent.dir/windgent/http/http_session.cc.o"
   "CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o"
   "CMakeFiles/windgent.dir/windgent/iomanager.cc.o"
   "CMakeFiles/windgent.dir/windgent/log.cc.o"

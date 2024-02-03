@@ -85,6 +85,41 @@ CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o: ../windgent/singleton.h
 CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o: ../windgent/thread.h
 CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o: ../windgent/util.h
 
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/fiber.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_server.cc
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_server.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_session.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/iomanager.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/log.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/scheduler.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/singleton.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/socket_stream.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/stream.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/tcp_server.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/timer.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/util.h
+
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http11_common.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http11_parser.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http_parser.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http_session.cc
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/http_session.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/http/httpclient_parser.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/socket_stream.h
+CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/stream.h
+
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/http11_common.h
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/httpclient_parser.h
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/httpclient_parser.rl.cc

@@ -310,8 +310,10 @@ private:
     MapType m_headers;      //响应首部
 };
 
-}
+std::ostream& operator<<(std::ostream& os, const HttpRequest& req);
+std::ostream& operator<<(std::ostream& os, const HttpResponse& rsp);
 
+}
 }
 
 #endif

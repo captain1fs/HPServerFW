@@ -38,3 +38,11 @@ function(ragelmaker src_rl outputlist outputdir)
         )
     set_source_files_properties(${rl_out} PROPERTIES GENERATED TRUE)
 endfunction(ragelmaker)
+
+
+function(windgent_add_executable targetname srcs depends libs)
+    add_executable(${targetname} ${srcs})
+    add_dependencies(${targetname} ${depends})
+    force_redefine_file_macro_for_sources(${targetname})
+    target_link_libraries(${targetname} ${libs})
+endfunction()

@@ -127,32 +127,6 @@ echo_server/fast:
 .PHONY : echo_server/fast
 
 #=============================================================================
-# Target rules for targets named test_tcp_server
-
-# Build rule for target.
-test_tcp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_tcp_server
-.PHONY : test_tcp_server
-
-# fast build rule for target.
-test_tcp_server/fast:
-	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/build
-.PHONY : test_tcp_server/fast
-
-#=============================================================================
-# Target rules for targets named test_http_parser
-
-# Build rule for target.
-test_http_parser: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_http_parser
-.PHONY : test_http_parser
-
-# fast build rule for target.
-test_http_parser/fast:
-	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
-.PHONY : test_http_parser/fast
-
-#=============================================================================
 # Target rules for targets named windgent
 
 # Build rule for target.
@@ -242,6 +216,19 @@ test_fiber: cmake_check_build_system
 test_fiber/fast:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
 .PHONY : test_fiber/fast
+
+#=============================================================================
+# Target rules for targets named test_http_server
+
+# Build rule for target.
+test_http_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http_server
+.PHONY : test_http_server
+
+# fast build rule for target.
+test_http_server/fast:
+	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/build
+.PHONY : test_http_server/fast
 
 #=============================================================================
 # Target rules for targets named test_log
@@ -510,32 +497,32 @@ tests/test_http.cc.s:
 	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
 .PHONY : tests/test_http.cc.s
 
-tests/test_http_parser.o: tests/test_http_parser.cc.o
+tests/test_http_server.o: tests/test_http_server.cc.o
 
-.PHONY : tests/test_http_parser.o
+.PHONY : tests/test_http_server.o
 
 # target to build an object file
-tests/test_http_parser.cc.o:
-	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o
-.PHONY : tests/test_http_parser.cc.o
+tests/test_http_server.cc.o:
+	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o
+.PHONY : tests/test_http_server.cc.o
 
-tests/test_http_parser.i: tests/test_http_parser.cc.i
+tests/test_http_server.i: tests/test_http_server.cc.i
 
-.PHONY : tests/test_http_parser.i
+.PHONY : tests/test_http_server.i
 
 # target to preprocess a source file
-tests/test_http_parser.cc.i:
-	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.i
-.PHONY : tests/test_http_parser.cc.i
+tests/test_http_server.cc.i:
+	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.i
+.PHONY : tests/test_http_server.cc.i
 
-tests/test_http_parser.s: tests/test_http_parser.cc.s
+tests/test_http_server.s: tests/test_http_server.cc.s
 
-.PHONY : tests/test_http_parser.s
+.PHONY : tests/test_http_server.s
 
 # target to generate assembly for a file
-tests/test_http_parser.cc.s:
-	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.s
-.PHONY : tests/test_http_parser.cc.s
+tests/test_http_server.cc.s:
+	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.s
+.PHONY : tests/test_http_server.cc.s
 
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
@@ -644,33 +631,6 @@ tests/test_socket.s: tests/test_socket.cc.s
 tests/test_socket.cc.s:
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.s
 .PHONY : tests/test_socket.cc.s
-
-tests/test_tcp_server.o: tests/test_tcp_server.cc.o
-
-.PHONY : tests/test_tcp_server.o
-
-# target to build an object file
-tests/test_tcp_server.cc.o:
-	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.o
-.PHONY : tests/test_tcp_server.cc.o
-
-tests/test_tcp_server.i: tests/test_tcp_server.cc.i
-
-.PHONY : tests/test_tcp_server.i
-
-# target to preprocess a source file
-tests/test_tcp_server.cc.i:
-	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.i
-.PHONY : tests/test_tcp_server.cc.i
-
-tests/test_tcp_server.s: tests/test_tcp_server.cc.s
-
-.PHONY : tests/test_tcp_server.s
-
-# target to generate assembly for a file
-tests/test_tcp_server.cc.s:
-	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.s
-.PHONY : tests/test_tcp_server.cc.s
 
 tests/test_thread.o: tests/test_thread.cc.o
 
@@ -968,6 +928,60 @@ windgent/http/http_parser.s: windgent/http/http_parser.cc.s
 windgent/http/http_parser.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_parser.cc.s
 .PHONY : windgent/http/http_parser.cc.s
+
+windgent/http/http_server.o: windgent/http/http_server.cc.o
+
+.PHONY : windgent/http/http_server.o
+
+# target to build an object file
+windgent/http/http_server.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_server.cc.o
+.PHONY : windgent/http/http_server.cc.o
+
+windgent/http/http_server.i: windgent/http/http_server.cc.i
+
+.PHONY : windgent/http/http_server.i
+
+# target to preprocess a source file
+windgent/http/http_server.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_server.cc.i
+.PHONY : windgent/http/http_server.cc.i
+
+windgent/http/http_server.s: windgent/http/http_server.cc.s
+
+.PHONY : windgent/http/http_server.s
+
+# target to generate assembly for a file
+windgent/http/http_server.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_server.cc.s
+.PHONY : windgent/http/http_server.cc.s
+
+windgent/http/http_session.o: windgent/http/http_session.cc.o
+
+.PHONY : windgent/http/http_session.o
+
+# target to build an object file
+windgent/http/http_session.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_session.cc.o
+.PHONY : windgent/http/http_session.cc.o
+
+windgent/http/http_session.i: windgent/http/http_session.cc.i
+
+.PHONY : windgent/http/http_session.i
+
+# target to preprocess a source file
+windgent/http/http_session.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_session.cc.i
+.PHONY : windgent/http/http_session.cc.i
+
+windgent/http/http_session.s: windgent/http/http_session.cc.s
+
+.PHONY : windgent/http/http_session.s
+
+# target to generate assembly for a file
+windgent/http/http_session.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_session.cc.s
+.PHONY : windgent/http/http_session.cc.s
 
 windgent/http/httpclient_parser.rl.o: windgent/http/httpclient_parser.rl.cc.o
 
@@ -1302,8 +1316,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... echo_server"
-	@echo "... test_tcp_server"
-	@echo "... test_http_parser"
 	@echo "... windgent"
 	@echo "... test_scheduler"
 	@echo "... test_config"
@@ -1311,6 +1323,7 @@ help:
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... test_fiber"
+	@echo "... test_http_server"
 	@echo "... test_log"
 	@echo "... test_address"
 	@echo "... test_iomanager"
@@ -1338,9 +1351,9 @@ help:
 	@echo "... tests/test_http.o"
 	@echo "... tests/test_http.i"
 	@echo "... tests/test_http.s"
-	@echo "... tests/test_http_parser.o"
-	@echo "... tests/test_http_parser.i"
-	@echo "... tests/test_http_parser.s"
+	@echo "... tests/test_http_server.o"
+	@echo "... tests/test_http_server.i"
+	@echo "... tests/test_http_server.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -1353,9 +1366,6 @@ help:
 	@echo "... tests/test_socket.o"
 	@echo "... tests/test_socket.i"
 	@echo "... tests/test_socket.s"
-	@echo "... tests/test_tcp_server.o"
-	@echo "... tests/test_tcp_server.i"
-	@echo "... tests/test_tcp_server.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -1389,6 +1399,12 @@ help:
 	@echo "... windgent/http/http_parser.o"
 	@echo "... windgent/http/http_parser.i"
 	@echo "... windgent/http/http_parser.s"
+	@echo "... windgent/http/http_server.o"
+	@echo "... windgent/http/http_server.i"
+	@echo "... windgent/http/http_server.s"
+	@echo "... windgent/http/http_session.o"
+	@echo "... windgent/http/http_session.i"
+	@echo "... windgent/http/http_session.s"
 	@echo "... windgent/http/httpclient_parser.rl.o"
 	@echo "... windgent/http/httpclient_parser.rl.i"
 	@echo "... windgent/http/httpclient_parser.rl.s"
