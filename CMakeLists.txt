@@ -18,6 +18,7 @@ set(LIB_SRC
     windgent/http/http_parser.cc
     windgent/http/http_session.cc
     windgent/http/http_server.cc
+    windgent/http/servlet.cc
     windgent/address.cc
     windgent/bytearray.cc
     windgent/config.cc

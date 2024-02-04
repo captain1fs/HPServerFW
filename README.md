@@ -520,5 +520,17 @@ private:
     bool m_isKeepAlive;
 };
 ```
+封装了Servlet，针对不同的uri请求提供不同的处理方法。假如要上传下载文件，只需要继承该类然后实现handle函数：拿到请求的文件内容填充响应。
+整合HttpServer和Servlet，根据不同的请求使用不同的Servlet去处理。
+```cpp
+class Servlet {
+public:
+    Servlet(const std::string& name): m_name(name) { }
+    virtual ~Servlet() { }
+    virtual int32_t handle(HttpRequest::ptr request, HttpResponse::ptr response, HttpSession::ptr session) = 0;
+private:
+    std::string m_name;
+};
+```
 
 ## 分布协议

@@ -8,6 +8,7 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/fiber.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/http/http.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/http/http_server.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/http/http_session.h
+CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/http/servlet.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/iomanager.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/log.h
 CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: ../windgent/mutex.h

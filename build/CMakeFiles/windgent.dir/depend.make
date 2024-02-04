@@ -92,6 +92,7 @@ CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http.h
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_server.cc
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_server.h
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/http_session.h
+CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/http/servlet.h
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/iomanager.h
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/log.h
 CMakeFiles/windgent.dir/windgent/http/http_server.cc.o: ../windgent/mutex.h
@@ -123,6 +124,18 @@ CMakeFiles/windgent.dir/windgent/http/http_session.cc.o: ../windgent/stream.h
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/http11_common.h
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/httpclient_parser.h
 CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o: ../windgent/http/httpclient_parser.rl.cc
+
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/bytearray.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/http/http.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/http/http_session.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/http/servlet.cc
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/http/servlet.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/mutex.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/noncopyable.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/socket.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/socket_stream.h
+CMakeFiles/windgent.dir/windgent/http/servlet.cc.o: ../windgent/stream.h
 
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/iomanager.cc.o: ../windgent/iomanager.cc

@@ -1010,6 +1010,33 @@ windgent/http/httpclient_parser.rl.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.s
 .PHONY : windgent/http/httpclient_parser.rl.cc.s
 
+windgent/http/servlet.o: windgent/http/servlet.cc.o
+
+.PHONY : windgent/http/servlet.o
+
+# target to build an object file
+windgent/http/servlet.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/servlet.cc.o
+.PHONY : windgent/http/servlet.cc.o
+
+windgent/http/servlet.i: windgent/http/servlet.cc.i
+
+.PHONY : windgent/http/servlet.i
+
+# target to preprocess a source file
+windgent/http/servlet.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/servlet.cc.i
+.PHONY : windgent/http/servlet.cc.i
+
+windgent/http/servlet.s: windgent/http/servlet.cc.s
+
+.PHONY : windgent/http/servlet.s
+
+# target to generate assembly for a file
+windgent/http/servlet.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/servlet.cc.s
+.PHONY : windgent/http/servlet.cc.s
+
 windgent/iomanager.o: windgent/iomanager.cc.o
 
 .PHONY : windgent/iomanager.o
@@ -1408,6 +1435,9 @@ help:
 	@echo "... windgent/http/httpclient_parser.rl.o"
 	@echo "... windgent/http/httpclient_parser.rl.i"
 	@echo "... windgent/http/httpclient_parser.rl.s"
+	@echo "... windgent/http/servlet.o"
+	@echo "... windgent/http/servlet.i"
+	@echo "... windgent/http/servlet.s"
 	@echo "... windgent/iomanager.o"
 	@echo "... windgent/iomanager.i"
 	@echo "... windgent/iomanager.s"
