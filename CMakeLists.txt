@@ -16,6 +16,7 @@ include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 set(LIB_SRC   
     windgent/http/http.cc
     windgent/http/http_parser.cc
+    windgent/http/http_connection.cc
     windgent/http/http_session.cc
     windgent/http/http_server.cc
     windgent/http/servlet.cc
@@ -76,6 +77,7 @@ windgent_add_executable(test_bytearray "tests/test_bytearray.cc" windgent "${LIB
 windgent_add_executable(test_http "tests/test_http.cc" windgent "${LIB_LIB}")
 windgent_add_executable(test_http_server "tests/test_http_server.cc" windgent "${LIB_LIB}")
 windgent_add_executable(echo_server "examples/echo_server.cc" windgent "${LIB_LIB}")
+windgent_add_executable(test_http_connection "tests/test_http_connection.cc" windgent "${LIB_LIB}")
 
 # #指定编译文件
 # add_executable(test_log tests/test_log.cc)

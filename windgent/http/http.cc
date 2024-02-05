@@ -137,8 +137,8 @@ std::string HttpRequest::toString() const {
 
 std::ostream& HttpRequest::dump(std::ostream& os) const {
     //请求报文格式：请求行 请求首部 空行 消息体
-    os << HttpMethod2String(m_method) << " " << m_path << " " << (m_query.empty() ? "" : "?") << m_query
-       << (m_fragment.empty() ? "" : "#") << m_fragment << "HTTP/" << ((uint32_t)(m_version >> 4)) << "."
+    os << HttpMethod2String(m_method) << " " << m_path << (m_query.empty() ? "" : "?") << m_query
+       << (m_fragment.empty() ? "" : "#") << m_fragment << " HTTP/" << ((uint32_t)(m_version >> 4)) << "."
        << ((uint32_t)(m_version & 0x0F)) << "\r\n";
     os << "Connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
     for(auto& i : m_headers) {

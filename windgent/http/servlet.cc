@@ -47,7 +47,7 @@ void ServletDispatcher::addGlobServlet(const std::string& uri, Servlet::ptr slt)
 
 void ServletDispatcher::addGlobServlet(const std::string& uri, FunctionServlet::callback cb) {
     RWMutexType::WrLock lock(m_mutex);
-    addGlobServlet(uri, FunctionServlet::ptr(new FunctionServlet(cb)));
+    addGlobServlet(uri, std::make_shared<FunctionServlet>(cb));
 }
 
 void ServletDispatcher::delServlet(const std::string& uri) {

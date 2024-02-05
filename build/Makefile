@@ -127,6 +127,19 @@ echo_server/fast:
 .PHONY : echo_server/fast
 
 #=============================================================================
+# Target rules for targets named test_http_connection
+
+# Build rule for target.
+test_http_connection: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http_connection
+.PHONY : test_http_connection
+
+# fast build rule for target.
+test_http_connection/fast:
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/build
+.PHONY : test_http_connection/fast
+
+#=============================================================================
 # Target rules for targets named windgent
 
 # Build rule for target.
@@ -496,6 +509,33 @@ tests/test_http.s: tests/test_http.cc.s
 tests/test_http.cc.s:
 	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
 .PHONY : tests/test_http.cc.s
+
+tests/test_http_connection.o: tests/test_http_connection.cc.o
+
+.PHONY : tests/test_http_connection.o
+
+# target to build an object file
+tests/test_http_connection.cc.o:
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o
+.PHONY : tests/test_http_connection.cc.o
+
+tests/test_http_connection.i: tests/test_http_connection.cc.i
+
+.PHONY : tests/test_http_connection.i
+
+# target to preprocess a source file
+tests/test_http_connection.cc.i:
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.i
+.PHONY : tests/test_http_connection.cc.i
+
+tests/test_http_connection.s: tests/test_http_connection.cc.s
+
+.PHONY : tests/test_http_connection.s
+
+# target to generate assembly for a file
+tests/test_http_connection.cc.s:
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.s
+.PHONY : tests/test_http_connection.cc.s
 
 tests/test_http_server.o: tests/test_http_server.cc.o
 
@@ -901,6 +941,33 @@ windgent/http/http11_parser.rl.s: windgent/http/http11_parser.rl.cc.s
 windgent/http/http11_parser.rl.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.s
 .PHONY : windgent/http/http11_parser.rl.cc.s
+
+windgent/http/http_connection.o: windgent/http/http_connection.cc.o
+
+.PHONY : windgent/http/http_connection.o
+
+# target to build an object file
+windgent/http/http_connection.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o
+.PHONY : windgent/http/http_connection.cc.o
+
+windgent/http/http_connection.i: windgent/http/http_connection.cc.i
+
+.PHONY : windgent/http/http_connection.i
+
+# target to preprocess a source file
+windgent/http/http_connection.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_connection.cc.i
+.PHONY : windgent/http/http_connection.cc.i
+
+windgent/http/http_connection.s: windgent/http/http_connection.cc.s
+
+.PHONY : windgent/http/http_connection.s
+
+# target to generate assembly for a file
+windgent/http/http_connection.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/http/http_connection.cc.s
+.PHONY : windgent/http/http_connection.cc.s
 
 windgent/http/http_parser.o: windgent/http/http_parser.cc.o
 
@@ -1343,6 +1410,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... echo_server"
+	@echo "... test_http_connection"
 	@echo "... windgent"
 	@echo "... test_scheduler"
 	@echo "... test_config"
@@ -1378,6 +1446,9 @@ help:
 	@echo "... tests/test_http.o"
 	@echo "... tests/test_http.i"
 	@echo "... tests/test_http.s"
+	@echo "... tests/test_http_connection.o"
+	@echo "... tests/test_http_connection.i"
+	@echo "... tests/test_http_connection.s"
 	@echo "... tests/test_http_server.o"
 	@echo "... tests/test_http_server.i"
 	@echo "... tests/test_http_server.s"
@@ -1423,6 +1494,9 @@ help:
 	@echo "... windgent/http/http11_parser.rl.o"
 	@echo "... windgent/http/http11_parser.rl.i"
 	@echo "... windgent/http/http11_parser.rl.s"
+	@echo "... windgent/http/http_connection.o"
+	@echo "... windgent/http/http_connection.i"
+	@echo "... windgent/http/http_connection.s"
 	@echo "... windgent/http/http_parser.o"
 	@echo "... windgent/http/http_parser.i"
 	@echo "... windgent/http/http_parser.s"

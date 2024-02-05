@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fangshao/CPP/Project/windgent/windgent/hook.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/hook.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/http/http.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/http/http11_parser.rl.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http11_parser.rl.cc.o"
+  "/home/fangshao/CPP/Project/windgent/windgent/http/http_connection.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/http/http_parser.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/http/http_server.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http_server.cc.o"
   "/home/fangshao/CPP/Project/windgent/windgent/http/http_session.cc" "/home/fangshao/CPP/Project/windgent/build/CMakeFiles/windgent.dir/windgent/http/http_session.cc.o"

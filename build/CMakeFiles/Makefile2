@@ -57,6 +57,7 @@ CMAKE_BINARY_DIR = /home/fangshao/CPP/Project/windgent/build
 
 # The main recursive "all" target.
 all: CMakeFiles/echo_server.dir/all
+all: CMakeFiles/test_http_connection.dir/all
 all: CMakeFiles/windgent.dir/all
 all: CMakeFiles/test_scheduler.dir/all
 all: CMakeFiles/test_config.dir/all
@@ -81,6 +82,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/echo_server.dir/clean
+clean: CMakeFiles/test_http_connection.dir/clean
 clean: CMakeFiles/windgent.dir/clean
 clean: CMakeFiles/test_scheduler.dir/clean
 clean: CMakeFiles/test_config.dir/clean
@@ -110,7 +112,7 @@ CMakeFiles/echo_server.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/echo_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/echo_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/echo_server.dir/rule
@@ -126,18 +128,45 @@ CMakeFiles/echo_server.dir/clean:
 .PHONY : CMakeFiles/echo_server.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/test_http_connection.dir
+
+# All Build rule for target.
+CMakeFiles/test_http_connection.dir/all: CMakeFiles/windgent.dir/all
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/depend
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=15,16 "Built target test_http_connection"
+.PHONY : CMakeFiles/test_http_connection.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_http_connection.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_http_connection.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_http_connection.dir/rule
+
+# Convenience name for target.
+test_http_connection: CMakeFiles/test_http_connection.dir/rule
+
+.PHONY : test_http_connection
+
+# clean rule for target.
+CMakeFiles/test_http_connection.dir/clean:
+	$(MAKE) -f CMakeFiles/test_http_connection.dir/build.make CMakeFiles/test_http_connection.dir/clean
+.PHONY : CMakeFiles/test_http_connection.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/windgent.dir
 
 # All Build rule for target.
 CMakeFiles/windgent.dir/all:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/depend
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55 "Built target windgent"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58 "Built target windgent"
 .PHONY : CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/windgent.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 27
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 28
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/windgent.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/windgent.dir/rule
@@ -159,12 +188,12 @@ CMakeFiles/windgent.dir/clean:
 CMakeFiles/test_scheduler.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/depend
 	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=21,22 "Built target test_scheduler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=23,24 "Built target test_scheduler"
 .PHONY : CMakeFiles/test_scheduler.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_scheduler.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_scheduler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_scheduler.dir/rule
@@ -191,7 +220,7 @@ CMakeFiles/test_config.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_config.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_config.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_config.dir/rule
@@ -218,7 +247,7 @@ CMakeFiles/test_bytearray.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_bytearray.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_bytearray.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_bytearray.dir/rule
@@ -240,12 +269,12 @@ CMakeFiles/test_bytearray.dir/clean:
 CMakeFiles/test_thread.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/depend
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=25,26 "Built target test_thread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=27,28 "Built target test_thread"
 .PHONY : CMakeFiles/test_thread.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_thread.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_thread.dir/rule
@@ -267,12 +296,12 @@ CMakeFiles/test_thread.dir/clean:
 CMakeFiles/test_util.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/depend
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=27,28 "Built target test_util"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=29,30 "Built target test_util"
 .PHONY : CMakeFiles/test_util.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_util.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_util.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_util.dir/rule
@@ -299,7 +328,7 @@ CMakeFiles/test_fiber.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_fiber.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_fiber.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_fiber.dir/rule
@@ -321,12 +350,12 @@ CMakeFiles/test_fiber.dir/clean:
 CMakeFiles/test_http_server.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/depend
 	$(MAKE) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=15,16 "Built target test_http_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=17,18 "Built target test_http_server"
 .PHONY : CMakeFiles/test_http_server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_http_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_http_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_http_server.dir/rule
@@ -348,12 +377,12 @@ CMakeFiles/test_http_server.dir/clean:
 CMakeFiles/test_log.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/depend
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=19,20 "Built target test_log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=21,22 "Built target test_log"
 .PHONY : CMakeFiles/test_log.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_log.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_log.dir/rule
@@ -380,7 +409,7 @@ CMakeFiles/test_address.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_address.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_address.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_address.dir/rule
@@ -402,12 +431,12 @@ CMakeFiles/test_address.dir/clean:
 CMakeFiles/test_iomanager.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/depend
 	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=17,18 "Built target test_iomanager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=19,20 "Built target test_iomanager"
 .PHONY : CMakeFiles/test_iomanager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_iomanager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_iomanager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_iomanager.dir/rule
@@ -434,7 +463,7 @@ CMakeFiles/test_hook.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_hook.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_hook.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_hook.dir/rule
@@ -456,12 +485,12 @@ CMakeFiles/test_hook.dir/clean:
 CMakeFiles/test_socket.dir/all: CMakeFiles/windgent.dir/all
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/depend
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=23,24 "Built target test_socket"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangshao/CPP/Project/windgent/build/CMakeFiles --progress-num=25,26 "Built target test_socket"
 .PHONY : CMakeFiles/test_socket.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_socket.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_socket.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_socket.dir/rule
@@ -488,7 +517,7 @@ CMakeFiles/test_http.dir/all: CMakeFiles/windgent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_http.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 30
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_http.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangshao/CPP/Project/windgent/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_http.dir/rule

@@ -6,7 +6,7 @@ windgent::Logger::ptr g_logger = LOG_ROOT();
 void test() {
     std::vector<windgent::Address::ptr> addrs;
 
-    bool ret = windgent::Address::getAllAddrFromHost(addrs, "www.baidu.com:ftp");
+    bool ret = windgent::Address::getAllAddrFromHost(addrs, "www.zhihu.com");
     if(!ret) {
         LOG_ERROR(g_logger) << "getAllAddrFromHost failed!";
         return;
@@ -36,9 +36,9 @@ void test_ipv4() {
 }
 
 int main() {
-    // test();
+    test();
     // test_iface();
-    test_ipv4();
+    // test_ipv4();
 
     return 0;
 }

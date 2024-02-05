@@ -12,6 +12,8 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o_DEFINES = __FILE__="windgent/http/http_parser.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o_DEFINES = __FILE__="windgent/http/http_connection.cc"
+
 # Custom defines: CMakeFiles/windgent.dir/windgent/http/http_session.cc.o_DEFINES = __FILE__="windgent/http/http_session.cc"
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/http/http_server.cc.o_DEFINES = __FILE__="windgent/http/http_server.cc"

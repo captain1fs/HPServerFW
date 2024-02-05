@@ -10,21 +10,35 @@ static windgent::ConfigVar<uint64_t>::ptr g_http_request_buffer_size
     = windgent::ConfigMgr::Lookup<uint64_t>("http.request.buffer_size" , 4 * 1024ull, "http request buffer size");
 static windgent::ConfigVar<uint64_t>::ptr g_http_request_max_body_size 
     = windgent::ConfigMgr::Lookup<uint64_t>("http.request.max_body_size", 64 * 1024 * 1024ull, "http request max body size");
+static windgent::ConfigVar<uint64_t>::ptr g_http_response_buffer_size 
+    = windgent::ConfigMgr::Lookup<uint64_t>("http.response.buffer_size" , 4 * 1024ull, "http response buffer size");
+static windgent::ConfigVar<uint64_t>::ptr g_http_response_max_body_size 
+    = windgent::ConfigMgr::Lookup<uint64_t>("http.response.max_body_size", 64 * 1024 * 1024ull, "http response max body size");
 
 //在main函数执行之前初始化
 static uint64_t s_http_request_buffer_size = 0;
 static uint64_t s_http_request_max_body_size = 0;
+static uint64_t s_http_response_buffer_size = 0;
+static uint64_t s_http_response_max_body_size = 0;
 namespace {
 struct _RequestSizeIniter {
     _RequestSizeIniter() {
         s_http_request_buffer_size = g_http_request_buffer_size->getVal();
         s_http_request_max_body_size = g_http_request_max_body_size->getVal();
+        s_http_response_buffer_size = g_http_response_buffer_size->getVal();
+        s_http_response_max_body_size = g_http_response_max_body_size->getVal();
 
         g_http_request_buffer_size->addListener([](const uint64_t& old_val, const uint64_t& new_val){
             s_http_request_buffer_size = new_val;
         });
         g_http_request_max_body_size->addListener([](const uint64_t& old_val, const uint64_t& new_val){
             s_http_request_max_body_size = new_val;
+        });
+        g_http_response_buffer_size->addListener([](const uint64_t& old_val, const uint64_t& new_val){
+            s_http_response_buffer_size = new_val;
+        });
+        g_http_response_max_body_size->addListener([](const uint64_t& old_val, const uint64_t& new_val){
+            s_http_response_max_body_size = new_val;
         });
     }
 };
@@ -37,6 +51,14 @@ uint64_t HttpRequestParser::getHttpRequestBufferSize() {
 
 uint64_t HttpRequestParser::getHttpRequestMaxBodySize() {
     return s_http_request_max_body_size;
+}
+
+uint64_t HttpResponseParser::getHttpResponseBufferSize() {
+    return s_http_response_buffer_size;
+}
+
+uint64_t HttpResponseParser::getHttpResponseMaxBodySize() {
+    return s_http_response_max_body_size;
 }
 
 void on_request_http_field(void *data, const char *field, size_t flen, const char *value, size_t vlen) {

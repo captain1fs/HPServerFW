@@ -45,6 +45,10 @@ public:
     void setError(int v) { m_error = v; }
     HttpResponse::ptr getData() const { return m_data; }
     uint64_t getContentLength();
+    const httpclient_parser& getParser() const { return m_parser; }
+
+    static uint64_t getHttpResponseBufferSize();
+    static uint64_t getHttpResponseMaxBodySize();
 private:
     httpclient_parser m_parser;
     HttpResponse::ptr m_data;
