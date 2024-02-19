@@ -79,12 +79,28 @@ sys/types.h
 /home/fangshao/CPP/Project/windgent/windgent/http/http_parser.h
 ../log.h
 /home/fangshao/CPP/Project/windgent/windgent/log.h
+../address.h
+/home/fangshao/CPP/Project/windgent/windgent/address.h
+../socket.h
+/home/fangshao/CPP/Project/windgent/windgent/socket.h
+../util.h
+/home/fangshao/CPP/Project/windgent/windgent/util.h
+sstream
+-
 
 /home/fangshao/CPP/Project/windgent/windgent/http/http_connection.h
 ../socket_stream.h
 /home/fangshao/CPP/Project/windgent/windgent/socket_stream.h
+../uri.h
+/home/fangshao/CPP/Project/windgent/windgent/uri.h
+../mutex.h
+/home/fangshao/CPP/Project/windgent/windgent/mutex.h
 http.h
 /home/fangshao/CPP/Project/windgent/windgent/http/http.h
+map
+-
+list
+-
 
 /home/fangshao/CPP/Project/windgent/windgent/http/http_parser.h
 ./http.h
@@ -193,6 +209,16 @@ memory
 -
 mutex.h
 /home/fangshao/CPP/Project/windgent/windgent/mutex.h
+
+/home/fangshao/CPP/Project/windgent/windgent/uri.h
+memory
+-
+string
+-
+stdint.h
+-
+./address.h
+/home/fangshao/CPP/Project/windgent/windgent/address.h
 
 /home/fangshao/CPP/Project/windgent/windgent/util.h
 pthread.h

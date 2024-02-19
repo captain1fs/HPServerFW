@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "../lib/libwindgent.so"
   "../windgent/http/http11_parser.rl.cc"
   "../windgent/http/httpclient_parser.rl.cc"
+  "../windgent/uri.rl.cc"
   "CMakeFiles/windgent.dir/windgent/address.cc.o"
   "CMakeFiles/windgent.dir/windgent/bytearray.cc.o"
   "CMakeFiles/windgent.dir/windgent/config.cc.o"
@@ -27,6 +28,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/windgent.dir/windgent/tcp_server.cc.o"
   "CMakeFiles/windgent.dir/windgent/thread.cc.o"
   "CMakeFiles/windgent.dir/windgent/timer.cc.o"
+  "CMakeFiles/windgent.dir/windgent/uri.rl.cc.o"
   "CMakeFiles/windgent.dir/windgent/util.cc.o"
 )
 

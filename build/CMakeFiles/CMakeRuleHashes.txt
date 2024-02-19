@@ -1,3 +1,4 @@
 # Hashes of file build rules.
 d9d9ab73267ee4302573a4cad0a8f557 ../windgent/http/http11_parser.rl.cc
 95cb5ff15111b875c6877380f64db578 ../windgent/http/httpclient_parser.rl.cc
+216ac157b8f8f6b552c833a3910635de ../windgent/uri.rl.cc

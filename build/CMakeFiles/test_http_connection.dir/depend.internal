@@ -19,4 +19,5 @@ CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o
  /home/fangshao/CPP/Project/windgent/windgent/stream.h
  /home/fangshao/CPP/Project/windgent/windgent/thread.h
  /home/fangshao/CPP/Project/windgent/windgent/timer.h
+ /home/fangshao/CPP/Project/windgent/windgent/uri.h
  /home/fangshao/CPP/Project/windgent/windgent/util.h

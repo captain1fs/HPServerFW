@@ -58,3 +58,5 @@ CXX_INCLUDES = -I/home/fangshao/CPP/Project/yaml-cpp/build
 
 # Custom defines: CMakeFiles/windgent.dir/windgent/http/httpclient_parser.rl.cc.o_DEFINES = __FILE__="windgent/http/httpclient_parser.rl.cc"
 
+# Custom defines: CMakeFiles/windgent.dir/windgent/uri.rl.cc.o_DEFINES = __FILE__="windgent/uri.rl.cc"
+

@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_uri
+
+# Build rule for target.
+test_uri: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_uri
+.PHONY : test_uri
+
+# fast build rule for target.
+test_uri/fast:
+	$(MAKE) -f CMakeFiles/test_uri.dir/build.make CMakeFiles/test_uri.dir/build
+.PHONY : test_uri/fast
+
+#=============================================================================
 # Target rules for targets named echo_server
 
 # Build rule for target.
@@ -698,6 +711,33 @@ tests/test_thread.s: tests/test_thread.cc.s
 tests/test_thread.cc.s:
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
 .PHONY : tests/test_thread.cc.s
+
+tests/test_uri.o: tests/test_uri.cc.o
+
+.PHONY : tests/test_uri.o
+
+# target to build an object file
+tests/test_uri.cc.o:
+	$(MAKE) -f CMakeFiles/test_uri.dir/build.make CMakeFiles/test_uri.dir/tests/test_uri.cc.o
+.PHONY : tests/test_uri.cc.o
+
+tests/test_uri.i: tests/test_uri.cc.i
+
+.PHONY : tests/test_uri.i
+
+# target to preprocess a source file
+tests/test_uri.cc.i:
+	$(MAKE) -f CMakeFiles/test_uri.dir/build.make CMakeFiles/test_uri.dir/tests/test_uri.cc.i
+.PHONY : tests/test_uri.cc.i
+
+tests/test_uri.s: tests/test_uri.cc.s
+
+.PHONY : tests/test_uri.s
+
+# target to generate assembly for a file
+tests/test_uri.cc.s:
+	$(MAKE) -f CMakeFiles/test_uri.dir/build.make CMakeFiles/test_uri.dir/tests/test_uri.cc.s
+.PHONY : tests/test_uri.cc.s
 
 tests/test_util.o: tests/test_util.cc.o
 
@@ -1374,6 +1414,33 @@ windgent/timer.cc.s:
 	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/timer.cc.s
 .PHONY : windgent/timer.cc.s
 
+windgent/uri.rl.o: windgent/uri.rl.cc.o
+
+.PHONY : windgent/uri.rl.o
+
+# target to build an object file
+windgent/uri.rl.cc.o:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/uri.rl.cc.o
+.PHONY : windgent/uri.rl.cc.o
+
+windgent/uri.rl.i: windgent/uri.rl.cc.i
+
+.PHONY : windgent/uri.rl.i
+
+# target to preprocess a source file
+windgent/uri.rl.cc.i:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/uri.rl.cc.i
+.PHONY : windgent/uri.rl.cc.i
+
+windgent/uri.rl.s: windgent/uri.rl.cc.s
+
+.PHONY : windgent/uri.rl.s
+
+# target to generate assembly for a file
+windgent/uri.rl.cc.s:
+	$(MAKE) -f CMakeFiles/windgent.dir/build.make CMakeFiles/windgent.dir/windgent/uri.rl.cc.s
+.PHONY : windgent/uri.rl.cc.s
+
 windgent/util.o: windgent/util.cc.o
 
 .PHONY : windgent/util.o
@@ -1409,6 +1476,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_uri"
 	@echo "... echo_server"
 	@echo "... test_http_connection"
 	@echo "... windgent"
@@ -1467,6 +1535,9 @@ help:
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
+	@echo "... tests/test_uri.o"
+	@echo "... tests/test_uri.i"
+	@echo "... tests/test_uri.s"
 	@echo "... tests/test_util.o"
 	@echo "... tests/test_util.i"
 	@echo "... tests/test_util.s"
@@ -1542,6 +1613,9 @@ help:
 	@echo "... windgent/timer.o"
 	@echo "... windgent/timer.i"
 	@echo "... windgent/timer.s"
+	@echo "... windgent/uri.rl.o"
+	@echo "... windgent/uri.rl.i"
+	@echo "... windgent/uri.rl.s"
 	@echo "... windgent/util.o"
 	@echo "... windgent/util.i"
 	@echo "... windgent/util.s"

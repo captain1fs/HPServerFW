@@ -177,7 +177,7 @@ bool checkGetAs(const MapType& m, const std::string& key, T& val, const T& def =
     return false;
 }
 
-//Http请求
+//Http请求报文结构的封装
 class HttpRequest {
 public:
     typedef std::shared_ptr<HttpRequest> ptr;

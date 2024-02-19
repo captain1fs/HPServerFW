@@ -88,6 +88,7 @@ CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/socket.h
 CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/socket_stream.h
 CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/stream.h
 CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/thread.h
+CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/uri.h
 CMakeFiles/windgent.dir/windgent/http/http_connection.cc.o: ../windgent/util.h
 
 CMakeFiles/windgent.dir/windgent/http/http_parser.cc.o: ../windgent/config.h
@@ -252,6 +253,10 @@ CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/noncopyable.h
 CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/timer.cc
 CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/timer.h
 CMakeFiles/windgent.dir/windgent/timer.cc.o: ../windgent/util.h
+
+CMakeFiles/windgent.dir/windgent/uri.rl.cc.o: ../windgent/address.h
+CMakeFiles/windgent.dir/windgent/uri.rl.cc.o: ../windgent/uri.h
+CMakeFiles/windgent.dir/windgent/uri.rl.cc.o: ../windgent/uri.rl.cc
 
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/fiber.h
 CMakeFiles/windgent.dir/windgent/util.cc.o: ../windgent/log.h

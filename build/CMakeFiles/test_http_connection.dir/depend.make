@@ -18,5 +18,6 @@ CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent
 CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent/stream.h
 CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent/thread.h
 CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent/timer.h
+CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent/uri.h
 CMakeFiles/test_http_connection.dir/tests/test_http_connection.cc.o: ../windgent/util.h
 
