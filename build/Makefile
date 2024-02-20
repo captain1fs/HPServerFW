@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named abtest_http_server
+
+# Build rule for target.
+abtest_http_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 abtest_http_server
+.PHONY : abtest_http_server
+
+# fast build rule for target.
+abtest_http_server/fast:
+	$(MAKE) -f CMakeFiles/abtest_http_server.dir/build.make CMakeFiles/abtest_http_server.dir/build
+.PHONY : abtest_http_server/fast
+
+#=============================================================================
 # Target rules for targets named test_uri
 
 # Build rule for target.
@@ -360,6 +373,33 @@ examples/echo_server.s: examples/echo_server.cc.s
 examples/echo_server.cc.s:
 	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.s
 .PHONY : examples/echo_server.cc.s
+
+samples/abtest_http_server.o: samples/abtest_http_server.cc.o
+
+.PHONY : samples/abtest_http_server.o
+
+# target to build an object file
+samples/abtest_http_server.cc.o:
+	$(MAKE) -f CMakeFiles/abtest_http_server.dir/build.make CMakeFiles/abtest_http_server.dir/samples/abtest_http_server.cc.o
+.PHONY : samples/abtest_http_server.cc.o
+
+samples/abtest_http_server.i: samples/abtest_http_server.cc.i
+
+.PHONY : samples/abtest_http_server.i
+
+# target to preprocess a source file
+samples/abtest_http_server.cc.i:
+	$(MAKE) -f CMakeFiles/abtest_http_server.dir/build.make CMakeFiles/abtest_http_server.dir/samples/abtest_http_server.cc.i
+.PHONY : samples/abtest_http_server.cc.i
+
+samples/abtest_http_server.s: samples/abtest_http_server.cc.s
+
+.PHONY : samples/abtest_http_server.s
+
+# target to generate assembly for a file
+samples/abtest_http_server.cc.s:
+	$(MAKE) -f CMakeFiles/abtest_http_server.dir/build.make CMakeFiles/abtest_http_server.dir/samples/abtest_http_server.cc.s
+.PHONY : samples/abtest_http_server.cc.s
 
 tests/test_address.o: tests/test_address.cc.o
 
@@ -1474,6 +1514,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... abtest_http_server"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test_uri"
@@ -1496,6 +1537,9 @@ help:
 	@echo "... examples/echo_server.o"
 	@echo "... examples/echo_server.i"
 	@echo "... examples/echo_server.s"
+	@echo "... samples/abtest_http_server.o"
+	@echo "... samples/abtest_http_server.i"
+	@echo "... samples/abtest_http_server.s"
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"

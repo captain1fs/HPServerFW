@@ -58,7 +58,7 @@ HttpRequest::ptr HttpSession::recvRequest() {
         }
         parser->getData()->setBody(body);
     }
-
+    parser->getData()->init();
     return parser->getData();
 }
 

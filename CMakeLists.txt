@@ -80,6 +80,7 @@ windgent_add_executable(test_http_server "tests/test_http_server.cc" windgent "$
 windgent_add_executable(echo_server "examples/echo_server.cc" windgent "${LIB_LIB}")
 windgent_add_executable(test_http_connection "tests/test_http_connection.cc" windgent "${LIB_LIB}")
 windgent_add_executable(test_uri "tests/test_uri.cc" windgent "${LIB_LIB}")
+windgent_add_executable(abtest_http_server "samples/abtest_http_server.cc" windgent "${LIB_LIB}")
 
 # #指定编译文件
 # add_executable(test_log tests/test_log.cc)

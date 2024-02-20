@@ -248,6 +248,8 @@ public:
 
     std::string toString() const;
     std::ostream& dump(std::ostream& os) const;
+
+    void init();
 private:
     HttpMethod m_method;
     uint8_t m_version;

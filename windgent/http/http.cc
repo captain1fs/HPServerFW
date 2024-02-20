@@ -152,6 +152,17 @@ std::ostream& HttpRequest::dump(std::ostream& os) const {
     return os;
 }
 
+void HttpRequest::init() {
+    std::string conn = getHeader("connection");
+    if(!conn.empty()) {
+        if(strcasecmp(conn.c_str(), "keep-alive") == 0) {
+            m_close = false;
+        } else {
+            m_close = true;
+        }
+    }
+}
+
 //HttpResponse
 HttpResponse::HttpResponse(uint8_t version, bool close)
     :m_status(HttpStatus::OK), m_version(version), m_close(close) {
