@@ -5,6 +5,7 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o
  /home/fangshao/CPP/Project/windgent/tests/test_thread.cc
  /home/fangshao/CPP/Project/windgent/windgent/config.h
  /home/fangshao/CPP/Project/windgent/windgent/fiber.h
+ /home/fangshao/CPP/Project/windgent/windgent/hook.h
  /home/fangshao/CPP/Project/windgent/windgent/log.h
  /home/fangshao/CPP/Project/windgent/windgent/macro.h
  /home/fangshao/CPP/Project/windgent/windgent/mutex.h

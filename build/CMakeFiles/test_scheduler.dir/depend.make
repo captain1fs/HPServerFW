@@ -4,6 +4,7 @@
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../tests/test_scheduler.cc
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/config.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/fiber.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/hook.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/log.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/macro.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../windgent/mutex.h

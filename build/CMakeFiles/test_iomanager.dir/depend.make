@@ -4,6 +4,7 @@
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../tests/test_iomanager.cc
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/config.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/fiber.h
+CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/hook.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/iomanager.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/log.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../windgent/macro.h

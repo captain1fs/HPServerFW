@@ -74,7 +74,7 @@ protected:
     void setThis();
     bool hasIdleThreads() { return m_idleThreadCount > 0; }
 private:
-
+    //将任务加入到队列中
     template<class FiberOrcb>
     bool scheduleNoLock(FiberOrcb fc, int thd) {
         bool need_tickle = m_fibers.empty();
@@ -87,11 +87,11 @@ private:
 private:
     //线程要执行的任务：可以是一个协程或者一个std::function
     struct FiberAndThread {
-        Fiber::ptr fiber;
-        std::function<void()> cb;
-        int threadId;
+        Fiber::ptr fiber;           //协程
+        std::function<void()> cb;   //协程执行的函数
+        int threadId;               //协程所在的线程id
 
-        //协程任务
+        //协程在确定的线程上执行
         FiberAndThread(Fiber::ptr f, int thr):fiber(f), threadId(thr) {
 
         }
@@ -108,7 +108,6 @@ private:
         }
 
         FiberAndThread() :threadId(-1) {
-
         }
 
         void reset() {
@@ -122,7 +121,6 @@ private:
     std::vector<Thread::ptr> m_threads;     //工作线程
     std::list<FiberAndThread> m_fibers;     //待执行的协程（任务）队列
     std::string m_name;
-
     Fiber::ptr m_rootFiber;                 //use_caller为true时有效, 调度协程
 protected:
     std::vector<int> m_threadIds;   //线程id数组

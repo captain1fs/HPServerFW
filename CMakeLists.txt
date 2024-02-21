@@ -8,7 +8,7 @@ include(cmake/utils.cmake)
 #开启编译时的详细信息打印
 set(CMAKE_VERBOSE_MAKEFILE ON)
 #设置g++编译选项
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined")
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined")
 
 include_directories("/home/fangshao/CPP/Project/yaml-cpp/build/")
 

@@ -30,6 +30,7 @@ public:
 };
 using StackAllocator = MallocStackAllocator;
 
+//创建主协程，没有栈
 Fiber::Fiber() {
     m_state = EXEC;
     SetThis(this);
@@ -37,42 +38,43 @@ Fiber::Fiber() {
         ASSERT2(false, "getcontext");
     }
     ++s_fiber_count;
-
-    LOG_DEBUG(g_logger) << "Fiber::Fiber main";
+    LOG_DEBUG(g_logger) << "Create main fiber";
 }
 
-//创建协程
+//创建子协程
 Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) 
     :m_id(++s_fiber_id), m_cb(cb) {
     m_stacksize = stacksize ? stacksize : g_fiber_config->getVal();
+    //分配栈空间
     m_stack = StackAllocator::Alloc(m_stacksize);
     ++s_fiber_count;
 
     if(getcontext(&m_ctx)) {
         ASSERT2(false, "getcontext");
     }
-    m_ctx.uc_link = nullptr;
+    m_ctx.uc_link = nullptr;                //uc_link为空时，执行完当前context后直接退出程序
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stacksize;
-
+    //指定上下文的入口函数
     if(!use_caller) {
         makecontext(&m_ctx, &Fiber::MainFunc, 0);
     } else {
         makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
     }
-    LOG_DEBUG(g_logger) << "Fiber::Fiber(cb, sz) id=" << m_id;
+    LOG_DEBUG(g_logger) << "Create a subFiber, id= " << m_id;
 }
 
 Fiber::~Fiber() {
     --s_fiber_count;
+    //子协程释放栈空间
     if(m_stack) {
         ASSERT(m_state == TERM || m_state == EXCEPT || m_state == INIT);
         StackAllocator::Dealloc(m_stack, m_stacksize);
     }else {
-        //初始协程没有cb
+        //主协程没有栈、cb
         ASSERT(!m_cb);
         ASSERT(m_state == EXEC);
-
+        //若当前协程是主协程，将其置空
         Fiber* cur = t_fiber;
         if(cur == this) {
             SetThis(nullptr);
@@ -90,7 +92,7 @@ void Fiber::reset(std::function<void()> cb) {
     if(getcontext(&m_ctx)) {
         ASSERT2(false, "getcontext");
     }
-    m_ctx.uc_link = nullptr;
+    m_ctx.uc_link = nullptr;    //uc_link为空时，执行完当前context后直接退出程序
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stacksize;
     makecontext(&m_ctx, &Fiber::MainFunc, 0);
@@ -115,7 +117,7 @@ void Fiber::back() {
     }
 }
 
-//切换到当前协程执行
+//从调度器主协程切换到当前协程执行
 void Fiber::swapIn() {
     SetThis(this);
     ASSERT(m_state != EXEC);
@@ -126,7 +128,7 @@ void Fiber::swapIn() {
     // std::cout << "Fiber::swapIn()" << std::endl;
 }
 
-//切换当前协程到后台
+//切换当前协程到后台，恢复到调度器主协程执行
 void Fiber::swapOut() {
     SetThis(Scheduler::GetMainFiber());
     // m_state = TERM;
@@ -141,7 +143,7 @@ void Fiber::SetThis(Fiber* f) {
     t_fiber = f;
 }
 
-//返回当前协程
+//返回当前协程：如果当前协程存在，直接返回；否则创建主协程，并设置t_fiber和t_threadFiber都指向主协程
 Fiber::ptr Fiber::GetThis() {
     if(t_fiber) {
         return t_fiber->shared_from_this();

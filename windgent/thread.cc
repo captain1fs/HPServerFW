@@ -34,11 +34,11 @@ void* Thread::run(void* arg) {
 
     std::function<void()> cb;
     cb.swap(thd->m_cb);
+    //通知主线程线程id已经被初始化
+    thd->m_sem.notify();
+    // thd->m_cond.signal();
 
     cb();
-
-    // thd->m_sem.notify();
-    // thd->m_cond.signal();
     return 0;
 }
 
@@ -52,7 +52,8 @@ Thread::Thread(std::function<void()> cb, std::string name)
         LOG_ERROR(g_logger) << "pthread_create failed, retVal= " << retVal << ", name = " << m_name << std::endl;
             throw std::logic_error("pthread_create error");
     }
-    // m_sem.wait();
+    //确保线程id已经在子线程中初始化完成
+    m_sem.wait();
     // m_cond.wait();
 }
 

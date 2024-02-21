@@ -9,6 +9,8 @@ namespace windgent {
 
 class Scheduler;
 
+//使用非对称协程的设计思路，通过主协程创建新协程，主协程由swapIn()让出执行权执行子协程的任务，子协程可以通过YieldToHold()让出执行权继续执行主协程的任务，不能在子协程之间做相互的转化，这样会导致回不到main函数的上下文。这里使用了两个线程局部变量保存当前协程和主协程，切换协程时调用swapcontext，若两个变量都保存子协程，则无法回到原来的主协程中。
+
 class Fiber : public std::enable_shared_from_this<Fiber> {
     friend class Scheduler;
 public:
@@ -22,6 +24,7 @@ public:
         EXCEPT
     };
 public:
+    //参数use_caller表示是否将调用线程加入线程池
     Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
     ~Fiber();
 
@@ -57,7 +60,7 @@ public:
 
     static void CallerMainFunc();
 private:
-    //只用来设置初始协程，即当前线程状态
+    //只构造主协程
     Fiber();
 
 private:

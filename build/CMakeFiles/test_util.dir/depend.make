@@ -4,6 +4,7 @@
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../tests/test_util.cc
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/config.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/fiber.h
+CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/hook.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/log.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/macro.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: ../windgent/mutex.h

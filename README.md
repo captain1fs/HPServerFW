@@ -190,6 +190,15 @@ private:
 ```
 
 每个线程有一个主协程，主协程可切换为子协程执行，执行结束后会自动切换为主协程。
+```cpp
+Fiber::GetThis() 获得主协程
+                  swapIn()        
+Thread->man_fiber --------> sub_fiber (new(Fiber(cb)))
+            ^
+            | Fiber::YieldToHold()
+            |
+         sub_fiber
+```
 
 协程调度器如何工作?协程调度器内有一个线程池,这一组工作线程都运行run函数,不断地检查任务队列(协程)中是否有协程存在.
 如果有,则拿出这个协程来执行,否则这些线程都在执行空闲协程.

@@ -256,11 +256,12 @@ IOManager* IOManager::GetThis() {
 }
 
 void IOManager::tickle() {
+    //如果没有空闲的线程，直接返回
     if(!hasIdleThreads()) {
         return;
     }
     // std::cout << "---------- IOManager::tickle() -----------" << std::endl;
-    //如果有空闲线程，往m_tickleFds写端写入一个字符
+    //如果有空闲线程，往m_tickleFds写端写入一个字符，epoll_wait就会被唤醒
     int ret = write(m_tickleFds[1], "T", 1);
     ASSERT(ret == 1);
 }
@@ -285,7 +286,7 @@ void IOManager::idle() {
 
     while(true) {
         uint64_t next_timeout = 0;
-        //next_timeout每次都会重置为：到下一定时器执行要等待的时间
+        //next_timeout每次都会重置为：到下一定时器任务执行要等待的时间
         if(stopping(next_timeout)) {
             LOG_INFO(g_logger) << "name= " << getName() << ", idle stopping exit";
             break;
@@ -301,6 +302,7 @@ void IOManager::idle() {
             }
             //next_timeout是到下一定时器执行要等待的时间，因此epoll_wait等待next_timeout后会立即返回，从而跳出do...while
             //去执行超时的定时器任务，而不需要等待MAX_TIMEOUT
+            //三种情况能唤醒epoll_wait：1：超时时间到了 2：socket上有数据到来  3：tickle往pipe中写入了1，通知有任务来了
             ret = epoll_wait(m_epfd, events, 64, (int)next_timeout);
             // LOG_INFO(g_logger) << "epoll_wait ret = " << ret;
             if(ret < 0 && errno == EINTR) {
@@ -310,19 +312,21 @@ void IOManager::idle() {
             }
         }while(true);
 
-        //处理超时的定时器任务
+        //获取超时的定时器任务
         std::vector<std::function<void()> > cbs;
         listExpiredCbs(cbs);
+        //如果有超时的定时器任务，全部加入任务队列中调度
         if(!cbs.empty()) {
             // std::cout << "--------- schedule(cbs.begin(), cbs.end()) ---------" << std::endl;
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }
-
+        //遍历就绪的fd
         for(int i = 0;i < ret; ++i) {
             epoll_event& event = events[i];
             if(event.data.fd == m_tickleFds[0]) {
                 uint8_t dummy[256];
+                //若该fd是pipefd，将发来的1读取完
                 while(read(m_tickleFds[0], dummy, sizeof(dummy)) > 0);
                 // std::cout << "dummy[0] = " << dummy[0] << std::endl;
                 continue;
@@ -341,15 +345,16 @@ void IOManager::idle() {
             if(event.events & EPOLLOUT) {
                 real_event |= WRITE;
             }
-
+            //fd_ctx->events是通过addEvent添加的事件，而real_event是从fd上监听到的事件
             if((fd_ctx->events & real_event) == NONE) {
                 continue;
             }
 
             int left_events = (fd_ctx->events & ~real_event);
+            // 如果执行完该事件还有事件则修改，若无事件则删除
             int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
             event.events = EPOLLET | left_events;
-
+            //重新注册剩余的事件
             int ret2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
             if(ret2) {
                 LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", " << op << ", " << fd_ctx->fd 
@@ -357,12 +362,13 @@ void IOManager::idle() {
                             <<strerror(errno) << ")";
                 continue;  
             }
-
+            // 读事件好了，执行读事件
             if(real_event & READ) {
                 // std::cout << "--------- fd_ctx->triggerEvent(READ) ---------" << std::endl;
                 fd_ctx->triggerEvent(READ);
                 --m_pendingEventCount;
             }
+            // 写事件好了，执行写事件
             if(real_event & WRITE) {
                 // std::cout << "--------- fd_ctx->triggerEvent(WRITE) ---------" << std::endl;
                 fd_ctx->triggerEvent(WRITE);
@@ -374,7 +380,7 @@ void IOManager::idle() {
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();
         cur.reset();
-        raw_ptr->swapOut();   //回到调度协程
+        raw_ptr->swapOut();   //回到调度器的主协程
     }
 }
 
