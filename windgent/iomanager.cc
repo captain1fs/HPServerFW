@@ -107,7 +107,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
     }
     //修改事件上下文
     FdContext::MutexType::Lock lock3(fd_ctx->mutex);
-    //如果已存在同名事件
+    //同⼀个fd不允许重复添加相同的事件
     if(fd_ctx->events & event) {
         LOG_ERROR(g_logger) << "addEvent assert fd= " << fd << ", event= " << event
                             << ", fd_ctx.event= " << fd_ctx->events;
@@ -128,12 +128,13 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb) {
     }
 
     ++m_pendingEventCount;
-    //设置上下文状态
+    //找到这个fd的event事件对应的EventContext，对其中的scheduler, cb, fiber进⾏赋值
     fd_ctx->events = (Event)(fd_ctx->events | event);
     FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
     ASSERT(!event_ctx.scheduler && !event_ctx.fiber && !event_ctx.cb);
 
     event_ctx.scheduler = Scheduler::GetThis();
+    // 赋值scheduler和回调函数，如果回调函数为空，则把当前协程当成回调执⾏体
     if(cb) {
         event_ctx.cb.swap(cb);
     } else {
@@ -193,7 +194,7 @@ bool IOManager::cancelEvent(int fd, Event event) {
     if(!(fd_ctx->events & event)) {
         return false;
     }
-
+    //从events中删除这个事件，如果还有事件剩余，需要修改
     Event new_event = (Event)(fd_ctx->events & ~event); 
     int op = new_event ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
     epoll_event epevent;
@@ -207,7 +208,7 @@ bool IOManager::cancelEvent(int fd, Event event) {
                             <<strerror(errno) << ")";
         return false;
     }
-
+    //触发执行此事件
     fd_ctx->triggerEvent(event);
     --m_pendingEventCount;
     return true;
@@ -239,7 +240,7 @@ bool IOManager::cancelAll(int fd) {
                             <<strerror(errno) << ")";
         return false;
     }
-    //如果fd上还有事件，触发执行
+    //触发全部已注册的事件
     if(fd_ctx->events & READ) {
         fd_ctx->triggerEvent(READ);
         --m_pendingEventCount;
@@ -256,7 +257,7 @@ IOManager* IOManager::GetThis() {
 }
 
 void IOManager::tickle() {
-    //如果没有空闲的线程，直接返回
+    //如果没有空闲的线程，不需要发通知
     if(!hasIdleThreads()) {
         return;
     }
@@ -276,10 +277,13 @@ bool IOManager::stopping(uint64_t& timeout) {
     return timeout == ~0ull && m_pendingEventCount == 0 && Scheduler::stopping();
 }
 
-//IO调度器无任务时执行idle函数，阻塞在epoll_wait上等待着IO事件到来
+//IO调度器无任务时执行idle函数，阻塞在epoll_wait上等待着IO事件到来。idle退出的时机是epoll_wait返回，对应的操作是tickle或注册的IO事件就绪或超时
+//调度器⽆调度任务时会阻塞idle协程上，对IO调度器⽽⾔，idle状态应该关注两件事，⼀是有没有新的调度任务，对应Schduler::schedule()，如果有新的调度任务，那应该⽴即退出idle状态，并执⾏对应的任务；
+//⼆是关注当前注册的所有IO事件有没有触发，如果有触发，那么应该执⾏
 void IOManager::idle() {
     LOG_INFO(g_logger) << "IOManager::idle()";
-    epoll_event* events = new epoll_event[64]();
+    const uint64_t MAX_EVENTS = 64;
+    epoll_event* events = new epoll_event[MAX_EVENTS]();
     std::shared_ptr<epoll_event> shared_events(events, [](epoll_event* ptr) {
         delete[] ptr;
     });
@@ -321,7 +325,7 @@ void IOManager::idle() {
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }
-        //遍历就绪的fd
+        //遍历所有发⽣的事件，根据epoll_event的私有指针找到对应的FdContext，进⾏事件处理
         for(int i = 0;i < ret; ++i) {
             epoll_event& event = events[i];
             if(event.data.fd == m_tickleFds[0]) {
@@ -332,7 +336,7 @@ void IOManager::idle() {
                 continue;
             }
 
-            FdContext* fd_ctx = (FdContext*)event.data.ptr;
+            FdContext* fd_ ctx = (FdContext*)event.data.ptr;
             FdContext::MutexType::Lock lock(fd_ctx->mutex);
             if(event.events & (EPOLLERR | EPOLLHUP)) {
                 event.events |= EPOLLIN | EPOLLOUT;
@@ -349,12 +353,10 @@ void IOManager::idle() {
             if((fd_ctx->events & real_event) == NONE) {
                 continue;
             }
-
+            //剔除已经发⽣的事件，将剩下的事件重新加⼊epoll_wait，如果剩下的事件为0，表示这个fd已经不需要关注了，直接从epoll中删除
             int left_events = (fd_ctx->events & ~real_event);
-            // 如果执行完该事件还有事件则修改，若无事件则删除
             int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
             event.events = EPOLLET | left_events;
-            //重新注册剩余的事件
             int ret2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
             if(ret2) {
                 LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", " << op << ", " << fd_ctx->fd 
@@ -362,13 +364,12 @@ void IOManager::idle() {
                             <<strerror(errno) << ")";
                 continue;  
             }
-            // 读事件好了，执行读事件
+            // 处理已经发⽣的事件，也就是让调度器调度指定的函数或协程
             if(real_event & READ) {
                 // std::cout << "--------- fd_ctx->triggerEvent(READ) ---------" << std::endl;
                 fd_ctx->triggerEvent(READ);
                 --m_pendingEventCount;
             }
-            // 写事件好了，执行写事件
             if(real_event & WRITE) {
                 // std::cout << "--------- fd_ctx->triggerEvent(WRITE) ---------" << std::endl;
                 fd_ctx->triggerEvent(WRITE);
@@ -376,7 +377,8 @@ void IOManager::idle() {
             }
         }
 
-        //执行完毕，让出执行权
+        //一旦处理完所有的事件，idle协程yield，这样可以让调度协程(Scheduler::run)重新检查是否有新任务要调度
+        //上⾯triggerEvent实际也只是把对应的fiber重新加⼊调度，要执⾏的话还要等idle协程退出
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();
         cur.reset();

@@ -7,21 +7,24 @@ namespace windgent {
 
 windgent::Logger::ptr g_logger = LOG_NAME("system");
 
-static thread_local Scheduler* t_scheduler = nullptr;               //当前线程的协程调度器
-static thread_local Fiber* t_scheduler_fiber = nullptr;             //当前线程的主协程
+//当前线程的协程调度器，同⼀个调度器下的所有线程指同同⼀个调度器实例
+static thread_local Scheduler* t_scheduler = nullptr;               
+//当前线程的调度协程，每个线程都独有⼀份，包括caller线程，这个加上前⾯协程模块的t_fiber和t_thread_fiber，每个线程总共可以记录三个协程的上下⽂信息。
+static thread_local Fiber* t_scheduler_fiber = nullptr;
 
 Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name) :m_name(name) {
     ASSERT(threads > 0);
 
     //是否把创建Scheduler的线程纳入Schuduler监管，如果是，则
     if(use_caller) {
-        windgent::Fiber::GetThis();     //返回/创建一个主协程
-        --threads;          //当前线程被纳入监管，则可创建线程数减一
+        windgent::Fiber::GetThis();     //初始化线程的主协程
+        --threads;                      //当前线程被纳入监管，则可创建线程数减一
 
         ASSERT(GetThis() == nullptr);
         t_scheduler = this;
 
-        //由于是把已有的线程纳入监管，所以需要为此线程创建一个子协程作为该线程的主协程并与run绑定
+        //由于是把已有的线程纳入监管，所以需要为此线程创建一个子协程作为该线程的主协程并与run绑定。
+        //caller线程的调度协程不会被调度器调度，只会在调度器stop时主动call，且当它停止时，应该返回caller线程的主协程
         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         windgent::Thread::SetName(m_name);
         t_scheduler_fiber = m_rootFiber.get();
@@ -124,7 +127,7 @@ void Scheduler::run() {
     LOG_INFO(g_logger) << "run";
     set_hook_enable(true);
     setThis();
-    //若当前执行run的线程不是user_caller线程，设置当前协程为线程的主协程
+    //若当前执行run的线程不是user_caller线程，设置线程的主协程为调度协程
     if(windgent::GetThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::GetThis().get();
     }
@@ -135,13 +138,13 @@ void Scheduler::run() {
     FiberAndThread ft;
     while(true) {
         ft.reset();
-        bool tickle_me = false;
+        bool tickle_me = false;     //是否tickle其他线程进⾏任务调度
         bool is_active = false;
         {
             MutexType::Lock locK(m_mtx);
             auto it = m_fibers.begin();
             while(it != m_fibers.end()) {
-                //如果当前任务指定的线程id不是当前线程，跳过
+                //指定了调度线程，但不是在当前线程上调度，标记⼀下需要通知其他线程（指定的那个线程）进⾏调度，然后跳过这个任务，继续下⼀个
                 if(it->threadId != -1 && it->threadId != windgent::GetThreadId()) {
                     ++it;
                     tickle_me = true;
@@ -153,14 +156,15 @@ void Scheduler::run() {
                     ++it;
                     continue;
                 }
-
+                // 当前调度线程找到⼀个任务，准备开始调度，将其从任务队列中剔除，活跃线程数加1
                 ft = *it;
                 m_fibers.erase(it++);
                 ++m_activeThreadCount;
                 is_active = true;
                 break;
             }
-            tickle_me |= it != m_fibers.end();
+            // 当前线程拿完⼀个任务后，发现任务队列还有剩余，那么tickle⼀下其他线程
+            tickle_me |= it != m_fibers.end();          
         }
 
         if(tickle_me) {
@@ -169,8 +173,8 @@ void Scheduler::run() {
 
         //协程任务，协程切换都是在任务协程和线程主协程直接的切换
         if(ft.fiber && (ft.fiber->getState() != Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT)) {
+            //resume协程，resume返回时，协程要么执⾏完了，要么半路yield了，总之这个任务就算完成了，活跃线程数减⼀
             ft.fiber->swapIn();
-            //到此步时，协程已经执行完成，活跃线程数-1
             --m_activeThreadCount;
 
             if(ft.fiber->getState() == Fiber::READY) {
@@ -205,7 +209,7 @@ void Scheduler::run() {
                 --m_activeThreadCount;
                 continue;
             }
-            
+            // 如果调度器没有调度任务，那么idle协程会不停地swapIn/swapOut，不会结束，如果idle协程结束了，那⼀定是调度器停⽌了
             if(idle_fiber->getState() == Fiber::TERM) {
                 LOG_INFO(g_logger) << "idle fiber term";
                 break;

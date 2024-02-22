@@ -24,12 +24,14 @@ public:
         EXCEPT
     };
 public:
-    //参数use_caller表示是否将调用线程加入线程池
+    //构造子协程，参数use_caller表示是否将调用线程加入线程池
     Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
     ~Fiber();
 
-    //重置协程函数和状态
+    //重置协程状态和⼊⼝函数，复⽤栈空间，不重新创建栈
     void reset(std::function<void()> cb);
+
+    //只有被调度器执行的协程才会调用swapIn和swapOut。因为这些子协程只和调度协程切换
     //切换到当前协程执行
     void swapIn();
     //切换当前协程到后台执行
@@ -43,9 +45,9 @@ public:
     uint64_t getId() const { return m_id; }
     State getState() const { return m_state; }
 
-    //设置当前协程
+    //设置当前运行的协程
     static void SetThis(Fiber* f);
-    //返回当前协程
+    //返回当前执行的协程，如果当前线程还未创建协程，则创建线程的第⼀个协程，且该协程为当前线程的主协程，其他协程都通过这个协程来调度，也就是说，其他协程结束时,都要切回到主协程，由主协程重新选择新的协程进⾏resume
     static Fiber::ptr GetThis();
     //切换协程到后台，并设为READY状态
     static void YieldToReady();
@@ -60,7 +62,7 @@ public:
 
     static void CallerMainFunc();
 private:
-    //只构造主协程
+    //只⽤于创建线程的第⼀个协程，也就是线程主函数对应的协程，这个协程只能由GetThis()⽅法调⽤，所以定义成私有⽅法
     Fiber();
 
 private:

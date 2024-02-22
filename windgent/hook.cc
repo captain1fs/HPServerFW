@@ -15,6 +15,7 @@ static windgent::ConfigVar<int>::ptr g_tcp_connect_timeout =
 
 namespace windgent {
 
+//线程局部变量t_hook_enable，⽤于表示当前线程是否启⽤hook，使⽤线程局部变量表示hook模块是线程粒度的，各个线程可单独启用或关闭
 static thread_local bool t_hook_enable = false;
 
 #define HOOK_FUNC(XX) \
@@ -80,6 +81,7 @@ struct timer_cond {
     int cancelled = 0;
 };
 
+//IO相关的API不仅需要添加定时器，还需要注册事件
 template<typename OriginFun, typename ... Args>
 static ssize_t do_io(int fd, OriginFun func, const char* hook_func_name, uint32_t event,
                      int timeout_type, Args&&... args) {
@@ -267,7 +269,7 @@ int connect_with_timeout(int sockfd, const struct sockaddr *addr, socklen_t addr
     std::shared_ptr<timer_cond> tcond(new timer_cond);
     std::weak_ptr<timer_cond> wcond(tcond);
 
-    //connect存在超时时间
+    //connect存在超时时间，则添加一个条件定时器，在定时时间到后通过t->cancelled设置超时标志并触发⼀次WRITE事件。然后添加WRITE事件并yield，等待WRITE事件触发再往下执⾏。
     if(timerout_ms != (uint64_t)-1) {
         //添加定时器，cb：超时后取消事件(如果有事件就触发)
         timer = iom->addCondTimer(timerout_ms, [wcond, iom, sockfd]() {
@@ -285,7 +287,8 @@ int connect_with_timeout(int sockfd, const struct sockaddr *addr, socklen_t addr
     if(0 == ret) {
         //定时器超时后cancelEvent，或者connect连接成功(epoll监听到上面addEvent添加的事件)，都会将YieldToHold从此处唤醒
         windgent::Fiber::YieldToHold();
-        //若唤醒后定时器还存在(从addEvent出唤醒)，已经没有意义，取消掉
+        //若唤醒后定时器还存在(fd可写)，已经没有意义，取消掉。 取消定时器会导致定时器回调被强制执⾏⼀次，但这并不会导致问题，因为只有当前协程结束后，定时器回调才会在接下来被调度，
+        //由于定时器回调被执⾏时connect_with_timeout协程已经执⾏完了，所以理所当然地条件变量wcond也被释放了，所以实际上定时器回调函数什么也没做
         if(timer) {
             timer->cancel();
         }

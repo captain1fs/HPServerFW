@@ -14,8 +14,9 @@ static std::atomic<uint64_t> s_fiber_count {0};    //协程数量
 
 static windgent::ConfigVar<uint32_t>::ptr g_fiber_config = windgent::ConfigMgr::Lookup<uint32_t>("fiber.stacksize", 128 * 1024, "fiber stack size");
 
-static thread_local Fiber* t_fiber = nullptr;   //当前正在执行的协程
-static thread_local Fiber::ptr t_threadFiber = nullptr;   //主协程
+//每个线程同一时间只能看到两个协程，即当前正在执行的协程和线程的主协程，协程的切换只发生在这两者之间
+static thread_local Fiber* t_fiber = nullptr;               //当前正在执行的协程
+static thread_local Fiber::ptr t_threadFiber = nullptr;     //线程的主协程
 
 class MallocStackAllocator {
 public:
@@ -99,7 +100,8 @@ void Fiber::reset(std::function<void()> cb) {
     m_state = INIT;
 }
 
-//保存主协程上下文，切换到当前协程执行
+//保存主协程上下文，切换到当前协程执行。在⾮对称协程⾥，执⾏call时的当前执⾏环境⼀定是位于线程主协程⾥，所以这⾥的swapcontext操作的结果
+//把主协程的上下⽂保存到t_thread_fiber->m_ctx中，并且激活⼦协程的上下⽂
 void Fiber::call() {
     SetThis(this);
     m_state = EXEC;
@@ -108,7 +110,8 @@ void Fiber::call() {
     }
 }
 
-//切换当前协程到后台执行，恢复主协程上下文
+//切换当前协程到后台执行，恢复主协程上下文。当前执⾏环境⼀定是位于⼦协程⾥，所以这⾥的swapcontext操作的结果是把⼦协程的上下⽂保存到协程⾃⼰的m_ctx中，同时从
+//t_thread_fiber获得主协程的上下⽂并激活
 void Fiber::back() {
     SetThis(t_threadFiber.get());
     // m_state = TERM;
@@ -117,7 +120,7 @@ void Fiber::back() {
     }
 }
 
-//从调度器主协程切换到当前协程执行
+//从调度协程切换到当前协程执行
 void Fiber::swapIn() {
     SetThis(this);
     ASSERT(m_state != EXEC);
@@ -128,7 +131,7 @@ void Fiber::swapIn() {
     // std::cout << "Fiber::swapIn()" << std::endl;
 }
 
-//切换当前协程到后台，恢复到调度器主协程执行
+//切换当前协程到后台，恢复到调度协程执行
 void Fiber::swapOut() {
     SetThis(Scheduler::GetMainFiber());
     // m_state = TERM;

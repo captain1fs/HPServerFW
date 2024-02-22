@@ -33,7 +33,7 @@ private:
     bool m_isInit : 1;
     bool m_isSocket : 1;
     bool m_sysNonblock : 1;     //是否hook的非阻塞
-    bool m_userNonblock : 1;    //是否用户设置的非阻塞
+    bool m_userNonblock : 1;    //是否用户设置的非阻塞，如果用户显示的设置了非阻塞，就需要用户自己去处理，只有用户没有设置非阻塞，hook才有意义
     bool m_isClosed : 1;
 
     int m_fd;

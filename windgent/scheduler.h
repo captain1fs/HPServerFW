@@ -121,15 +121,15 @@ private:
     std::vector<Thread::ptr> m_threads;     //工作线程
     std::list<FiberAndThread> m_fibers;     //待执行的协程（任务）队列
     std::string m_name;
-    Fiber::ptr m_rootFiber;                 //use_caller为true时有效, 调度协程
+    Fiber::ptr m_rootFiber;                 //use_caller为true时有效, 调度器所在线程的调度协程
 protected:
-    std::vector<int> m_threadIds;   //线程id数组
-    size_t m_threadCount = 0;       //总线程数
-    std::atomic<size_t> m_activeThreadCount = {0};        //活跃线程数
-    std::atomic<size_t> m_idleThreadCount = {0};          //空闲线程数
+    std::vector<int> m_threadIds;                           //线程id数组
+    size_t m_threadCount = 0;                               //总线程数
+    std::atomic<size_t> m_activeThreadCount = {0};          //活跃线程数
+    std::atomic<size_t> m_idleThreadCount = {0};            //空闲线程数
     bool m_stopping = true;
     bool m_autostop = false;
-    int m_rootThread = 0;       //主线程id（user_caller）
+    int m_rootThread = 0;                                   //调度器所在线程的id（user_caller）
 };
 
 }
