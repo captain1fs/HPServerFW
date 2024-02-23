@@ -27,7 +27,7 @@ public:
         std::transform(m_name.begin(), m_name.end(), m_name.begin(), ::tolower);
     }
     virtual ~ConfigVarBase() { }
-
+    //由派生类实现，实现YAML字符串和基本类型的转换
     virtual std::string toString() = 0;
     virtual bool fromString(const std::string& val) = 0;
     virtual std::string getTypeName() const = 0;
@@ -242,7 +242,7 @@ public:
     }
 
 
-    //eg：当m_val是vector<int>类型时，根据ToStr指定的偏特化模板LexicalCast<vector<int>, std::string>>()将m_val转换为string类型
+    //eg：当m_val是vector<int>类型时，根据ToStr指定的偏特化模板LexicalCast<vector<int>, std::string>>()将m_val转换为Yaml string类型
     std::string toString() override {
         try {
             // return boost::lexical_cast<std::string>(m_val);

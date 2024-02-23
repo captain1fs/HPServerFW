@@ -15,6 +15,7 @@ static std::atomic<uint64_t> s_fiber_count {0};    //协程数量
 static windgent::ConfigVar<uint32_t>::ptr g_fiber_config = windgent::ConfigMgr::Lookup<uint32_t>("fiber.stacksize", 128 * 1024, "fiber stack size");
 
 //每个线程同一时间只能看到两个协程，即当前正在执行的协程和线程的主协程，协程的切换只发生在这两者之间
+//线程主协程代表线程入口函数或是main函数所在的协程，这两种函数都不是以协程的手段创建的，所以它们只有ucontext_t上下文，但没有入口函数，也没有分配栈空间
 static thread_local Fiber* t_fiber = nullptr;               //当前正在执行的协程
 static thread_local Fiber::ptr t_threadFiber = nullptr;     //线程的主协程
 
@@ -88,6 +89,7 @@ Fiber::~Fiber() {
 //重置协程函数和状态
 void Fiber::reset(std::function<void()> cb) {
     ASSERT(m_stack);
+    //只有处于TERM、INIT、EXCEPT状态的协程才能被重置
     ASSERT(m_state == TERM || m_state == EXCEPT || m_state == INIT);
     m_cb = cb;
     if(getcontext(&m_ctx)) {
@@ -205,6 +207,7 @@ void Fiber::MainFunc() {
     //减少一次this的引用计数，使得能够正确析构
     auto raw_ptr = cur.get();
     cur.reset();
+    //在非caller线程里，调度协程就是调度线程的主协程，因此这里子协程应该切换回调度协程
     raw_ptr->swapOut();
 
     ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
@@ -228,6 +231,7 @@ void Fiber::CallerMainFunc() {
     //减少一次this的引用计数，使得能够正确析构
     auto raw_ptr = cur.get();
     cur.reset();
+    //但在caller线程里，调度协程并不是caller线程的主协程，而是相当于caller线程的子协程，因此这里子协程应该切换回caller线程的主协程
     raw_ptr->back();
 
     ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));

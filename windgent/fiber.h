@@ -57,7 +57,8 @@ public:
     static uint64_t TotalFibers();
     static uint64_t GetFiberId();
 
-    //上下文入口函数，在每个协程的独立栈空间上执行
+    //上下文入口函数，在每个协程的独立栈空间上执行。
+    //在用户传入的协程入口函数上进行了一次封装，这个封装类似于线程模块的对线程入口函数的封装。通过封装协程入口函数，可以实现协程在结束自动执行yield的操作
     static void MainFunc();
 
     static void CallerMainFunc();
