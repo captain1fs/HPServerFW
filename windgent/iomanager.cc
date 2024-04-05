@@ -336,7 +336,7 @@ void IOManager::idle() {
                 continue;
             }
 
-            FdContext* fd_ ctx = (FdContext*)event.data.ptr;
+            FdContext* fd_ctx = (FdContext*)event.data.ptr;
             FdContext::MutexType::Lock lock(fd_ctx->mutex);
             if(event.events & (EPOLLERR | EPOLLHUP)) {
                 event.events |= EPOLLIN | EPOLLOUT;
