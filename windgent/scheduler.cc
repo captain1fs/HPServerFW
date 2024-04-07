@@ -23,7 +23,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name) :
         ASSERT(GetThis() == nullptr);
         t_scheduler = this;
 
-        //由于是把已有的线程纳入监管，所以需要为此线程创建一个子协程作为该线程的主协程并与run绑定。
+        //由于是把已有的main线程纳入监管，所以需要为此线程创建一个子协程（调度协程）作为该线程的主协程并与run绑定。
         //caller线程的调度协程不会被调度器调度，只会在调度器stop时主动call，且当它停止时，应该返回caller线程的主协程
         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         windgent::Thread::SetName(m_name);
@@ -129,7 +129,7 @@ void Scheduler::run() {
     LOG_INFO(g_logger) << "run";
     set_hook_enable(true);
     setThis();
-    //若当前执行run的线程不是user_caller线程，设置线程的主协程为调度协程
+    //若当前执行run的线程不是user_caller线程（一般调度线程），设置该线程的主协程为调度协程
     if(windgent::GetThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::GetThis().get();
     }

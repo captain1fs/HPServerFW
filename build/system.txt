@@ -1,4 +1,0 @@
-2023-12-08 17:04:23	[INFO]	hello system
-
-2023-12-08 17:04:23	[INFO]	hello system
-

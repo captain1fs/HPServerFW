@@ -1,2 +1,0 @@
-2024-02-03 13:59:41	ERROR	test define error
-2024-02-03 13:59:41	ERROR	test fmt error aa
