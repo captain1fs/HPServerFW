@@ -30,7 +30,7 @@ private:
 
     static void* run(void* arg);
 private:
-    pid_t m_id = -1;    //linux的线程id，在日志中输出和ps显示的一样，便于调试
+    pid_t m_id = -1;            //linux的线程id，在日志中输出和ps显示的一样，便于调试
     pthread_t m_threadId = 0;   //pthreda库的线程id
     std::function<void()> m_cb;
     std::string m_name;

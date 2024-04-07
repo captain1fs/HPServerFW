@@ -6,6 +6,7 @@
 
 namespace windgent {
 
+//Stream类规定了一个流必须具备read/write接口，继承自Stream的类必须实现这些接口
 class Stream {
 public:
     typedef std::shared_ptr<Stream> ptr;

@@ -74,6 +74,8 @@ void Scheduler::start() {
     LOG_INFO(g_logger) << "start";
 }
 
+//调度器的停止行为要分两种情况讨论，首先是use_caller为false的情况，这种情况下，由于没有使用caller线程进行调度，那么只需要简单地等各个调度线程的调度协程退出就行了。
+//如果use_caller为true，表示caller线程也要参于调度，这时，调度器初始化时记录的属于caller线程的调度协程就要起作用了，在调度器停止前，应该让这个caller线程的调度协程也运行一次，让caller线程完成调度工作后再退出。如果调度器只使用了caller线程进行调度，那么所有的调度任务要在调度器停止时才会被调度。
 void Scheduler::stop() {
     LOG_INFO(g_logger) << "stop";
     m_autostop = true;

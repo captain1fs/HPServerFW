@@ -407,7 +407,7 @@ void Socket::initSocket() {
     int val = 1;
     setSockOpt(SOL_SOCKET, SO_REUSEADDR, val);
     if(m_type == SOCK_STREAM) {
-        setSockOpt(IPPROTO_TCP, TCP_NODELAY, val);
+        setSockOpt(IPPROTO_TCP, TCP_NODELAY, val);      //仅用Nagle算法
     }
 }
 
